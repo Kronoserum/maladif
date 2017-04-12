@@ -2,10 +2,12 @@
 //
 
 #include "stdafx.h"
+#include "Maladie.h"
 
 
 int main()
 {
+	Maladie maladietest = Maladie();
     return 0;
 }
 
