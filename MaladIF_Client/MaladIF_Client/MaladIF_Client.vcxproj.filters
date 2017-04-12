@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers sources\metier">
+      <UniqueIdentifier>{3e558b1b-ad14-4212-b07f-0b33a88412f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\metier\modele">
+      <UniqueIdentifier>{bb89e397-d3b4-4f7e-bc88-bb8729349797}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\metier\services">
+      <UniqueIdentifier>{9060821b-3bf2-4f9d-b83e-c18ac63d7177}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -24,6 +33,12 @@
     <ClInclude Include="targetver.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Patient.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -32,5 +47,16 @@
     <ClCompile Include="MaladIF_Client.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Patient.cpp">
+      <Filter>Fichiers sources\metier\modele</Filter>
+    </ClCompile>
+    <ClCompile Include="ServicesMetier.cpp">
+      <Filter>Fichiers sources\metier\services</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MaladIF_Client.rc">
+      <Filter>Fichiers de ressources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
