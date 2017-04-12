@@ -3,20 +3,16 @@
 #include <stdio.h>
 
 #include "stdafx.h"
-#include "Patient.h"
 #include "Analyse.h"
 
 using namespace std;
 
-void Patient::toString()
+
+Analyse::Analyse()
 {
 }
 
-Patient::Patient()
-{
-}
 
-
-Patient::~Patient()
+Analyse::~Analyse()
 {
 }

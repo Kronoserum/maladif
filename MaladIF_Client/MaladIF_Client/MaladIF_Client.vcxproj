@@ -145,15 +145,33 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Analyse.h" />
+    <ClInclude Include="Entreprise.h" />
+    <ClInclude Include="Maladie.h" />
+    <ClInclude Include="Medecin.h" />
     <ClInclude Include="Patient.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Serveur.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MaladIF_Client.cpp" />
+    <ClCompile Include="Analyse.cpp" />
+    <ClCompile Include="AnalyseDA.cpp" />
+    <ClCompile Include="ClientEntreprise.cpp" />
+    <ClCompile Include="ClientMain.cpp" />
+    <ClCompile Include="ClientMedecin.cpp" />
+    <ClCompile Include="Entreprise.cpp" />
+    <ClCompile Include="EntrepriseDA.cpp" />
+    <ClCompile Include="Maladie.cpp" />
+    <ClCompile Include="MaladieDA.cpp" />
+    <ClCompile Include="Medecin.cpp" />
     <ClCompile Include="Patient.cpp" />
+    <ClCompile Include="Serveur.cpp" />
+    <ClCompile Include="ServeurDA.cpp" />
     <ClCompile Include="ServicesMetier.cpp" />
+    <ClCompile Include="PatientDA.cpp" />
+    <ClCompile Include="MedecinDA.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

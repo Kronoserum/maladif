@@ -22,6 +22,9 @@
     <Filter Include="Fichiers sources\metier\services">
       <UniqueIdentifier>{9060821b-3bf2-4f9d-b83e-c18ac63d7177}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\DA">
+      <UniqueIdentifier>{c3173080-96fb-449d-8192-fea33c6b6ae1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -39,12 +42,24 @@
     <ClInclude Include="resource.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Medecin.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Analyse.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Entreprise.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Serveur.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Maladie.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="MaladIF_Client.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Patient.cpp">
@@ -52,6 +67,48 @@
     </ClCompile>
     <ClCompile Include="ServicesMetier.cpp">
       <Filter>Fichiers sources\metier\services</Filter>
+    </ClCompile>
+    <ClCompile Include="Medecin.cpp">
+      <Filter>Fichiers sources\metier\modele</Filter>
+    </ClCompile>
+    <ClCompile Include="Analyse.cpp">
+      <Filter>Fichiers sources\metier\modele</Filter>
+    </ClCompile>
+    <ClCompile Include="PatientDA.cpp">
+      <Filter>Fichiers sources\DA</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientMain.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Entreprise.cpp">
+      <Filter>Fichiers sources\metier\modele</Filter>
+    </ClCompile>
+    <ClCompile Include="MedecinDA.cpp">
+      <Filter>Fichiers sources\DA</Filter>
+    </ClCompile>
+    <ClCompile Include="Serveur.cpp">
+      <Filter>Fichiers sources\metier\modele</Filter>
+    </ClCompile>
+    <ClCompile Include="Maladie.cpp">
+      <Filter>Fichiers sources\metier\modele</Filter>
+    </ClCompile>
+    <ClCompile Include="MaladieDA.cpp">
+      <Filter>Fichiers sources\DA</Filter>
+    </ClCompile>
+    <ClCompile Include="EntrepriseDA.cpp">
+      <Filter>Fichiers sources\DA</Filter>
+    </ClCompile>
+    <ClCompile Include="AnalyseDA.cpp">
+      <Filter>Fichiers sources\DA</Filter>
+    </ClCompile>
+    <ClCompile Include="ServeurDA.cpp">
+      <Filter>Fichiers sources\DA</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientMedecin.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientEntreprise.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
