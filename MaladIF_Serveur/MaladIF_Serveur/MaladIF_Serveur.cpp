@@ -2,11 +2,13 @@
 //
 
 #include "stdafx.h"
+#include "ServicesMetier.h"
 
 
 int main()
 {
-	int a = 0;
+	ServicesMetier m;
+	m.seConnecter(1);
     return 0;
 }
 

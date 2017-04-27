@@ -28,3 +28,10 @@ list<string> ServeurDA::getNomsMaladies()
 	// Lire le fichier dictionnaire et extraire le noms des maladies
 	return maladies;
 }
+
+string ServeurDA::getMotsMaladie(string nomMaladie)
+{
+	string mots;
+	// Lire le dictionnaire et extraire les mots associés à une maladie
+	return mots;
+}

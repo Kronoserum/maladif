@@ -1,4 +1,9 @@
 #pragma once
+
+#include <string>
+#include <list>
+using namespace std;
+
 class ServeurDA
 {
 public:
@@ -7,5 +12,6 @@ public:
 
 	string getMetadonnees();
 	list<string> getNomsMaladies();
+	string getMotsMaladie(string nomMaladie);
 };
 
