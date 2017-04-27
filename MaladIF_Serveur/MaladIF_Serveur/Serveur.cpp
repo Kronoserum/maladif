@@ -13,7 +13,7 @@ Serveur::Serveur(unsigned int id, string metadonneesS)
 
 unsigned int Serveur::getId()
 {
-	return 0;
+	return idEntreprise;
 }
 
 string Serveur::getMetadonnees()
