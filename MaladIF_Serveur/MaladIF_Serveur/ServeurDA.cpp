@@ -1,5 +1,7 @@
 #include <string>
 #include <list>
+#include <fstream>
+#include <iostream>
 
 #include "stdafx.h"
 #include "Serveur.h"
@@ -13,6 +15,24 @@ ServeurDA::ServeurDA()
 
 ServeurDA::~ServeurDA()
 {
+}
+
+int ServeurDA::getId()
+{
+	int idLocal = -1;
+	ifstream is("connexion.txt", ios::in);
+	if (is)
+	{
+		string s;
+		getline(is, s);
+		idLocal = stoul(s, nullptr, 0);
+		cout << "Identifiant stocke : " << idLocal << endl;
+		is.close();
+	}
+	else {
+		cout << "Erreur lors de l'ouverture du fichier" << endl;
+	}
+	return idLocal;
 }
 
 string ServeurDA::getMetadonnees()

@@ -10,6 +10,7 @@ public:
 	ServeurDA();
 	~ServeurDA();
 
+	int getId();
 	string getMetadonnees();
 	list<string> getNomsMaladies();
 	string getMotsMaladie(string nomMaladie);

@@ -1,7 +1,7 @@
+
+#include "ServeurDA.h"
 #include "stdafx.h"
 #include "ServicesMetier.h"
-#include <iostream>
-#include <fstream>
 
 ServicesMetier::ServicesMetier()
 {
@@ -14,29 +14,20 @@ ServicesMetier::~ServicesMetier()
 
 }
 
-bool ServicesMetier::seConnecter(unsigned int id)
+bool ServicesMetier::seConnecter(int id)
 {
 	// Recuperation de l'identifiant depuis un fichier txt
-	/*ofstream os;
-	if (os)
-	{
-		cout << "Ouverture du fichier test.txt" << endl;
-		os << "Essai" << endl;
-		os.close();
-	}*/
-	ifstream is("essai.txt", ios::in);
-	if (is)
-	{
-		cout << "Ouverture du fichier reussie" << endl;
-		string s;
-		getline(is, s);
-		cout << s << endl;
-		is.close();
-	}
-	else {
-		cout << "Erreur lors de l'ouverture du fichier" << endl;
-	}
+	ServeurDA da;
 	// Comparaison avec l'id puis return true/false
+	int idLocal = da.getId();
+	if (idLocal != -1)
+	{
+		return false;
+	}
+	else if(id = idLocal)
+	{
+		return true;
+	}
 	return false;
 }
 

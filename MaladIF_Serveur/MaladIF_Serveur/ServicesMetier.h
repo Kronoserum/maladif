@@ -10,7 +10,7 @@ public:
 	ServicesMetier();
 	~ServicesMetier();
 
-	bool seConnecter(unsigned int id);
+	bool seConnecter(int id);
 
 	bool seDeconnecter();
 
