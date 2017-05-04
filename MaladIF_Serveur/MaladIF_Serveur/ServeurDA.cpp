@@ -1,12 +1,9 @@
-#include <string>
-#include <list>
-#include <fstream>
-#include <iostream>
-
 #include "stdafx.h"
 #include "Serveur.h"
 #include "ServeurDA.h"
 
+#include <fstream>
+#include <iostream>
 using namespace std;
 
 ServeurDA::ServeurDA()
