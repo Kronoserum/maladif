@@ -64,6 +64,7 @@
     <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\ConnectedSocket.h">
       <Filter>Network</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\AccueilEntreprise.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\stdafx.cpp">
@@ -90,6 +91,7 @@
     <ClCompile Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\ConnectedSocket.cpp">
       <Filter>Network</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\AccueilEntreprise.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Med%27IF_Serveur.rc">

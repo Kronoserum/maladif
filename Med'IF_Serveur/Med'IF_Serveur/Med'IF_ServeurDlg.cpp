@@ -179,15 +179,24 @@ void CMedIF_ServeurDlg::OnBnClickedOk()
 	int t = UpdateData(true);
 	if (!t)
 	{
-		AfxMessageBox("Erreur");
+		AfxMessageBox(_T("Erreur"));
 	}
 		
 	Services m;
 	bool b = m.seConnecter(idEntreprise);
-	CString s("Erreur");
+
 	if (b)
 	{
-		s = "Vous êtes connecté !";
+
+		CDialog * dlg = new CDialog(IDD_MEDIF_SERVEUR_ACCUEIL);
+		dlg->Create(IDD_MEDIF_SERVEUR_ACCUEIL);
+		dlg->ShowWindow(SW_NORMAL);
 	}
-	AfxMessageBox(s);
+	else {
+		CString s("Erreur");
+		AfxMessageBox(s);
+	}
+	
+
+
 }
