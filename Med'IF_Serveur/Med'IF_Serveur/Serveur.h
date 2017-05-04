@@ -6,7 +6,7 @@ using namespace std;
 
 class Serveur
 {
-private :
+private:
 	unsigned int idEntreprise;
 	string metadonnees;
 

@@ -182,24 +182,25 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="Connexion.txt" />
     <Text Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\MaladIF_Serveur\MaladIF_Serveur\Serveur.h" />
-    <ClInclude Include="..\..\MaladIF_Serveur\MaladIF_Serveur\ServeurDA.h" />
-    <ClInclude Include="..\..\MaladIF_Serveur\MaladIF_Serveur\ServicesMetier.h" />
     <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Med%27IF_Serveur.h" />
     <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Med%27IF_ServeurDlg.h" />
     <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Resource.h" />
+    <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Serveur.h" />
+    <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\ServeurDA.h" />
+    <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Services.h" />
     <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\stdafx.h" />
     <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\MaladIF_Serveur\MaladIF_Serveur\Serveur.cpp" />
-    <ClCompile Include="..\..\MaladIF_Serveur\MaladIF_Serveur\ServeurDA.cpp" />
-    <ClCompile Include="..\..\MaladIF_Serveur\MaladIF_Serveur\ServicesMetier.cpp" />
     <ClCompile Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Med%27IF_Serveur.cpp" />
     <ClCompile Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Med%27IF_ServeurDlg.cpp" />
+    <ClCompile Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Serveur.cpp" />
+    <ClCompile Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\ServeurDA.cpp" />
+    <ClCompile Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Services.cpp" />
     <ClCompile Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

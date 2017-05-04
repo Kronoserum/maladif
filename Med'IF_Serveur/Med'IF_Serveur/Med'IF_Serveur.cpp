@@ -107,6 +107,7 @@ BOOL CMedIF_ServeurApp::InitInstance()
 
 	// Lorsque la boîte de dialogue est fermée, retourner FALSE afin de quitter
 	//  l'application, plutôt que de démarrer la pompe de messages de l'application.
+
 	return FALSE;
 }
 
