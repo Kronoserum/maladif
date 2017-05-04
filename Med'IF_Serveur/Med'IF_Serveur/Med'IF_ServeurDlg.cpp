@@ -66,7 +66,7 @@ BEGIN_MESSAGE_MAP(CMedIF_ServeurDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_EN_CHANGE(IDC_EDIT1, &CMedIF_ServeurDlg::OnEnChangeEdit1)
+	ON_EN_CHANGE(IDOK, &CMedIF_ServeurDlg::OnEnChangeEdit1)
 	ON_BN_CLICKED(IDOK, &CMedIF_ServeurDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
