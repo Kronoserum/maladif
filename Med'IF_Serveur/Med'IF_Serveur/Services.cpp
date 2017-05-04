@@ -36,7 +36,10 @@ bool Services::seDeconnecter()
 
 string Services::recupererMetaDonnees()
 {
-	return NULL;
+	string meta;
+	ServeurDA da;
+	meta = da.getMetadonnees();
+	return meta;
 }
 
 bool Services::ajouterMaladie(string nom, string mots)
@@ -56,11 +59,17 @@ bool Services::supprimerMaladie(string nom)
 
 string Services::recupererMaladie(string nom)
 {
-	return NULL;
+	string mots;
+	ServeurDA da;
+	mots = da.getMotsMaladie(nom);
+	return mots;
 }
 
 list<string> Services::recupererNomsToutesMaladies()
 {
-	return list<string>();
+	list<string> listeNoms;
+	ServeurDA da;
+	listeNoms = da.getNomsMaladies();
+	return listeNoms;
 }
 

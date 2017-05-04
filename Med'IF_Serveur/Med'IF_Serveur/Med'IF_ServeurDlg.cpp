@@ -9,6 +9,8 @@
 #include "Services.h"
 
 #include <iostream>
+#include <sstream>
+#include <iterator>
 using namespace std;
 
 

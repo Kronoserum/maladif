@@ -32,6 +32,9 @@
     <Text Include="Connexion.txt">
       <Filter>Persistence</Filter>
     </Text>
+    <Text Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Dictionnaire.txt">
+      <Filter>Persistence</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\targetver.h">
