@@ -170,5 +170,9 @@ void CMedIF_ServeurDlg::OnEnChangeEdit1()
 void CMedIF_ServeurDlg::OnBnClickedOk()
 {
 	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
-	CDialogEx::OnOK();
+	//char txt[1024];
+	//int tst = GetWindowText((HWND) IDC_EDIT1, (LPWSTR) txt, sizeof(txt));
+	//SetDlgItemText(IDC_EDIT1, txt);
+
+
 }
