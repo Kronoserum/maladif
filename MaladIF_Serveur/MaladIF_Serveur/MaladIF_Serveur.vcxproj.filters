@@ -1,34 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Fichiers sources">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Fichiers de ressources">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Fichiers sources\metier">
-      <UniqueIdentifier>{b131c195-a059-4b0d-ae78-c68f83bd0df5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\metier\modeles">
+    <Filter Include="Model">
       <UniqueIdentifier>{a7c8df58-4c28-4059-97b2-5874f2a12626}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\metier\services">
+    <Filter Include="Service">
       <UniqueIdentifier>{b1247d2f-f3b1-4196-bf0f-8a606d535316}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\util">
-      <UniqueIdentifier>{c736e5f5-b1b9-487b-a12f-1eb62b0b8d7d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\vues">
+    <Filter Include="Interface">
       <UniqueIdentifier>{6c0c27c0-5bea-42b4-abc4-433aa56ae932}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\da">
+    <Filter Include="Utility">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{5ffc1049-d374-4e04-b99d-9930e513c5fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataAccess">
       <UniqueIdentifier>{6ce21e20-ab9e-44b1-989f-542ef73904a7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -36,37 +29,37 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="ServicesMetier.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Service</Filter>
     </ClInclude>
     <ClInclude Include="Serveur.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Model</Filter>
     </ClInclude>
     <ClInclude Include="ServeurDA.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>DataAccess</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Utility</Filter>
     </ClCompile>
     <ClCompile Include="MaladIF_Serveur.cpp">
-      <Filter>Fichiers sources\vues</Filter>
+      <Filter>Interface</Filter>
     </ClCompile>
     <ClCompile Include="ServicesMetier.cpp">
-      <Filter>Fichiers sources\metier\services</Filter>
+      <Filter>Service</Filter>
     </ClCompile>
     <ClCompile Include="Serveur.cpp">
-      <Filter>Fichiers sources\metier\modeles</Filter>
+      <Filter>Model</Filter>
     </ClCompile>
     <ClCompile Include="ServeurDA.cpp">
-      <Filter>Fichiers sources\da</Filter>
+      <Filter>DataAccess</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

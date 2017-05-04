@@ -18,8 +18,8 @@ bool ServicesMetier::seConnecter(int id)
 {
 	// Recuperation de l'identifiant depuis un fichier txt
 	ServeurDA da;
-	// Comparaison avec l'id puis return true/false
 	int idLocal = da.getId();
+	// Comparaison avec l'id puis return true/false
 	if (idLocal != -1)
 	{
 		return false;
