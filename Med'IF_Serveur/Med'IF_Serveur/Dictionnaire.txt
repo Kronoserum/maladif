@@ -1,3 +1,5 @@
 Metadonnées du dictionnaire de l'entreprise AAA
-Maladie 1:ATE,AFT,DYE;
-Maladie 2:AFD, DUGE, FIZUOB;
+Maladie 1:ATE,AFT,DYE
+Maladie 2:ATEBDLEA, AJNFEBIOB, ZUIFUP, ZBOFIAZO
+Maladie 3:TAE,GEA,UTER,ORHHS
+Maladie 4:TRAE,GEZEA,URTER,OHS

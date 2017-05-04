@@ -16,14 +16,14 @@ public:
 
 	string recupererMetaDonnees();
 
-	bool ajouterMaladie(string nom, string mots);
+	int ajouterMaladie(string nom, string mots);
 
-	bool modifierMaladie(string nom);
+	bool modifierMaladie(string nom, string mots);
 
-	bool supprimerMaladie(string nom);
+	int supprimerMaladie(string nom);
 
 	string recupererMaladie(string nom);
 
-	list<string> recupererNomsToutesMaladies();
+	string recupererNomsToutesMaladies();
 };
 

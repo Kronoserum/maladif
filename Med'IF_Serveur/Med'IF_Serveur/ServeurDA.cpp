@@ -47,18 +47,24 @@ string ServeurDA::getMetadonnees()
 	return meta;
 }
 
-list<string> ServeurDA::getNomsMaladies()
+string ServeurDA::getNomsMaladies()
 {
-	list<string> maladies;
+	string maladies;
 	// Lire le fichier dictionnaire et extraire le noms des maladies
 	ifstream is("Dictionnaire.txt", ios::in);
 	if (is)
 	{
 		string tmp;
 		getline(is, tmp); // Metadonnees
+		int i = 0;
 		while (getline(is, tmp))
 		{
-			maladies.push_back(tmp.substr(0, tmp.find(":")));			
+			if (i != 0)
+			{
+				maladies.append(",");
+			}
+			maladies.append(tmp.substr(0, tmp.find(":")));
+			i++;
 		}
 		is.close();
 	}
@@ -84,7 +90,7 @@ string ServeurDA::getMotsMaladie(string nomMaladie)
 			if (name.compare(nomMaladie)==0)
 			{
 				// On a trouvé la bonne maladie
-				mots = tmp.substr(tmp.find(":")+1, tmp.size() - tmp.find(":") -2);
+				mots = tmp.substr(tmp.find(":")+1, tmp.size() - tmp.find(":") - 1);
 				is.close();
 				return mots;
 			}
@@ -98,7 +104,106 @@ string ServeurDA::getMotsMaladie(string nomMaladie)
 	return mots;
 }
 
-bool ServeurDA::ajouterMaladie(string nom, string mots)
+int ServeurDA::ajouterMaladie(string nom, string mots)
 {
+	if (getMotsMaladie(nom).compare("") == 0)
+	{
+		ofstream os("Dictionnaire.txt", ios::out | ios::app);
+		if(os)
+		{
+			os.seekp(ios::end);
+			os << nom << ":" << mots << endl;
+			os.close();
+		}
+		else
+		{
+			cerr << "Erreur lors de l'ouverture du dictionnaire" << endl;
+			return -1;
+		}
+		return 1;
+	}
+	return 0;
+}
+
+int ServeurDA::supprimerMaladie(string nom)
+{
+	string final;
+	ifstream is("Dictionnaire.txt", ios::in);
+	if (is)
+	{
+		string tmp;
+		int resultat = 0;
+		while (getline(is, tmp))
+		{
+			if (tmp.substr(0, tmp.find(":")).compare(nom) != 0)
+			{
+				final.append(tmp);
+				final.append("\n");
+			} 
+			else
+			{
+				resultat = 1;
+			}
+		}
+		is.close();
+
+		ofstream os("Dictionnaire.txt", ios::out);
+		if (os)
+		{
+			os << final;
+			os.close();
+			return resultat;
+		}
+		else
+		{
+			cerr << "Erreur lors de l'ouverture du dictionnaire" << endl;
+		}
+	}
+	else
+	{
+		cerr << "Erreur lors de l'ouverture du dictionnaire" << endl;
+	}
+	return -1;
+}
+
+bool ServeurDA::mettreAJourMaladie(string nom, string mots)
+{
+	ifstream is("Dictionnaire.txt", ios::in);
+	if(is)
+	{
+		string final;
+		string tmp;
+		while (getline(is, tmp))
+		{
+			if (tmp.substr(0, tmp.find(":")).compare(nom) != 0)
+			{
+				final.append(tmp);
+				final.append("\n");
+			}
+			else
+			{
+				final.append(tmp.substr(0, tmp.find(":")+1));
+				final.append(mots);
+				final.append("\n");
+			}
+		}
+		is.close();
+
+		ofstream os("Dictionnaire.txt", ios::out);
+		if (os)
+		{
+			os << final;
+			os.close();
+			return true;
+		}
+		else
+		{
+			cerr << "Erreur lors de l'ouverture du dictionnaire" << endl;
+		}
+	}
+	else
+	{
+		cerr << "Erreur lors de l'ouverture du dictionnaire" << endl;
+	}
 	return false;
 }

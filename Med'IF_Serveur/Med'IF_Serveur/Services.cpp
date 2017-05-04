@@ -42,19 +42,25 @@ string Services::recupererMetaDonnees()
 	return meta;
 }
 
-bool Services::ajouterMaladie(string nom, string mots)
+int Services::ajouterMaladie(string nom, string mots)
 {
-	return false;
+	ServeurDA da;
+	int i = da.ajouterMaladie(nom, mots);
+	return i;
 }
 
-bool Services::modifierMaladie(string nom)
+bool Services::modifierMaladie(string nom, string mots)
 {
-	return false;
+	ServeurDA da;
+	bool b = da.mettreAJourMaladie(nom, mots);
+	return b;
 }
 
-bool Services::supprimerMaladie(string nom)
+int Services::supprimerMaladie(string nom)
 {
-	return false;
+	ServeurDA da;
+	int i = da.supprimerMaladie(nom);
+	return i;
 }
 
 string Services::recupererMaladie(string nom)
@@ -65,9 +71,9 @@ string Services::recupererMaladie(string nom)
 	return mots;
 }
 
-list<string> Services::recupererNomsToutesMaladies()
+string Services::recupererNomsToutesMaladies()
 {
-	list<string> listeNoms;
+	string listeNoms;
 	ServeurDA da;
 	listeNoms = da.getNomsMaladies();
 	return listeNoms;

@@ -198,7 +198,4 @@ void CMedIF_ServeurDlg::OnBnClickedOk()
 		CString s("Erreur");
 		AfxMessageBox(s);
 	}
-	
-
-
 }
