@@ -1,0 +1,31 @@
+#pragma once
+
+#include <string>
+
+using namespace std;
+
+class Medecin
+{
+private:
+	long id;
+	string nom;
+	string prenom;
+	string adresse;
+	string mdp;
+
+public:
+	Medecin();
+	~Medecin();
+
+	void set_id(long id_in);
+	void set_nom(string nom_in);
+	void set_prenom(string prenom_in);
+	void set_adresse(string mail_in);
+	void set_mdp(string mdp_in);
+
+	long get_id();
+	string get_nom();
+	string get_prenom();
+	string get_adresse();
+	string get_mdp();
+};

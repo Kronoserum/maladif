@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{e7b45a3a-445e-43d3-886e-68b50475e80d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{084187bb-d710-4a2a-bbe4-5b695b4a63b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{c93bd2f5-212c-414d-87c6-1b87b9cc6419}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataAccess">
+      <UniqueIdentifier>{ee29b94d-c022-4ce2-ab2c-787cd694136a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Persistence">
+      <UniqueIdentifier>{987fecb3-6d00-4436-b2b3-d3fc0f531bd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Service">
+      <UniqueIdentifier>{afa44fdc-e735-4ecf-bb84-ed1ff9d13b80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{02e014b1-2b31-445f-9b7d-4de89c199a02}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+    <Text Include="patient.txt">
+      <Filter>Persistence</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ConnectedSocket.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="ListenerSocket.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="AnalyseGenomeMFC.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="AnalyseGenomeMFCDlg.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Service.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite3.h">
+      <Filter>DataAccess</Filter>
+    </ClInclude>
+    <ClInclude Include="PatientDAFile.h">
+      <Filter>DataAccess</Filter>
+    </ClInclude>
+    <ClInclude Include="PatientDA.h">
+      <Filter>DataAccess</Filter>
+    </ClInclude>
+    <ClInclude Include="PatientDADatabase.h">
+      <Filter>DataAccess</Filter>
+    </ClInclude>
+    <ClInclude Include="Patient.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Database.h">
+      <Filter>DataAccess</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Medecin.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="MedecinDADatabase.h">
+      <Filter>DataAccess</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ConnectedSocket.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="ListenerSocket.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="AnalyseGenomeMFC.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="AnalyseGenomeMFCDlg.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Service.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite3.c">
+      <Filter>DataAccess</Filter>
+    </ClCompile>
+    <ClCompile Include="PatientDA.cpp">
+      <Filter>DataAccess</Filter>
+    </ClCompile>
+    <ClCompile Include="PatientDADatabase.cpp">
+      <Filter>DataAccess</Filter>
+    </ClCompile>
+    <ClCompile Include="PatientDAFile.cpp">
+      <Filter>DataAccess</Filter>
+    </ClCompile>
+    <ClCompile Include="Patient.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Database.cpp">
+      <Filter>DataAccess</Filter>
+    </ClCompile>
+    <ClCompile Include="Medecin.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="MedecinDADatabase.cpp">
+      <Filter>DataAccess</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AnalyseGenomeMFC.rc">
+      <Filter>Fichiers de ressources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\AnalyseGenomeMFC.rc2">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+    <None Include="AnalyseGenome.db">
+      <Filter>Persistence</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\AnalyseGenomeMFC.ico">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
