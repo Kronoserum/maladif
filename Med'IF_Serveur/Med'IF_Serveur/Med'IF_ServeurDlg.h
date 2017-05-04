@@ -35,4 +35,6 @@ public:
 	afx_msg void OnEnChangeEdit1();
 	afx_msg void OnBnClickedOk();
 	int idEntreprise;
+	afx_msg void LancerServeur();
+	afx_msg void StopServeur();
 };

@@ -75,6 +75,8 @@ BEGIN_MESSAGE_MAP(CMedIF_ServeurDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_EN_CHANGE(IDOK, &CMedIF_ServeurDlg::OnEnChangeEdit1)
 	ON_BN_CLICKED(IDOK, &CMedIF_ServeurDlg::OnBnClickedOk)
+	ON_BN_CLICKED(IDC_BUTTON1, &CMedIF_ServeurDlg::LancerServeur)
+	ON_BN_CLICKED(IDC_BUTTON2, &CMedIF_ServeurDlg::StopServeur)
 END_MESSAGE_MAP()
 
 
@@ -198,4 +200,20 @@ void CMedIF_ServeurDlg::OnBnClickedOk()
 		CString s("Erreur");
 		AfxMessageBox(s);
 	}
+}
+
+
+void CMedIF_ServeurDlg::LancerServeur()
+{
+	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
+	CString s("Le serveur est lancé et écoute les demandes");
+	AfxMessageBox(s);
+}
+
+
+void CMedIF_ServeurDlg::StopServeur()
+{
+	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
+	CString s("Le serveur est arrêté et n'écoute plus les demandes");
+	AfxMessageBox(s);
 }
