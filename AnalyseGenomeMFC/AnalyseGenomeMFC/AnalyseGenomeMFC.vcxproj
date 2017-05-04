@@ -186,36 +186,42 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Analyse.h" />
     <ClInclude Include="AnalyseGenomeMFC.h" />
     <ClInclude Include="AnalyseGenomeMFCDlg.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="ConnectedSocket.h" />
     <ClInclude Include="Database.h" />
+    <ClInclude Include="Entreprise.h" />
+    <ClInclude Include="EntrepriseDADatabase.h" />
+    <ClInclude Include="Maladie.h" />
     <ClInclude Include="Medecin.h" />
     <ClInclude Include="MedecinDADatabase.h" />
     <ClInclude Include="Patient.h" />
-    <ClInclude Include="PatientDA.h" />
     <ClInclude Include="PatientDADatabase.h" />
-    <ClInclude Include="PatientDAFile.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ListenerSocket.h" />
+    <ClInclude Include="Serveur.h" />
     <ClInclude Include="Service.h" />
     <ClInclude Include="sqlite3.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Analyse.cpp" />
     <ClCompile Include="AnalyseGenomeMFC.cpp" />
     <ClCompile Include="AnalyseGenomeMFCDlg.cpp" />
     <ClCompile Include="ConnectedSocket.cpp" />
     <ClCompile Include="Database.cpp" />
+    <ClCompile Include="Entreprise.cpp" />
+    <ClCompile Include="EntrepriseDADatabase.cpp" />
     <ClCompile Include="ListenerSocket.cpp" />
+    <ClCompile Include="Maladie.cpp" />
     <ClCompile Include="Medecin.cpp" />
     <ClCompile Include="MedecinDADatabase.cpp" />
     <ClCompile Include="Patient.cpp" />
-    <ClCompile Include="PatientDA.cpp" />
     <ClCompile Include="PatientDADatabase.cpp" />
-    <ClCompile Include="PatientDAFile.cpp" />
+    <ClCompile Include="Serveur.cpp" />
     <ClCompile Include="Service.cpp" />
     <ClCompile Include="sqlite3.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>

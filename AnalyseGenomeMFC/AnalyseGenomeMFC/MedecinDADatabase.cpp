@@ -19,11 +19,12 @@ int MedecinDADatabase::write_medecin(Medecin medecin)
 	int code;
 	char *error;
 
-	string sqlInsertStr = "INSERT INTO Patient VALUES('" 
+	string sqlInsertStr = "INSERT INTO Medecin VALUES('" 
 		+ to_string(medecin.get_id()) + "', '"
 		+ medecin.get_nom() + "', '"
 		+ medecin.get_prenom() + "', '"
 		+ medecin.get_adresse() + "', '"
+		+ to_string(medecin.get_salaire()) + "', '"
 		+ medecin.get_mdp() + "');";
 
 	const char *sqlInsert = sqlInsertStr.c_str();
@@ -32,7 +33,7 @@ int MedecinDADatabase::write_medecin(Medecin medecin)
 
 	if (code != 0)
 	{
-		cerr << "Error executing SQLite3 statement (write_patient): " << sqlite3_errmsg(database) << endl;
+		cerr << "Error executing SQLite3 statement (write_medecin): " << sqlite3_errmsg(database) << endl;
 		sqlite3_free(error);
 	}
 
@@ -55,7 +56,7 @@ int MedecinDADatabase::read_medecin(Medecin &medecin, long id_in)
 
 	if (code != 0)
 	{
-		cerr << "Error executing SQLite3 query (read_patient): " << sqlite3_errmsg(database) << endl;
+		cerr << "Error executing SQLite3 query (read_medecin): " << sqlite3_errmsg(database) << endl;
 		sqlite3_free(error);
 	}
 	else
@@ -64,7 +65,8 @@ int MedecinDADatabase::read_medecin(Medecin &medecin, long id_in)
 		medecin.set_nom(results[1 + columns]);
 		medecin.set_prenom(results[2 + columns]);
 		medecin.set_adresse(results[3 + columns]);
-		medecin.set_mdp(results[4 + columns]);
+		medecin.set_salaire(stod(results[4 + columns]));
+		medecin.set_mdp(results[5 + columns]);
 	}
 	
 	sqlite3_free_table(results);
