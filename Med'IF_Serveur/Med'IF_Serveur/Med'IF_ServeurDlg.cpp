@@ -6,6 +6,8 @@
 #include "Med'IF_Serveur.h"
 #include "Med'IF_ServeurDlg.h"
 #include "afxdialogex.h"
+#include "Services.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

@@ -52,3 +52,8 @@ string ServeurDA::getMotsMaladie(string nomMaladie)
 	// Lire le dictionnaire et extraire les mots associés à une maladie
 	return mots;
 }
+
+bool ServeurDA::ajouterMaladie(string nom, string mots)
+{
+	return false;
+}

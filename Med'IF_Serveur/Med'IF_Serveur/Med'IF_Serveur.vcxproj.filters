@@ -29,6 +29,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\ReadMe.txt" />
+    <Text Include="Connexion.txt">
+      <Filter>Persistence</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\targetver.h">
@@ -46,14 +49,14 @@
     <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Med%27IF_ServeurDlg.h">
       <Filter>Interface</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MaladIF_Serveur\MaladIF_Serveur\Serveur.h">
-      <Filter>Model</Filter>
+    <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Services.h">
+      <Filter>Services</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MaladIF_Serveur\MaladIF_Serveur\ServeurDA.h">
+    <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\ServeurDA.h">
       <Filter>DataAccess</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MaladIF_Serveur\MaladIF_Serveur\ServicesMetier.h">
-      <Filter>Services</Filter>
+    <ClInclude Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Serveur.h">
+      <Filter>Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -66,14 +69,14 @@
     <ClCompile Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Med%27IF_Serveur.cpp">
       <Filter>Interface</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MaladIF_Serveur\MaladIF_Serveur\Serveur.cpp">
-      <Filter>Model</Filter>
+    <ClCompile Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Services.cpp">
+      <Filter>Services</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MaladIF_Serveur\MaladIF_Serveur\ServeurDA.cpp">
+    <ClCompile Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\ServeurDA.cpp">
       <Filter>DataAccess</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MaladIF_Serveur\MaladIF_Serveur\ServicesMetier.cpp">
-      <Filter>Services</Filter>
+    <ClCompile Include="..\..\Med%27IF_Serveur\Med%27IF_Serveur\Serveur.cpp">
+      <Filter>Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

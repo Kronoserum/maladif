@@ -1,14 +1,14 @@
 #pragma once
+
 #include <string>
 #include <list>
 using namespace std;
 
-class ServicesMetier
+class Services
 {
-	
 public:
-	ServicesMetier();
-	~ServicesMetier();
+	Services();
+	~Services();
 
 	bool seConnecter(int id);
 

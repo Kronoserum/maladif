@@ -4,7 +4,7 @@
 #include <list>
 using namespace std;
 
-class ServeurDA
+class ServeurDAA
 {
 public:
 	ServeurDA();
@@ -14,5 +14,6 @@ public:
 	string getMetadonnees();
 	list<string> getNomsMaladies();
 	string getMotsMaladie(string nomMaladie);
+	bool ajouterMaladie(string nom, string mots);
 };
 

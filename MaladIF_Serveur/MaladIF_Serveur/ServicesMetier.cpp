@@ -1,7 +1,7 @@
-
 #include "stdafx.h"
 #include "ServicesMetier.h"
-#include "ServeurDA.h"
+
+using namespace std;
 
 ServicesMetier::ServicesMetier()
 {
@@ -36,6 +36,11 @@ bool ServicesMetier::seDeconnecter()
 	return false;
 }
 
+string ServicesMetier::recupererMetaDonnees()
+{
+	return NULL;
+}
+
 bool ServicesMetier::ajouterMaladie(string nom, string mots)
 {
 	return false;
@@ -53,5 +58,10 @@ bool ServicesMetier::supprimerMaladie(string nom)
 
 string ServicesMetier::recupererMaladie(string nom)
 {
-	return string();
+	return NULL;
+}
+
+list<string> ServicesMetier::recupererNomsToutesMaladies()
+{
+	return list<string>();
 }
