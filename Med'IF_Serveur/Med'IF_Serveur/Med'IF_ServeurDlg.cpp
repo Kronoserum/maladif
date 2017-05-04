@@ -56,6 +56,7 @@ END_MESSAGE_MAP()
 
 CMedIF_ServeurDlg::CMedIF_ServeurDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_MEDIF_SERVEUR_DIALOG, pParent)
+	, idEntreprise(0)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -63,6 +64,7 @@ CMedIF_ServeurDlg::CMedIF_ServeurDlg(CWnd* pParent /*=NULL*/)
 void CMedIF_ServeurDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Text(pDX, IDC_EDIT, idEntreprise);
 }
 
 BEGIN_MESSAGE_MAP(CMedIF_ServeurDlg, CDialogEx)
@@ -174,16 +176,18 @@ void CMedIF_ServeurDlg::OnEnChangeEdit1()
 
 void CMedIF_ServeurDlg::OnBnClickedOk()
 {
-	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
-	//char txt[1024];
-	//int tst = GetWindowText((HWND) IDC_EDIT1, (LPWSTR) txt, sizeof(txt));
-	//SetDlgItemText(IDC_EDIT1, txt);
+	int t = UpdateData(true);
+	if (!t)
+	{
+		AfxMessageBox("Erreur");
+	}
+		
 	Services m;
-	bool b = m.seConnecter(0);
+	bool b = m.seConnecter(idEntreprise);
 	CString s("Erreur");
 	if (b)
 	{
-		s = "Vous êtes connectés";
+		s = "Vous êtes connecté !";
 	}
 	AfxMessageBox(s);
 }
