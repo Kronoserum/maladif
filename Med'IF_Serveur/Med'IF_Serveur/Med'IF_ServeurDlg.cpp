@@ -9,6 +9,8 @@
 #include "Services.h"
 
 #include <iostream>
+#include <sstream>
+#include <iterator>
 using namespace std;
 
 
@@ -178,12 +180,5 @@ void CMedIF_ServeurDlg::OnBnClickedOk()
 	//char txt[1024];
 	//int tst = GetWindowText((HWND) IDC_EDIT1, (LPWSTR) txt, sizeof(txt));
 	//SetDlgItemText(IDC_EDIT1, txt);
-	Services m;
-	bool b = m.seConnecter(0);
-	CString s("Erreur");
-	if (b)
-	{
-		s = "Vous êtes connectés";
-	}
-	AfxMessageBox(s);
+	
 }

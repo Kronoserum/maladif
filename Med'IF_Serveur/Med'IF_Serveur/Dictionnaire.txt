@@ -1,0 +1,3 @@
+Metadonnées du dictionnaire de l'entreprise AAA
+Maladie 1:ATE,AFT,DYE;
+Maladie 2:AFD, DUGE, FIZUOB;
