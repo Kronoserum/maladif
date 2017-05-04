@@ -8,6 +8,9 @@
 #include "afxdialogex.h"
 #include "Services.h"
 
+#include <iostream>
+using namespace std;
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -175,6 +178,12 @@ void CMedIF_ServeurDlg::OnBnClickedOk()
 	//char txt[1024];
 	//int tst = GetWindowText((HWND) IDC_EDIT1, (LPWSTR) txt, sizeof(txt));
 	//SetDlgItemText(IDC_EDIT1, txt);
-
-
+	Services m;
+	bool b = m.seConnecter(0);
+	CString s("Erreur");
+	if (b)
+	{
+		s = "Vous êtes connectés";
+	}
+	AfxMessageBox(s);
 }

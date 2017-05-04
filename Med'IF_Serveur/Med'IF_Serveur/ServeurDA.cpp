@@ -17,7 +17,7 @@ ServeurDA::~ServeurDA()
 int ServeurDA::getId()
 {
 	int idLocal = -1;
-	ifstream is("connexion.txt", ios::in);
+	ifstream is("Connexion.txt", ios::in);
 	if (is)
 	{
 		string s;

@@ -18,11 +18,11 @@ bool Services::seConnecter(int id)
 	ServeurDA da;
 	int idLocal = da.getId();
 	// Comparaison avec l'id puis return true/false
-	if (idLocal != -1)
+	if (idLocal == -1)
 	{
 		return false;
 	}
-	else if (id = idLocal)
+	else if (id == idLocal)
 	{
 		return true;
 	}
