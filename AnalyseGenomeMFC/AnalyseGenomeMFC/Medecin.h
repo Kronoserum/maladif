@@ -12,6 +12,7 @@ private:
 	string prenom;
 	string adresse;
 	string mdp;
+	double salaire;
 
 public:
 	Medecin();
@@ -22,10 +23,13 @@ public:
 	void set_prenom(string prenom_in);
 	void set_adresse(string mail_in);
 	void set_mdp(string mdp_in);
+	void set_salaire(double sal_in);
+
 
 	long get_id();
 	string get_nom();
 	string get_prenom();
 	string get_adresse();
 	string get_mdp();
+	double get_salaire();
 };

@@ -35,6 +35,11 @@ void Medecin::set_mdp(string mdp_in)
 	mdp = mdp_in;
 }
 
+void Medecin::set_salaire(double sal_in)
+{
+	salaire = sal_in;
+}
+
 long Medecin::get_id()
 {
 	return id;
@@ -58,4 +63,10 @@ string Medecin::get_adresse()
 string Medecin::get_mdp()
 {
 	return mdp;
+
+}
+
+double Medecin::get_salaire()
+{
+	return salaire;
 }
