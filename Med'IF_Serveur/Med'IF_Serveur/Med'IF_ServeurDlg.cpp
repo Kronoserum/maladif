@@ -66,6 +66,8 @@ BEGIN_MESSAGE_MAP(CMedIF_ServeurDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_EN_CHANGE(IDC_EDIT1, &CMedIF_ServeurDlg::OnEnChangeEdit1)
+	ON_BN_CLICKED(IDOK, &CMedIF_ServeurDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
@@ -154,3 +156,21 @@ HCURSOR CMedIF_ServeurDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CMedIF_ServeurDlg::OnEnChangeEdit1()
+{
+	// TODO:  S'il s'agit d'un contrôle RICHEDIT, le contrôle ne
+	// envoyez cette notification sauf si vous substituez CDialogEx::OnInitDialog()
+	// fonction et appelle CRichEditCtrl().SetEventMask()
+	// avec l'indicateur ENM_CHANGE ajouté au masque grâce à l'opérateur OR.
+
+	// TODO:  Ajoutez ici le code de votre gestionnaire de notification de contrôle
+}
+
+
+void CMedIF_ServeurDlg::OnBnClickedOk()
+{
+	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
+	CDialogEx::OnOK();
+}
