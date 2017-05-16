@@ -54,6 +54,7 @@ END_MESSAGE_MAP()
 
 CAnalyseGenomeMFCDlg::CAnalyseGenomeMFCDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_ANALYSEGENOMEMFC_DIALOG, pParent)
+	, commande(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -61,6 +62,7 @@ CAnalyseGenomeMFCDlg::CAnalyseGenomeMFCDlg(CWnd* pParent /*=NULL*/)
 void CAnalyseGenomeMFCDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Text(pDX, IDC_EDIT1, commande);
 }
 
 BEGIN_MESSAGE_MAP(CAnalyseGenomeMFCDlg, CDialogEx)
@@ -70,6 +72,7 @@ BEGIN_MESSAGE_MAP(CAnalyseGenomeMFCDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_StartServer, &CAnalyseGenomeMFCDlg::OnBnClickedStartserver)
 	ON_BN_CLICKED(IDC_ShutDownServer, &CAnalyseGenomeMFCDlg::OnBnClickedShutdownserver)
 	ON_BN_CLICKED(IDC_Database, &CAnalyseGenomeMFCDlg::OnBnClickedDatabase)
+	ON_BN_CLICKED(IDC_BUTTON1, &CAnalyseGenomeMFCDlg::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
 
@@ -206,3 +209,18 @@ void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()
 		AfxMessageBox(CString(patient_str.c_str()));
 	}
 }
+
+
+void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
+{
+	int t = UpdateData(true);
+	if (!t)
+	{
+		AfxMessageBox(_T("Erreur"));
+	}
+
+	AfxMessageBox(_T("Commande envoyée ! (à coder) " + commande ));
+	CWnd *label = GetDlgItem(IDC_STATIC_AFFICHAGE);
+	label->SetWindowText(commande);
+}
+

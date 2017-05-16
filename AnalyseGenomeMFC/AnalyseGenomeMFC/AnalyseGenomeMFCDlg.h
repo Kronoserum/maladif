@@ -40,4 +40,10 @@ public:
 private:
 	const int LISTENER_PORT = 8080;
 	ListenerSocket listenerSock;
+public:
+	afx_msg void OnEnChangeEdit1();
+	afx_msg void OnBnClickedButton1();
+	afx_msg void OnStnClickedStaticAffichage();
+	// récupère la ligne de commande fournie dans le champ
+	CString commande;
 };
