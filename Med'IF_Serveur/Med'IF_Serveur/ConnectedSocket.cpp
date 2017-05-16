@@ -24,9 +24,9 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 	if (nReceivedSize <= 0)
 		return;
 
-	szBuff[nReceivedSize] = '\0';
+	//szBuff[nReceivedSize] = '\0';
 
-	string strResponse = "hello\n";
+	string strResponse = "hello\r\n";
 
 	int nSentBytes = 0;
 	const char* pszBuff = strResponse.c_str();

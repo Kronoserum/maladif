@@ -38,11 +38,25 @@ END_MESSAGE_MAP()
 
 void FenetreServeur::OnBnClickedButton1()
 {
-	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
+	listenerSock.Create(LISTENER_PORT);
+	if (listenerSock.Listen())
+	{
+		AfxMessageBox(_T("Now listening !"));
+	}
+	else
+	{
+		AfxMessageBox(_T("Unable to listen !"));
+		listenerSock.Close();
+	}
 }
 
 
 void FenetreServeur::OnBnClickedButton2()
 {
-	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
+	//BOOL i =  listenerSock->ShutDown(2);
+	listenerSock.Close();
+	//if (i == 0) {
+	//	AfxMessageBox(_T("Erreur lors de shutdown()"));
+	//}
+	AfxMessageBox(_T("Closing sockets"));
 }
