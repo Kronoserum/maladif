@@ -41,7 +41,7 @@ int AnalyseDADatabase::write_analyse(Analyse analyse)
 	return code;
 }
 
-int AnalyseDADatabase::read_analyse(Analyse &analyse, long id_in)
+int AnalyseDADatabase::read_analyse(Analyse &analyse, int id_in)
 {
 	int code;
 	char *error;
@@ -62,13 +62,13 @@ int AnalyseDADatabase::read_analyse(Analyse &analyse, long id_in)
 	}
 	else
 	{
-		analyse.set_id(stol(results[0 + columns]));
+		analyse.set_id(stoi(results[0 + columns]));
 		analyse.set_date(results[1 + columns]);
-		analyse.set_resultat(stoi(results[2 + columns]));
-		analyse.set_idMaladie(stol(results[3 + columns]));
-		analyse.set_idMedecin(stol(results[4 + columns]));
-		analyse.set_idPatient(stol(results[5 + columns]));
-		analyse.set_idServeur(stol(results[5 + columns]));
+		analyse.set_resultat(stod(results[2 + columns]));
+		analyse.set_idMaladie(stoi(results[3 + columns]));
+		analyse.set_idMedecin(stoi(results[4 + columns]));
+		analyse.set_idPatient(stoi(results[5 + columns]));
+		analyse.set_idServeur(stoi(results[5 + columns]));
 
 	}
 	

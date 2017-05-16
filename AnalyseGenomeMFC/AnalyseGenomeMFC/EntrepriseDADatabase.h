@@ -19,5 +19,5 @@ public:
 	void set_database(sqlite3 *database_in);
 
 	int write_entreprise(Entreprise entreprise);
-	int read_entreprise(Entreprise &ntreprise, long id_in);
+	int read_entreprise(Entreprise &ntreprise, int id_in);
 };

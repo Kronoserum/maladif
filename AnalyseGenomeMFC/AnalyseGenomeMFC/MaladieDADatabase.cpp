@@ -37,7 +37,7 @@ int MaladieDADatabase::write_maladie(Maladie maladie)
 	return code;
 }
 
-int MaladieDADatabase::read_maladie(Maladie &maladie, long id_in)
+int MaladieDADatabase::read_maladie(Maladie &maladie, int id_in)
 {
 	int code;
 	char *error;
@@ -58,7 +58,7 @@ int MaladieDADatabase::read_maladie(Maladie &maladie, long id_in)
 	}
 	else
 	{
-		maladie.set_id(stol(results[0 + columns]));
+		maladie.set_id(stoi(results[0 + columns]));
 		maladie.set_nom(results[1 + columns]);
 		maladie.set_typeMaladie(results[2 + columns]);
 	}

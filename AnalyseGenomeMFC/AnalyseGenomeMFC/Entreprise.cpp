@@ -17,12 +17,12 @@ Entreprise::~Entreprise()
 {
 }
 
-long Entreprise::get_id() {return id; }
+int Entreprise::get_id() {return id; }
 string Entreprise::get_nom() { return nom;}
 
 string Entreprise::get_description() {return description; }
 
-void Entreprise::set_id(long id_in) {id = id_in; }
+void Entreprise::set_id(int id_in) {id = id_in; }
 
 void Entreprise::set_nom(string nom_in) {nom = nom_in;}
 

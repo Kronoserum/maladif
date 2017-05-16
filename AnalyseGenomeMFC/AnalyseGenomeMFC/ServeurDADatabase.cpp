@@ -38,7 +38,7 @@ int ServeurDADatabase::write_serveur(Serveur serveur)
 	return code;
 }
 
-int ServeurDADatabase::read_serveur(Serveur &serveur, long id_in)
+int ServeurDADatabase::read_serveur(Serveur &serveur, int id_in)
 {
 	int code;
 	char *error;
@@ -59,7 +59,7 @@ int ServeurDADatabase::read_serveur(Serveur &serveur, long id_in)
 	}
 	else
 	{
-		serveur.set_id(stol(results[0 + columns]));
+		serveur.set_id(stoi(results[0 + columns]));
 		serveur.set_description(results[1 + columns]);
 		serveur.set_IPServeur(results[2 + columns]);
 		serveur.set_idEntreprise(stol(results[3 + columns]));

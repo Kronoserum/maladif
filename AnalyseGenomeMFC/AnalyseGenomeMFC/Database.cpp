@@ -43,10 +43,48 @@ int Database::create_tables()
 	int code;
 	char *error;
 
-	const char *sqlCreateTable = "CREATE TABLE Patient (id LONG PRIMARY KEY, nom STRING, prenom STRING, mail STRING, mdp STRING);";
-
+	const char *sqlCreateTable = "CREATE TABLE Patient (id INTEGER PRIMARY KEY AUTOINCREMENT, nom STRING, prenom STRING, mail STRING, mdp STRING);";
 	code = sqlite3_exec(database, sqlCreateTable, NULL, NULL, &error);
-	
+	if (code != 0)
+	{
+		cerr << "Error executing SQLite3 statement (create_tables): " << sqlite3_errmsg(database) << endl;
+		sqlite3_free(error);
+	}
+
+	sqlCreateTable = "CREATE TABLE Medecin (id INTEGER PRIMARY KEY AUTOINCREMENT, nom STRING, prenom STRING, adresse STRING, salaire REAL, mdp STRING);";
+	code = sqlite3_exec(database, sqlCreateTable, NULL, NULL, &error);
+	if (code != 0)
+	{
+		cerr << "Error executing SQLite3 statement (create_tables): " << sqlite3_errmsg(database) << endl;
+		sqlite3_free(error);
+	}
+
+	sqlCreateTable = "CREATE TABLE Entreprise (id INTEGER PRIMARY KEY AUTOINCREMENT, nom STRING, description STRING);";
+	code = sqlite3_exec(database, sqlCreateTable, NULL, NULL, &error);
+	if (code != 0)
+	{
+		cerr << "Error executing SQLite3 statement (create_tables): " << sqlite3_errmsg(database) << endl;
+		sqlite3_free(error);
+	}
+
+	sqlCreateTable = "CREATE TABLE Serveur (id INTEGER PRIMARY KEY AUTOINCREMENT, description STRING, ipServeur STRING, idEntreprise INTEGER, FOREIGN KEY(idEntreprise ) REFERENCES Entreprise(id));";
+	code = sqlite3_exec(database, sqlCreateTable, NULL, NULL, &error);
+	if (code != 0)
+	{
+		cerr << "Error executing SQLite3 statement (create_tables): " << sqlite3_errmsg(database) << endl;
+		sqlite3_free(error);
+	}
+
+	sqlCreateTable = "CREATE TABLE Maladie (id INTEGER PRIMARY KEY AUTOINCREMENT, nom STRING, typeMaladie STRING);";
+	code = sqlite3_exec(database, sqlCreateTable, NULL, NULL, &error);
+	if (code != 0)
+	{
+		cerr << "Error executing SQLite3 statement (create_tables): " << sqlite3_errmsg(database) << endl;
+		sqlite3_free(error);
+	}
+
+	sqlCreateTable = "CREATE TABLE Analyse (id INTEGER PRIMARY KEY AUTOINCREMENT, date STRING, resultat INTEGER, idMaladie INTEGER,  idMedecin INTEGER,  idPatient INTEGER,  idServeur INTEGER, FOREIGN KEY(idServeur) REFERENCES Serveur(id),FOREIGN KEY(idMaladie) REFERENCES Maladie(id),FOREIGN KEY(idPatient) REFERENCES Patient(id),FOREIGN KEY(idMedecin) REFERENCES Medecin(id));";
+	code = sqlite3_exec(database, sqlCreateTable, NULL, NULL, &error);
 	if (code != 0)
 	{
 		cerr << "Error executing SQLite3 statement (create_tables): " << sqlite3_errmsg(database) << endl;
@@ -55,3 +93,4 @@ int Database::create_tables()
 
 	return code;
 }
+	

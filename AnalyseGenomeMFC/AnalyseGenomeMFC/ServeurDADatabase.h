@@ -19,6 +19,6 @@ public:
 	void set_database(sqlite3 *database_in);
 
 	int write_serveur(Serveur serveur);
-	int read_serveur(Serveur &serveur, long id_in);
+	int read_serveur(Serveur &serveur, int id_in);
 
 };
