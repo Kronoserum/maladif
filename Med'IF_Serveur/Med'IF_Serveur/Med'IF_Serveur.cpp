@@ -4,7 +4,7 @@
 
 #include "stdafx.h"
 #include "Med'IF_Serveur.h"
-#include "Med'IF_ServeurDlg.h"
+#include "FenetreServeur.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -76,7 +76,7 @@ BOOL CMedIF_ServeurApp::InitInstance()
 	// telles que le nom de votre société ou organisation
 	SetRegistryKey(_T("Applications locales générées par AppWizard"));
 
-	CMedIF_ServeurDlg dlg;
+	FenetreServeur dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
 	if (nResponse == IDOK)
