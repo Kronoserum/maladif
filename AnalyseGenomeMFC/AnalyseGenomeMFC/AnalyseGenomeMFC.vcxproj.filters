@@ -55,9 +55,6 @@
     <ClInclude Include="AnalyseGenomeMFCDlg.h">
       <Filter>Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Service.h">
-      <Filter>Service</Filter>
-    </ClInclude>
     <ClInclude Include="sqlite3.h">
       <Filter>DataAccess</Filter>
     </ClInclude>
@@ -94,6 +91,15 @@
     <ClInclude Include="EntrepriseDADatabase.h">
       <Filter>DataAccess</Filter>
     </ClInclude>
+    <ClInclude Include="ServeurDADatabase.h">
+      <Filter>DataAccess</Filter>
+    </ClInclude>
+    <ClInclude Include="MaladieDADatabase.h">
+      <Filter>DataAccess</Filter>
+    </ClInclude>
+    <ClInclude Include="AnalyseDADatabase.h">
+      <Filter>DataAccess</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConnectedSocket.cpp">
@@ -110,9 +116,6 @@
     </ClCompile>
     <ClCompile Include="AnalyseGenomeMFCDlg.cpp">
       <Filter>Interface</Filter>
-    </ClCompile>
-    <ClCompile Include="Service.cpp">
-      <Filter>Service</Filter>
     </ClCompile>
     <ClCompile Include="sqlite3.c">
       <Filter>DataAccess</Filter>
@@ -145,6 +148,15 @@
       <Filter>Model</Filter>
     </ClCompile>
     <ClCompile Include="EntrepriseDADatabase.cpp">
+      <Filter>DataAccess</Filter>
+    </ClCompile>
+    <ClCompile Include="ServeurDADatabase.cpp">
+      <Filter>DataAccess</Filter>
+    </ClCompile>
+    <ClCompile Include="MaladieDADatabase.cpp">
+      <Filter>DataAccess</Filter>
+    </ClCompile>
+    <ClCompile Include="AnalyseDADatabase.cpp">
       <Filter>DataAccess</Filter>
     </ClCompile>
   </ItemGroup>

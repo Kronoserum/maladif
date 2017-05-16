@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "PatientDADatabase.h"
+#include "Patient.h"
 
 PatientDADatabase::PatientDADatabase()
 {
@@ -71,3 +72,4 @@ int PatientDADatabase::read_patient(Patient &patient, long id_in)
 
 	return code;
 }
+

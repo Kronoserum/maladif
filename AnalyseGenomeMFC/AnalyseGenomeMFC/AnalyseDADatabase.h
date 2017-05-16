@@ -2,23 +2,23 @@
 
 #include <iostream>
 #include <string>
-#include "Medecin.h"
+#include "Analyse.h"
 #include "sqlite3.h"
 
 using namespace std;
 
-class MedecinDADatabase
+class AnalyseDADatabase
 {
 private:
 	sqlite3 *database;
 
 public:
-	MedecinDADatabase();
-	~MedecinDADatabase();
+	AnalyseDADatabase();
+	~AnalyseDADatabase();
 
 	void set_database(sqlite3 *database_in);
 
-	int write_medecin(Medecin medecin);
-	int read_medecin(Medecin &medecin, long id_in);
+	int write_analyse(Analyse analyse);
+	int read_analyse(Analyse &analyse, long id_in);
 
 };

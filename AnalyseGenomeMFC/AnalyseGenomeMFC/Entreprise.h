@@ -18,7 +18,7 @@ public:
 	void set_description(string desc_in);
 
 private:
-	unsigned long id;
+	long id;
 	string nom, description;
 
 };

@@ -73,3 +73,4 @@ int MedecinDADatabase::read_medecin(Medecin &medecin, long id_in)
 
 	return code;
 }
+
