@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include "ListenerSocket.h"
 // Boîte de dialogue FenetreServeur
 
 class FenetreServeur : public CDialogEx
@@ -23,4 +23,8 @@ protected:
 public:
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButton2();
+
+private:
+	const int LISTENER_PORT = 8080;
+	ListenerSocket listenerSock;
 };
