@@ -6,7 +6,6 @@
 #include "AnalyseGenomeMFC.h"
 #include "AnalyseGenomeMFCDlg.h"
 #include "afxdialogex.h"
-#include "Service.h"
 #include "Patient.h"
 #include "Database.h"
 #include "PatientDADatabase.h"
@@ -70,7 +69,6 @@ BEGIN_MESSAGE_MAP(CAnalyseGenomeMFCDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_StartServer, &CAnalyseGenomeMFCDlg::OnBnClickedStartserver)
 	ON_BN_CLICKED(IDC_ShutDownServer, &CAnalyseGenomeMFCDlg::OnBnClickedShutdownserver)
-	ON_BN_CLICKED(IDC_Service, &CAnalyseGenomeMFCDlg::OnBnClickedService)
 	ON_BN_CLICKED(IDC_Database, &CAnalyseGenomeMFCDlg::OnBnClickedDatabase)
 END_MESSAGE_MAP()
 
@@ -180,18 +178,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedShutdownserver()
 }
 
 
-void CAnalyseGenomeMFCDlg::OnBnClickedService()
-{
-	//Service, file test
 
-	Service service;
-
-	string patient_id = "7";
-
-	string patient_str = service.find_patient(patient_id);
-
-	AfxMessageBox(CString(patient_str.c_str()));
-}
 
 
 void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()

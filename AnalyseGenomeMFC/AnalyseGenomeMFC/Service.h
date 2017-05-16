@@ -3,7 +3,6 @@
 #include <string>
 
 #include "Patient.h"
-#include "PatientDAFile.h"
 #include "Common.h"
 
 using namespace std;
@@ -11,7 +10,7 @@ using namespace std;
 class Service
 {
 private:
-	PatientDAFile patient_DA_file;
+	//PatientDAFile patient_DA_file;
 
 public:
 	Service();

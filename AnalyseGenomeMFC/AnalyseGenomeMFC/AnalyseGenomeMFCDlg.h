@@ -35,7 +35,6 @@ protected:
 public:
 	afx_msg void OnBnClickedStartserver();
 	afx_msg void OnBnClickedShutdownserver();
-	afx_msg void OnBnClickedService();
 	afx_msg void OnBnClickedDatabase();
 
 private:

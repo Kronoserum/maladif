@@ -2,23 +2,23 @@
 
 #include <iostream>
 #include <string>
-#include "Medecin.h"
+#include "Serveur.h"
 #include "sqlite3.h"
 
 using namespace std;
 
-class MedecinDADatabase
+class ServeurDADatabase
 {
 private:
 	sqlite3 *database;
 
 public:
-	MedecinDADatabase();
-	~MedecinDADatabase();
+	ServeurDADatabase();
+	~ServeurDADatabase();
 
 	void set_database(sqlite3 *database_in);
 
-	int write_medecin(Medecin medecin);
-	int read_medecin(Medecin &medecin, long id_in);
+	int write_serveur(Serveur serveur);
+	int read_serveur(Serveur &serveur, long id_in);
 
 };

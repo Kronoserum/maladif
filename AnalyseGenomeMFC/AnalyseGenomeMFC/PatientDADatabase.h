@@ -2,12 +2,12 @@
 
 #include <iostream>
 #include <string>
-#include "PatientDA.h"
+#include "Patient.h"
 #include "sqlite3.h"
 
 using namespace std;
 
-class PatientDADatabase : public PatientDA
+class PatientDADatabase
 {
 private:
 	sqlite3 *database;
