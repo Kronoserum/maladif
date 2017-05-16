@@ -205,6 +205,7 @@
     <ClInclude Include="ListenerSocket.h" />
     <ClInclude Include="Serveur.h" />
     <ClInclude Include="ServeurDADatabase.h" />
+    <ClInclude Include="ServiceClient.h" />
     <ClInclude Include="sqlite3.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -227,6 +228,7 @@
     <ClCompile Include="PatientDADatabase.cpp" />
     <ClCompile Include="Serveur.cpp" />
     <ClCompile Include="ServeurDADatabase.cpp" />
+    <ClCompile Include="ServiceClient.cpp" />
     <ClCompile Include="sqlite3.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
