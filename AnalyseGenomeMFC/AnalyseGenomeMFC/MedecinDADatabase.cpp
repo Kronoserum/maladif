@@ -40,7 +40,7 @@ int MedecinDADatabase::write_medecin(Medecin medecin)
 	return code;
 }
 
-int MedecinDADatabase::read_medecin(Medecin &medecin, long id_in)
+int MedecinDADatabase::read_medecin(Medecin &medecin, int id_in)
 {
 	int code;
 	char *error;
@@ -61,7 +61,7 @@ int MedecinDADatabase::read_medecin(Medecin &medecin, long id_in)
 	}
 	else
 	{
-		medecin.set_id(stol(results[0 + columns]));
+		medecin.set_id(stoi(results[0 + columns]));
 		medecin.set_nom(results[1 + columns]);
 		medecin.set_prenom(results[2 + columns]);
 		medecin.set_adresse(results[3 + columns]);

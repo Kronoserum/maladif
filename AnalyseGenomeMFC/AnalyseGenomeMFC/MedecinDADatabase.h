@@ -19,6 +19,6 @@ public:
 	void set_database(sqlite3 *database_in);
 
 	int write_medecin(Medecin medecin);
-	int read_medecin(Medecin &medecin, long id_in);
+	int read_medecin(Medecin &medecin, int id_in);
 
 };

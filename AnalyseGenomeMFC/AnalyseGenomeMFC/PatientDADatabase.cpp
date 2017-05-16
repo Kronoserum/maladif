@@ -20,9 +20,8 @@ int PatientDADatabase::write_patient(Patient patient)
 	int code;
 	char *error;
 
-	string sqlInsertStr = "INSERT INTO Patient VALUES('" 
-		+ to_string(patient.get_id()) + "', '"
-		+ patient.get_nom() + "', '"
+	string sqlInsertStr = "INSERT INTO Patient (nom, prenom, mail, mdp) VALUES('" +
+			patient.get_nom() + "', '"
 		+ patient.get_prenom() + "', '"
 		+ patient.get_mail() + "', '"
 		+ patient.get_mdp() + "');";
@@ -40,7 +39,7 @@ int PatientDADatabase::write_patient(Patient patient)
 	return code;
 }
 
-int PatientDADatabase::read_patient(Patient &patient, long id_in)
+int PatientDADatabase::read_patient(Patient &patient, int id_in)
 {
 	int code;
 	char *error;
@@ -61,7 +60,7 @@ int PatientDADatabase::read_patient(Patient &patient, long id_in)
 	}
 	else
 	{
-		patient.set_id(stol(results[0 + columns]));
+		patient.set_id(stoi(results[0 + columns]));
 		patient.set_nom(results[1 + columns]);
 		patient.set_prenom(results[2 + columns]);
 		patient.set_mail(results[3 + columns]);

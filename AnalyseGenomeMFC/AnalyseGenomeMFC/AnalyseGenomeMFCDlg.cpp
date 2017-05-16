@@ -190,15 +190,22 @@ void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()
 
 	Patient patient;
 	string patient_str;
-	long patient_id = 8;
+	int patient_id = 8;
 
 	Database database;
 	database.open_database();
 
+	//database.create_tables();
+
 	PatientDADatabase patient_DA_database;
 	patient_DA_database.set_database(database.get_database());
 
-	if (patient_DA_database.read_patient(patient, patient_id) == 0)
+	Patient p;
+	p.set_nom("lol");
+
+	patient_DA_database.write_patient(p);
+
+	/*if (patient_DA_database.read_patient(patient, patient_id) == 0)
 	{
 		patient_str = to_string(patient.get_id()) + ", " +
 			patient.get_nom() + ", " +
@@ -207,7 +214,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()
 			patient.get_mdp();
 
 		AfxMessageBox(CString(patient_str.c_str()));
-	}
+	}*/
 }
 
 

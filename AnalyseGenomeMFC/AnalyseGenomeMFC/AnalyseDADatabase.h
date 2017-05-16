@@ -19,6 +19,6 @@ public:
 	void set_database(sqlite3 *database_in);
 
 	int write_analyse(Analyse analyse);
-	int read_analyse(Analyse &analyse, long id_in);
+	int read_analyse(Analyse &analyse, int id_in);
 
 };

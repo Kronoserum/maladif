@@ -16,17 +16,20 @@ ConnectedSocket::~ConnectedSocket()
 
 void ConnectedSocket::OnReceive(int nErrorCode)
 {
-	const int BUFF_LEN = 2048;
+	const int BUFF_LEN = 256;
 	char szBuff[BUFF_LEN];
 
 	int nReceivedSize = Receive(szBuff, BUFF_LEN);
-
+	CString str;
+	//AfxMessageBox((CString)to_string(nReceivedSize).c_str());
 	if (nReceivedSize <= 0)
 		return;
 
-	//szBuff[nReceivedSize] = '\0';
+	szBuff[nReceivedSize] = '\0';
 
 	string strResponse = "hello\r\n";
+
+
 
 	int nSentBytes = 0;
 	const char* pszBuff = strResponse.c_str();

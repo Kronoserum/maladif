@@ -37,7 +37,7 @@ int EntrepriseDADatabase::write_entreprise(Entreprise entreprise)
 	return code;
 }
 
-int EntrepriseDADatabase::read_entreprise(Entreprise &entreprise, long id_in)
+int EntrepriseDADatabase::read_entreprise(Entreprise &entreprise, int id_in)
 {
 	int code;
 	char *error;
