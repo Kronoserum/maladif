@@ -4,6 +4,8 @@
 #include <string>
 #include "Analyse.h"
 #include "sqlite3.h"
+#include <vector>
+#include "Patient.h"
 
 using namespace std;
 
@@ -20,5 +22,8 @@ public:
 
 	int write_analyse(Analyse analyse);
 	int read_analyse(Analyse &analyse, int id_in);
+
+	vector<Analyse> read_analyse_patient(Patient patient);
+
 
 };

@@ -10,6 +10,8 @@
 #include "Database.h"
 #include "PatientDADatabase.h"
 #include "ServiceClient.h"
+#include <vector>
+#include <sstream>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -247,7 +249,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			label->SetWindowText(_T("Connexion échouée. Essayez encore !"));
 		}
 	}
-	else if(requete.compare("deconnexionMedecin") == 0) {
+	else if(nomCommande.compare("deconnexionMedecin") == 0) {
 		ServiceClient servicesM;
 		bool deconnexion = servicesM.DeconnexionMedecin();
 		if (deconnexion)
@@ -259,28 +261,45 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			label->SetWindowText(_T("La déconnexion a échouée !"));
 		}
 	}
-	else if (requete.compare("creerDossier") == 0) {
+	else if (nomCommande.compare("creerDossier") == 0) {
 		ServiceClient servicesM;
-		Patient nouveauPatient; // = new Patient(?);
-		int creaD = servicesM.CreerDossierPatient(nouveauPatient);
-		if (creaD)
+		string infosPatient = requete.substr(requete.find(":") + 1);
+		
+		vector<string> infos;
+		stringstream ss(infosPatient); // Turn the string into a stream.
+		string elem;
+
+		while (getline(ss, elem, ',')) {
+			infos.push_back(elem);
+		}
+
+		if (infos.size() != 4)
+		{
+			label->SetWindowText(_T("Problème lors de la création d'un patient au niveau des arguments fournis"));
+			return;
+		}
+
+		Patient nouveauPatient = Patient(infos[0], infos[1],infos[2],infos[3]);
+		servicesM.CreerDossierPatient(nouveauPatient);
+		int creaD = 1;
+		if (creaD == 1)
 		{
 			label->SetWindowText(_T("Dossier patient créé avec succès !"));
 		}
 	}
-	else if (requete.compare("supprimerDossier") == 0) {
+	else if (nomCommande.compare("supprimerDossier") == 0) {
 
 	}
-	else if (requete.compare("consulterDossier") == 0) {
+	else if (nomCommande.compare("consulterDossier") == 0) {
 
 	}
-	else if (requete.compare("consulterAnalyse") == 0) {
+	else if (nomCommande.compare("consulterAnalyse") == 0) {
 
 	}
-	else if (requete.compare("consulterResultat") == 0) {
+	else if (nomCommande.compare("consulterResultat") == 0) {
 
 	}
-	else if (requete.compare("effectuerAnalyse") == 0) {
+	else if (nomCommande.compare("effectuerAnalyse") == 0) {
 		//A voir s'il faut découper la réalisation (cf exigences fonctionnelles)
 	}
 	else
