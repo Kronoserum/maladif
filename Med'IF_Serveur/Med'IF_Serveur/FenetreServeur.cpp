@@ -48,12 +48,12 @@ void FenetreServeur::OnBnClickedButton1()
 		AfxMessageBox(_T("Unable to listen !"));
 		listenerSock.Close();
 	}
-	Services s;
-	//int i = s.ajouterMaladie(maladie ,"AAAA,BBBB,CCCC,DDDD");
+	/*Services s;
+	int i = s.ajouterMaladie("10", "AAAA;BBBB;CCCC;DDDD");
 	//int i = s.modifierMaladie("Maladie 6", "AAAA,BBBB,CCCC,KKKK,LLLL,MMMM");
-	string mots = s.recupererMaladie("50");
-	//AfxMessageBox((CString)to_string(i).c_str());
-	AfxMessageBox((CString)mots.c_str());
+	//string mots = s.recupererMaladie("5");
+	AfxMessageBox((CString)to_string(i).c_str());
+	//AfxMessageBox((CString)mots.c_str());*/
 }
 
 
