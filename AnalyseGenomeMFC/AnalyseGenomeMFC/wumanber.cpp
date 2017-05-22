@@ -1,5 +1,4 @@
 #include "stdafx.h"
-
 #include <cmath>
 #include <iostream>
 #include "wumanber.h"

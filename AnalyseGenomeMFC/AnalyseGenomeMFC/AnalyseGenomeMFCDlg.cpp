@@ -243,7 +243,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	string nomCommande = requete.substr(0, requete.find(":"));
 	if (nomCommande.compare("connexionMedecin") == 0)
 	{
-		CString message("Connexion effectuée ! (à supprimer quand service ok)\n");
+		CString message ("Connexion effectuée ! (à supprimer quand service ok)\r\n");
 		texteConsole.Insert(texteConsole.GetLength(), message);
 		label->SetWindowText(_T("Connexion effectuée ! (à supprimer quand service ok)"));
 		int id = stoi(requete.substr(requete.find(":")+1));
