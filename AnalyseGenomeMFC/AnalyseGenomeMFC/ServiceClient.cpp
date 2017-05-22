@@ -9,15 +9,25 @@
 #include "AnalyseDADatabase.h"
 #include <vector>
 #include "Database.h"
+#include "ServeurDADatabase.h"
+#include "MedecinDADatabase.h"
+#include "EntrepriseDADatabase.h"
 
 /*  ---------- Services Médecin ---------- */ 
 
 bool ServiceClient::ConnexionMedecin(int id) {
-	return false;
+	MedecinDADatabase mda;
+	Medecin medecin;
+	mda.read_medecin(medecin, id);
+
+	medecinCo = &medecin;
+
+	return true;
 }
 
 bool ServiceClient::DeconnexionMedecin() {
-	return false;
+	medecinCo = NULL;
+	return true;
 }
 
 int ServiceClient::CreerDossierPatient(Patient p) {
@@ -27,10 +37,6 @@ int ServiceClient::CreerDossierPatient(Patient p) {
 	return codeW;
 }
 
-int ServiceClient::SupprimerDossierPatient(Patient p) {
-	//A implémenter dans DA
-	return 0;
-}
 
 int ServiceClient::ConsulterDossierPatient(Patient p, int id_patient) {
 	PatientDADatabase pda;
@@ -43,31 +49,44 @@ vector<Analyse> ServiceClient::ConsulterAnalysesPatient(int id_patient) {
 	Patient patient_a_analyser;
 	int codeRP = pda.read_patient(patient_a_analyser, id_patient);
 	AnalyseDADatabase ada;
-	vector<Analyse> vecteurAnalyse = ada.read_analyse_patient(patient_a_analyser);
-	return vecteurAnalyse;
+	vector<Analyse> vecteurAnalyses = ada.read_analyse_patient(patient_a_analyser);
+	return vecteurAnalyses;
 }
 
-void ServiceClient::ConsulterResultatsAnalyse(int id_analyse) {
+Analyse ServiceClient::ConsulterResultatsAnalyse(int id_analyse) {
+	AnalyseDADatabase ada;
+	Analyse analyse;
+	ada.read_analyse(analyse, id_analyse);
 
+	return analyse;
 }
 
 void ServiceClient::EffectuerAnalyse() {
 
 }
 
-void ServiceClient::ConsulterDictionnaires(Serveur s) {
-
+vector<Serveur> ServiceClient::ConsulterDictionnaires() {
+	ServeurDADatabase sda;
+	Serveur serveur;
+	vector<Serveur> vecteurServeurs = sda.read_all_servers();
+	return vecteurServeurs;
 }
 
 
 /*  ---------- Services Entreprise ---------- */
-/*
-bool ServiceClient::ConnexionEntreprise(int id) {
 
+bool ServiceClient::ConnexionEntreprise(int id) {
+	EntrepriseDADatabase eda;
+	Entreprise entreprise;
+	eda.read_entreprise(entreprise, id);
+
+	entrCo = &entreprise;
+
+	return true;
 }
 
 bool ServiceClient::DeconnexionEntreprise() {
-
+	entrCo = NULL;
 }
 
 int ModifierDescriptionDictionnaire(string desc) {
@@ -86,10 +105,13 @@ int SupprimerMaladie(Maladie m) {
 
 }
 
-int ConsulterDictionnaire(int id_serveur) {
-
+Serveur ConsulterDictionnaire(int id_serveur) {
+	ServeurDADatabase sda;
+	Serveur se;
+	sda.read_serveur(se, id_serveur);
+	
+	return se;
 }
-*/
 
 ServiceClient::ServiceClient() {
 

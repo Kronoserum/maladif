@@ -14,6 +14,7 @@
 #include <sstream>
 #include "ServeurDADatabase.h"
 #include "EntrepriseDADatabase.h"
+#include "MedecinDADatabase.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -134,6 +135,18 @@ void CAnalyseGenomeMFCDlg::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 }
 
+void CAnalyseGenomeMFCDlg::OnOK(void)
+{
+	CWnd* pWnd = GetFocus();
+	if (GetDlgItem(IDOK) == pWnd)
+	{
+		CDialog::OnOK();
+		return;
+	}
+
+	// Enter key was hit -> do whatever you want
+}
+
 // Si vous ajoutez un bouton Réduire à votre boîte de dialogue, vous devez utiliser le code ci-dessous
 //  pour dessiner l'icône.  Pour les applications MFC utilisant le modèle Document/Vue,
 //  cela est fait automatiquement par l'infrastructure.
@@ -193,12 +206,16 @@ void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()
 	string patient_str;
 	int patient_id = 8;
 
+	ServiceClient smc;
+	
+	
+
 	//database.create_tables();
 
-	ServeurDADatabase serveur_DA_database;
-	Serveur s("ok", "ok",1);
+	//ServeurDADatabase serveur_DA_database;
+	//Serveur s("ok", "ok",1);
 
-	serveur_DA_database.write_serveur(s);
+	//serveur_DA_database.write_serveur(s);
 
 	//EntrepriseDADatabase entreprise_DA_database;
 	//Entreprise e("ok", "ok");
@@ -363,5 +380,6 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton3()
 
 void CAnalyseGenomeMFCDlg::OnBnClickedButton4()
 {
-	socket.Close();
+	//socket.Close();
+	socket.Send("connexion:0:", strlen("connexion:0:"));
 }

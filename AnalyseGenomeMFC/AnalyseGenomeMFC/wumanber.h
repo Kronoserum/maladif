@@ -4,6 +4,7 @@
 #include <string>
 #include <set>
 
+
 typedef std::set<std::string> ResultSetType;
 typedef std::pair<unsigned int, int> PrefixIdPairType;
 typedef std::vector<PrefixIdPairType> PrefixTableType;

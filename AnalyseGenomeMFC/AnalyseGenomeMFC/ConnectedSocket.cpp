@@ -26,8 +26,10 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 		return;
 
 	szBuff[nReceivedSize] = '\0';
+	CString data(szBuff);
+	AfxMessageBox(data);
 
-	string strResponse = "hello\n";
+	/*string strResponse = "hello\n";
 
 	int nSentBytes = 0;
 	const char* pszBuff = strResponse.c_str();
@@ -38,7 +40,7 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 		nSentBytes = Send(pszBuff, nResponseSize);
 		nResponseSize = nResponseSize - nSentBytes;
 		pszBuff = pszBuff + nSentBytes;
-	}
+	}*/
 
 	CAsyncSocket::OnReceive(nErrorCode);
 }
