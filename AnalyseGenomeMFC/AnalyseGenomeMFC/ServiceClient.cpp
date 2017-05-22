@@ -4,32 +4,41 @@
 #include "Patient.h"
 #include "Analyse.h"
 #include "Serveur.h"
+#include "Maladie.h"
+#include "PatientDADatabase.h"
 
-void ServiceClient::Connexion() {
+/*  ---------- Services Médecin ---------- */ 
+
+bool ServiceClient::ConnexionMedecin(int id) {
+	return false;
+}
+
+bool ServiceClient::DeconnexionMedecin() {
+	return false;
+}
+
+int ServiceClient::CreerDossierPatient(Patient p) {
+	PatientDADatabase pda;
+	int codeW = pda.write_patient(p);
+	return codeW;
+}
+
+int ServiceClient::SupprimerDossierPatient(Patient p) {
+	//A implémenter dans DA
+	return 0;
+}
+
+int ServiceClient::ConsulterDossierPatient(Patient p, int id_patient) {
+	PatientDADatabase pda;
+	int codeR = pda.read_patient(p, id_patient);
+	return codeR;
+}
+
+void ServiceClient::ConsulterAnalysesPatient(int id_patient) {
 
 }
 
-void ServiceClient::Deconnexion() {
-
-}
-
-void ServiceClient::CreerDossierPatient(Patient p) {
-
-}
-
-void ServiceClient::SupprimerDossierPatient(Patient p) {
-
-}
-
-void ServiceClient::ConsulterDossierPatient(Patient p) {
-
-}
-
-void ServiceClient::ConsulterAnalysesPatient(Patient p) {
-
-}
-
-void ServiceClient::ConsulterResultatsAnalyse(Analyse a) {
+void ServiceClient::ConsulterResultatsAnalyse(int id_analyse) {
 
 }
 
@@ -40,6 +49,38 @@ void ServiceClient::EffectuerAnalyse() {
 void ServiceClient::ConsulterDictionnaires(Serveur s) {
 
 }
+
+
+/*  ---------- Services Entreprise ---------- */
+/*
+bool ServiceClient::ConnexionEntreprise(int id) {
+
+}
+
+bool ServiceClient::DeconnexionEntreprise() {
+
+}
+
+int ModifierDescriptionDictionnaire(string desc) {
+		
+}
+
+int AjouterMaladie(Maladie m){
+
+}
+
+int ModifierMaladie(Maladie m) {
+
+}
+
+int SupprimerMaladie(Maladie m) {
+
+}
+
+int ConsulterDictionnaire(int id_serveur) {
+
+}
+*/
 
 ServiceClient::ServiceClient() {
 

@@ -9,9 +9,9 @@
 #include "Patient.h"
 #include "Database.h"
 #include "PatientDADatabase.h"
-#include "Analyse.h"
-#include "AnalyseDADatabase.h"
+#include "ServiceClient.h"
 #include <vector>
+#include <sstream>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -203,32 +203,10 @@ void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()
 	PatientDADatabase patient_DA_database;
 	patient_DA_database.set_database(database.get_database());
 
-	AnalyseDADatabase analyse_DA_database;
-	analyse_DA_database.set_database(database.get_database());
-
-
 	Patient p;
 	p.set_nom("lol");
-	p.set_id(6);
 
-	Analyse a;
-	a.set_idPatient(6);
-
-	//analyse_DA_database.write_analyse(a);
-
-	int ret = 5;
-
-	std::vector<Analyse> retour = analyse_DA_database.read_analyse_patient(p);
-
-	for (unsigned int i = 0; i< retour.size(); i++)
-	{
-		cout << retour.at(i).get_id();
-
-		ret = retour.at(i).get_id();
-	}
-
-	cout << endl;
-
+	patient_DA_database.write_patient(p);
 
 	/*if (patient_DA_database.read_patient(patient, patient_id) == 0)
 	{
@@ -245,14 +223,91 @@ void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()
 
 void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 {
+	CWnd *label = GetDlgItem(IDC_STATIC_AFFICHAGE);
 	int t = UpdateData(true);
 	if (!t)
 	{
 		AfxMessageBox(_T("Erreur"));
 	}
 
+	CT2CA pszConvertedAnsiString(commande);
+	string requete(pszConvertedAnsiString);
+	string nomCommande = requete.substr(0, requete.find(":"));
+	if (nomCommande.compare("connexionMedecin") == 0)
+	{
+		label->SetWindowText(_T("Connexion effectuée ! (à supprimer quand service ok)"));
+		int id = stoi(requete.substr(requete.find(":")+1));
+		ServiceClient servicesM;
+		bool connexion = servicesM.ConnexionMedecin(id);
+		if (connexion)
+		{
+			
+			label->SetWindowText(_T("Connexion effectuée !"));
+		}
+		else 
+		{
+			label->SetWindowText(_T("Connexion échouée. Essayez encore !"));
+		}
+	}
+	else if(nomCommande.compare("deconnexionMedecin") == 0) {
+		ServiceClient servicesM;
+		bool deconnexion = servicesM.DeconnexionMedecin();
+		if (deconnexion)
+		{
+			label->SetWindowText(_T("Déconnexion effectuée !"));
+		}
+		else
+		{
+			label->SetWindowText(_T("La déconnexion a échouée !"));
+		}
+	}
+	else if (nomCommande.compare("creerDossier") == 0) {
+		ServiceClient servicesM;
+		string infosPatient = requete.substr(requete.find(":") + 1);
+		
+		vector<string> infos;
+		stringstream ss(infosPatient); // Turn the string into a stream.
+		string elem;
+
+		while (getline(ss, elem, ',')) {
+			infos.push_back(elem);
+		}
+
+		if (infos.size() != 4)
+		{
+			label->SetWindowText(_T("Problème lors de la création d'un patient au niveau des arguments fournis"));
+			return;
+		}
+
+		Patient nouveauPatient = Patient(infos[0], infos[1],infos[2],infos[3]);
+		int creaD = 1;//= servicesM.CreerDossierPatient(nouveauPatient);
+		if (creaD == 1)
+		{
+			label->SetWindowText(_T("Dossier patient créé avec succès !"));
+		}
+	}
+	else if (nomCommande.compare("supprimerDossier") == 0) {
+
+	}
+	else if (nomCommande.compare("consulterDossier") == 0) {
+
+	}
+	else if (nomCommande.compare("consulterAnalyse") == 0) {
+
+	}
+	else if (nomCommande.compare("consulterResultat") == 0) {
+
+	}
+	else if (nomCommande.compare("effectuerAnalyse") == 0) {
+		//A voir s'il faut découper la réalisation (cf exigences fonctionnelles)
+	}
+	else
+	{
+		AfxMessageBox(_T("Requête incorrecte !"));
+	}
+
 	AfxMessageBox(_T("Commande envoyée ! (à coder) " + commande ));
-	CWnd *label = GetDlgItem(IDC_STATIC_AFFICHAGE);
-	label->SetWindowText(commande);
+	
+	
 }
 
