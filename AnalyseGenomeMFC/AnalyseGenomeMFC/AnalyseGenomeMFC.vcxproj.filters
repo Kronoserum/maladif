@@ -37,9 +37,6 @@
     <ClInclude Include="ConnectedSocket.h">
       <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="ListenerSocket.h">
-      <Filter>Network</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Utility</Filter>
     </ClInclude>
@@ -106,9 +103,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConnectedSocket.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
-    <ClCompile Include="ListenerSocket.cpp">
       <Filter>Network</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">

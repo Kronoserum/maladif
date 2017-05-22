@@ -12,6 +12,8 @@
 #include "ServiceClient.h"
 #include <vector>
 #include <sstream>
+#include "ServeurDADatabase.h"
+#include "EntrepriseDADatabase.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -199,12 +201,20 @@ void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()
 
 	//database.create_tables();
 
-	PatientDADatabase patient_DA_database;
+	ServeurDADatabase serveur_DA_database;
+	Serveur s("ok", "ok",1);
 
-	Patient p;
-	p.set_nom("lol");
+	serveur_DA_database.write_serveur(s);
 
-	patient_DA_database.write_patient(p);
+	//EntrepriseDADatabase entreprise_DA_database;
+	//Entreprise e("ok", "ok");
+
+	//entreprise_DA_database.write_entreprise(e);
+
+	//Patient p;
+	//p.set_nom("lol");
+
+	//patient_DA_database.write_patient(p);
 
 	/*if (patient_DA_database.read_patient(patient, patient_id) == 0)
 	{
