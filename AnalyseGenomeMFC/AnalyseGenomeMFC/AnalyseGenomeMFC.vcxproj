@@ -202,7 +202,6 @@
     <ClInclude Include="Patient.h" />
     <ClInclude Include="PatientDADatabase.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="ListenerSocket.h" />
     <ClInclude Include="Serveur.h" />
     <ClInclude Include="ServeurDADatabase.h" />
     <ClInclude Include="ServiceClient.h" />
@@ -219,7 +218,6 @@
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="Entreprise.cpp" />
     <ClCompile Include="EntrepriseDADatabase.cpp" />
-    <ClCompile Include="ListenerSocket.cpp" />
     <ClCompile Include="Maladie.cpp" />
     <ClCompile Include="MaladieDADatabase.cpp" />
     <ClCompile Include="Medecin.cpp" />
