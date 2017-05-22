@@ -28,7 +28,7 @@ public:
 	void set_idMaladie(int id_in);
 	void set_idServeur(int id_in);
 
-	
+	string toString();
 
 private:
 	int id;

@@ -50,3 +50,19 @@ void Analyse::set_idPatient(int id_in) { idPatient = id_in; }
 void Analyse::set_idMaladie(int id_in) { idMaladie = id_in; }
 void Analyse::set_idServeur(int id_in) { idServeur = id_in; }
 
+string Analyse::toString()
+{
+	string res = "IDAnalyse: ";
+	res.append(to_string(id));
+	res.append(";IDMedecin: ");
+	res.append(to_string(idMedecin));
+	res.append("; IDPatient: ");
+	res.append(to_string(idPatient));
+	res.append("; IDMaladie: ");
+	res.append(to_string(idMaladie));
+	res.append("; IDServeur: ");
+	res.append(to_string(idServeur));
+	res.append("; Résultat: ");
+	res.append(to_string(resultat));
+	return res;
+}

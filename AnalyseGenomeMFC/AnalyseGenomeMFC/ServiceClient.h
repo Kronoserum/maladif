@@ -1,6 +1,7 @@
 #include "Patient.h"
 #include "Analyse.h"
 #include "Serveur.h"
+#include <vector> 
 
 #pragma once
 
@@ -14,7 +15,7 @@ public:
 	int CreerDossierPatient(Patient p);
 	int SupprimerDossierPatient(Patient p);
 	int ConsulterDossierPatient(Patient p, int id_patient);
-	void ConsulterAnalysesPatient(int id_patient);
+	vector<Analyse> ConsulterAnalysesPatient(int id_patient);
 
 	void ConsulterResultatsAnalyse(int id_analyse);
 	void EffectuerAnalyse();
