@@ -9,6 +9,7 @@
 #include "Patient.h"
 #include "Database.h"
 #include "PatientDADatabase.h"
+#include "ServiceClient.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -220,14 +221,75 @@ void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()
 
 void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 {
+	CWnd *label = GetDlgItem(IDC_STATIC_AFFICHAGE);
 	int t = UpdateData(true);
 	if (!t)
 	{
 		AfxMessageBox(_T("Erreur"));
 	}
 
+	CT2CA pszConvertedAnsiString(commande);
+	string requete(pszConvertedAnsiString);
+	string nomCommande = requete.substr(0, requete.find(":"));
+	if (nomCommande.compare("connexionMedecin") == 0)
+	{
+		label->SetWindowText(_T("Connexion effectuée ! (à supprimer quand service ok)"));
+		int id = stoi(requete.substr(requete.find(":")+1));
+		ServiceClient servicesM;
+		bool connexion = servicesM.ConnexionMedecin(id);
+		if (connexion)
+		{
+			
+			label->SetWindowText(_T("Connexion effectuée !"));
+		}
+		else 
+		{
+			label->SetWindowText(_T("Connexion échouée. Essayez encore !"));
+		}
+	}
+	else if(requete.compare("deconnexionMedecin") == 0) {
+		ServiceClient servicesM;
+		bool deconnexion = servicesM.DeconnexionMedecin();
+		if (deconnexion)
+		{
+			label->SetWindowText(_T("Déconnexion effectuée !"));
+		}
+		else
+		{
+			label->SetWindowText(_T("La déconnexion a échouée !"));
+		}
+	}
+	else if (requete.compare("creerDossier") == 0) {
+		ServiceClient servicesM;
+		Patient nouveauPatient; // = new Patient(?);
+		int creaD = servicesM.CreerDossierPatient(nouveauPatient);
+		if (creaD)
+		{
+			label->SetWindowText(_T("Dossier patient créé avec succès !"));
+		}
+	}
+	else if (requete.compare("supprimerDossier") == 0) {
+
+	}
+	else if (requete.compare("consulterDossier") == 0) {
+
+	}
+	else if (requete.compare("consulterAnalyse") == 0) {
+
+	}
+	else if (requete.compare("consulterResultat") == 0) {
+
+	}
+	else if (requete.compare("effectuerAnalyse") == 0) {
+		//A voir s'il faut découper la réalisation (cf exigences fonctionnelles)
+	}
+	else
+	{
+		AfxMessageBox(_T("Requête incorrecte !"));
+	}
+
 	AfxMessageBox(_T("Commande envoyée ! (à coder) " + commande ));
-	CWnd *label = GetDlgItem(IDC_STATIC_AFFICHAGE);
-	label->SetWindowText(commande);
+	
+	
 }
 
