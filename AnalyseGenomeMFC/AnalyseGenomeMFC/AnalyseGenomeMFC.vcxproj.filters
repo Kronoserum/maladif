@@ -100,6 +100,9 @@
     <ClInclude Include="ServiceClient.h">
       <Filter>Service</Filter>
     </ClInclude>
+    <ClInclude Include="wumanber.h">
+      <Filter>Service</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConnectedSocket.cpp">
@@ -157,6 +160,9 @@
       <Filter>DataAccess</Filter>
     </ClCompile>
     <ClCompile Include="ServiceClient.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="wumanber.cpp">
       <Filter>Service</Filter>
     </ClCompile>
   </ItemGroup>
