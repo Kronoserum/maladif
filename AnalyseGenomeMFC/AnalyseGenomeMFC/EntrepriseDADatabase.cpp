@@ -19,8 +19,7 @@ int EntrepriseDADatabase::write_entreprise(Entreprise entreprise)
 	int code;
 	char *error;
 
-	string sqlInsertStr = "INSERT INTO Entreprise VALUES('" 
-		+ to_string(entreprise.get_id()) + "', '"
+	string sqlInsertStr = "INSERT INTO Entreprise (nom,description) VALUES('" 
 		+ entreprise.get_nom() + "', '"
 		+ entreprise.get_description() + "');";
 

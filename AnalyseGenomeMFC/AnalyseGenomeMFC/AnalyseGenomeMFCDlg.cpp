@@ -9,6 +9,9 @@
 #include "Patient.h"
 #include "Database.h"
 #include "PatientDADatabase.h"
+#include "Analyse.h"
+#include "AnalyseDADatabase.h"
+#include <vector>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -200,10 +203,32 @@ void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()
 	PatientDADatabase patient_DA_database;
 	patient_DA_database.set_database(database.get_database());
 
+	AnalyseDADatabase analyse_DA_database;
+	analyse_DA_database.set_database(database.get_database());
+
+
 	Patient p;
 	p.set_nom("lol");
+	p.set_id(6);
 
-	patient_DA_database.write_patient(p);
+	Analyse a;
+	a.set_idPatient(6);
+
+	//analyse_DA_database.write_analyse(a);
+
+	int ret = 5;
+
+	std::vector<Analyse> retour = analyse_DA_database.read_analyse_patient(p);
+
+	for (unsigned int i = 0; i< retour.size(); i++)
+	{
+		cout << retour.at(i).get_id();
+
+		ret = retour.at(i).get_id();
+	}
+
+	cout << endl;
+
 
 	/*if (patient_DA_database.read_patient(patient, patient_id) == 0)
 	{

@@ -19,8 +19,7 @@ int ServeurDADatabase::write_serveur(Serveur serveur)
 	int code;
 	char *error;
 
-	string sqlInsertStr = "INSERT INTO Serveur VALUES('" 
-		+ to_string(serveur.get_id()) + "', '"
+	string sqlInsertStr = "INSERT INTO Serveur (description,ipServeur, idEntreprsie) VALUES('" 
 		+ serveur.get_description() + " ','"
 		+ serveur.get_IPServeur() + "', '"
 		+ to_string(serveur.get_idEntreprise()) + "');";

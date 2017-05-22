@@ -19,8 +19,7 @@ int AnalyseDADatabase::write_analyse(Analyse analyse)
 	int code;
 	char *error;
 
-	string sqlInsertStr = "INSERT INTO Analyse VALUES('" 
-		+ to_string(analyse.get_id()) + "', '"
+	string sqlInsertStr = "INSERT INTO Analyse (date,resultat,idMaladie,idMedecin,idPatient,idServeur) VALUES('" 
 		+ analyse.get_Date() + "', '"
 		+ to_string(analyse.get_resultat()) + "', '"
 		+ to_string(analyse.get_IdMaladie()) + "', '"
@@ -64,7 +63,7 @@ int AnalyseDADatabase::read_analyse(Analyse &analyse, int id_in)
 	{
 		analyse.set_id(stoi(results[0 + columns]));
 		analyse.set_date(results[1 + columns]);
-		analyse.set_resultat(stod(results[2 + columns]));
+		analyse.set_resultat(stoi(results[2 + columns]));
 		analyse.set_idMaladie(stoi(results[3 + columns]));
 		analyse.set_idMedecin(stoi(results[4 + columns]));
 		analyse.set_idPatient(stoi(results[5 + columns]));
@@ -75,5 +74,51 @@ int AnalyseDADatabase::read_analyse(Analyse &analyse, int id_in)
 	sqlite3_free_table(results);
 
 	return code;
+}
+
+vector<Analyse> AnalyseDADatabase::read_analyse_patient(Patient patient)
+{
+	vector<Analyse>retour;
+
+	int code;
+	char *error;
+
+	string sqlSelectStr = "SELECT * FROM Analyse WHERE idPatient =" + to_string(patient.get_id()) + ";";
+
+	const char *sqlSelect = sqlSelectStr.c_str();
+
+	char **results = NULL;
+	int rows, columns;
+
+	code = sqlite3_get_table(database, sqlSelect, &results, &rows, &columns, &error);
+
+	if (code != 0)
+	{
+		cerr << "Error executing SQLite3 query (read_analyse): " << sqlite3_errmsg(database) << endl;
+		sqlite3_free(error);
+	}
+	else
+	{
+		for (int i = 1; i <= rows; i++)
+		{
+			Analyse analyse;
+			analyse.set_id(stoi(results[i * columns + 0]));
+			analyse.set_date(results[i * columns + 1]);
+			analyse.set_resultat(stoi(results[i * columns + 2]));
+			analyse.set_idMaladie(stoi(results[i * columns + 3]));
+			analyse.set_idMedecin(stoi(results[i * columns + 4]));
+			analyse.set_idPatient(stoi(results[i * columns + 5]));
+			analyse.set_idServeur(stoi(results[i * columns + 6]));
+
+			retour.push_back(analyse);
+		}
+
+
+
+	}
+
+	sqlite3_free_table(results);
+
+	return retour;
 }
 

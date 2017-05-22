@@ -20,5 +20,6 @@ public:
 
 	int write_medecin(Medecin medecin);
 	int read_medecin(Medecin &medecin, int id_in);
+	int read_medecin(Medecin &medecin, string prenom, string mdp);
 
 };

@@ -19,8 +19,7 @@ int MaladieDADatabase::write_maladie(Maladie maladie)
 	int code;
 	char *error;
 
-	string sqlInsertStr = "INSERT INTO Maladie VALUES('" 
-		+ to_string(maladie.get_id()) + "', '"
+	string sqlInsertStr = "INSERT INTO Maladie (nom,typeMaladie) VALUES('" 
 		+ maladie.get_nom() + " ','"
 		+ maladie.get_typeMaladie() + "');";
 
