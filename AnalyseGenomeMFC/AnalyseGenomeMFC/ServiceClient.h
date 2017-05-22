@@ -1,9 +1,12 @@
+#pragma once
+
 #include "Patient.h"
 #include "Analyse.h"
 #include "Serveur.h"
+#include "Maladie.h"
+#include "ConnectedSocket.h"
 #include <vector> 
 
-#pragma once
 
 class ServiceClient
 {
@@ -21,18 +24,19 @@ public:
 	void EffectuerAnalyse();
 
 	void ConsulterDictionnaires(Serveur s);
+	
+	
+	void ConnexionEntreprise(string id, ConnectedSocket & s);
+	bool DeconnexionEntreprise(ConnectedSocket & s);
 
-	/*
-	bool ConnexionEntreprise(int id);
-	bool DeconnexionEntreprise();
+	int ModifierDescriptionDictionnaire(string desc, ConnectedSocket & s);
+	int AjouterMaladie(Maladie m, ConnectedSocket & s);
+	int ModifierMaladie(Maladie m, ConnectedSocket & s);
+	int SupprimerMaladie(Maladie m, ConnectedSocket & s);
+	int ConsulterDictionnaire(int id_serveur, ConnectedSocket & s);
 
-	int ModifierDescriptionDictionnaire(string desc);
-	int AjouterMaladie(Maladie m);
-	int ModifierMaladie(Maladie m);
-	int SupprimerMaladie(Maladie m);
-	int ConsulterDictionnaire(int id_serveur);
-	*/
-
+	CString RetourSocket(CString retour);
+	
 	ServiceClient();
 	~ServiceClient();
 };

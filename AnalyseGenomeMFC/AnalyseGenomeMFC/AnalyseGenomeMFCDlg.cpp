@@ -241,6 +241,7 @@ void CAnalyseGenomeMFCDlg::OnEnChangeEdit1()
 
 void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 {
+	ServiceClient metier;
 	CWnd *label = GetDlgItem(IDC_STATIC_AFFICHAGE);
 	ServiceClient servicesM;
 
@@ -253,6 +254,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	CT2CA pszConvertedAnsiString(commande);
 	string requete(pszConvertedAnsiString);
 	string nomCommande = requete.substr(0, requete.find(":"));
+	string arguments = requete.substr(requete.find(":")+1, requete.size()-nomCommande.size());
 	if (nomCommande.compare("connexionMedecin") == 0)
 	{
 		CString message ("Connexion effectuée ! (à supprimer quand service ok)\r\n");
@@ -336,6 +338,14 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	else if (nomCommande.compare("effectuerAnalyse") == 0) {
 		//A voir s'il faut découper la réalisation (cf exigences fonctionnelles)
 	}
+	else if (nomCommande.compare("connexionEntreprise") == 0)
+	{
+		if (socketLaunched)
+		{
+			metier.ConnexionEntreprise(arguments, *socket);
+			UpdateData(false);
+		}
+	}
 	else
 	{
 		AfxMessageBox(_T("Requête incorrecte !"));
@@ -352,13 +362,18 @@ void CAnalyseGenomeMFCDlg::OnStnClickedStaticAffichage()
 void CAnalyseGenomeMFCDlg::OnBnClickedButton3()
 {
 	CString ip("localhost");
-	socket.Create();
-	socket.Connect(ip, 8080);
+	socket = new ConnectedSocket();
+	socket->setOwner(this);
+	socket->Create();
+	socket->Connect(ip, 8080);
+	socketLaunched = true;
 }
 
 
 void CAnalyseGenomeMFCDlg::OnBnClickedButton4()
 {
-	//socket.Close();
-	socket.Send("connexion:0:", strlen("connexion:0:"));
+	socket->Close();
+	AfxMessageBox(_T("Connection with the server closed."));
+	socketLaunched = false;
+	//socket.Send("connexion:0:", strlen("connexion:0:"));
 }

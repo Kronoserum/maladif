@@ -1,19 +1,26 @@
 // ClientSocket.cpp : fichier d'implémentation
 //
+#pragma once
 
 #include "stdafx.h"
-#include "AnalyseGenomeMFC.h"
 #include "ConnectedSocket.h"
 
 using namespace std;
 
 ConnectedSocket::ConnectedSocket()
 {
+	
 }
 
 ConnectedSocket::~ConnectedSocket()
 {
 }
+
+void ConnectedSocket::setOwner(CAnalyseGenomeMFCDlg * o)
+{
+	owner = o;
+}
+
 
 void ConnectedSocket::OnReceive(int nErrorCode)
 {
@@ -27,25 +34,17 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 
 	szBuff[nReceivedSize] = '\0';
 	CString data(szBuff);
-	AfxMessageBox(data);
-
-	/*string strResponse = "hello\n";
-
-	int nSentBytes = 0;
-	const char* pszBuff = strResponse.c_str();
-	int nResponseSize = strResponse.length();
-
-	while (nSentBytes < nResponseSize)
-	{
-		nSentBytes = Send(pszBuff, nResponseSize);
-		nResponseSize = nResponseSize - nSentBytes;
-		pszBuff = pszBuff + nSentBytes;
-	}*/
+	owner->texteConsole.Insert(owner->texteConsole.GetLength(), data);
 
 	CAsyncSocket::OnReceive(nErrorCode);
 }
 
 void ConnectedSocket::OnConnect(int nErrorCode)
 {
-	AfxMessageBox(_T("Connexion réussie."));
+	CAsyncSocket::OnConnect(nErrorCode);
+}
+
+void ConnectedSocket::OnSend(int nErrorCode)
+{
+	
 }

@@ -6,6 +6,8 @@
 
 #include "ConnectedSocket.h"
 
+class ConnectedSocket;
+
 // boîte de dialogue CAnalyseGenomeMFCDlg
 class CAnalyseGenomeMFCDlg : public CDialogEx
 {
@@ -39,7 +41,8 @@ public:
 	afx_msg void OnBnClickedDatabase();
 
 private:
-	ConnectedSocket socket;
+	ConnectedSocket *socket;
+	bool socketLaunched = false;
 
 public:
 	afx_msg void OnEnChangeEdit1();

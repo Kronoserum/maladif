@@ -1,3 +1,5 @@
+#pragma once
+
 #include "stdafx.h"
 #include "ServiceClient.h"
 
@@ -61,40 +63,53 @@ void ServiceClient::ConsulterDictionnaires(Serveur s) {
 
 
 /*  ---------- Services Entreprise ---------- */
-/*
-bool ServiceClient::ConnexionEntreprise(int id) {
 
+void ServiceClient::ConnexionEntreprise(string id, ConnectedSocket & s) {
+	string commande("connexion:");
+	commande.append(id);
+	commande.append(":");
+	s.Send(commande.c_str(), commande.length());
 }
 
-bool ServiceClient::DeconnexionEntreprise() {
-
+bool ServiceClient::DeconnexionEntreprise(ConnectedSocket & s) {
+	return false;
 }
 
-int ModifierDescriptionDictionnaire(string desc) {
-		
+int ServiceClient::ModifierDescriptionDictionnaire(string desc, ConnectedSocket & s)
+{
+	return 0;
 }
 
-int AjouterMaladie(Maladie m){
-
+int ServiceClient::AjouterMaladie(Maladie m, ConnectedSocket & s)
+{
+	return 0;
 }
 
-int ModifierMaladie(Maladie m) {
-
+int ServiceClient::ModifierMaladie(Maladie m, ConnectedSocket & s)
+{
+	return 0;
 }
 
-int SupprimerMaladie(Maladie m) {
-
+int ServiceClient::SupprimerMaladie(Maladie m, ConnectedSocket & s)
+{
+	return 0;
 }
 
-int ConsulterDictionnaire(int id_serveur) {
-
-}
-*/
-
-ServiceClient::ServiceClient() {
-
+int ServiceClient::ConsulterDictionnaire(int id_serveur, ConnectedSocket & s)
+{
+	return 0;
 }
 
+CString ServiceClient::RetourSocket(CString retour)
+{
+	return NULL;
+}
+
+
+ServiceClient::ServiceClient()
+{
+	
+}
 
 ServiceClient::~ServiceClient() {
 
