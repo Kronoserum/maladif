@@ -1,8 +1,13 @@
 #include "stdafx.h"
 #include "ServeurDADatabase.h"
+#include <vector>
+#include "Database.h"
 
 ServeurDADatabase::ServeurDADatabase()
 {
+	Database db;
+	db.open_database();
+	database = db.get_database();
 }
 
 ServeurDADatabase::~ServeurDADatabase()
@@ -69,3 +74,46 @@ int ServeurDADatabase::read_serveur(Serveur &serveur, int id_in)
 	return code;
 }
 
+vector<Serveur> ServeurDADatabase::read_all_servers()
+{
+	vector<Serveur>retour;
+
+	int code;
+	char *error;
+
+	string sqlSelectStr = "SELECT * FROM Serveur;";
+
+	const char *sqlSelect = sqlSelectStr.c_str();
+
+	char **results = NULL;
+	int rows, columns;
+
+	code = sqlite3_get_table(database, sqlSelect, &results, &rows, &columns, &error);
+
+	if (code != 0)
+	{
+		cerr << "Error executing SQLite3 query (readServers): " << sqlite3_errmsg(database) << endl;
+		sqlite3_free(error);
+	}
+	else
+	{
+		for (int i = 1; i <= rows; i++)
+		{
+			Serveur serveur;
+
+			serveur.set_id(stoi(results[i*columns+0]));
+			serveur.set_description(results[i*columns + 1]);
+			serveur.set_IPServeur(results[i*columns + 2]);
+			serveur.set_idEntreprise(stol(results[i*columns + 3]));
+
+			retour.push_back(serveur);
+		}
+
+
+
+	}
+
+	sqlite3_free_table(results);
+
+	return retour;
+}

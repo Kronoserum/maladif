@@ -1,8 +1,12 @@
 #include "stdafx.h"
 #include "EntrepriseDADatabase.h"
+#include "Database.h"
 
 EntrepriseDADatabase::EntrepriseDADatabase()
 {
+	Database db;
+	db.open_database();
+	database = db.get_database();
 }
 
 EntrepriseDADatabase::~EntrepriseDADatabase()
@@ -66,3 +70,4 @@ int EntrepriseDADatabase::read_entreprise(Entreprise &entreprise, int id_in)
 
 	return code;
 }
+

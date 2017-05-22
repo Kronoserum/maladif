@@ -20,10 +20,6 @@ bool ServiceClient::DeconnexionMedecin() {
 
 int ServiceClient::CreerDossierPatient(Patient p) {
 	PatientDADatabase pda;
-	Database db;
-	db.open_database();
-
-	pda.set_database(db.get_database());
 
 	int codeW = pda.write_patient(p);
 	return codeW;
