@@ -327,16 +327,25 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			UpdateData(false);
 		}
 	}
-	else if (nomCommande.compare("supprimerDossier") == 0) {
-		int idPatient = stoi(requete.substr(requete.find(":") + 1));
-	}
 	else if (nomCommande.compare("consulterDossier") == 0) {
 		int idPatient = stoi(requete.substr(requete.find(":") + 1));
+		Patient patientTraite = servicesM.ConsulterDossierPatient(idPatient);
+		CString messageCDP("Voici le dossier de ce patient :\r\n");
+		texteConsole.Insert(texteConsole.GetLength(), messageCDP);
+		UpdateData(false);
+		//CString messageCDPD(patientTraite.toString().c_str());
+		//texteConsole.Insert(texteConsole.GetLength(), messageCDPD);
+		//UpdateData(false);
 	}
 	else if (nomCommande.compare("consulterAnalysesPatient") == 0) {
 		int idPatient = stoi(requete.substr(requete.find(":") + 1));
 		vector<Analyse> analyses = servicesM.ConsulterAnalysesPatient(idPatient);
+
 		string affichageAnalyses;
+		CString messageA1("Liste des analyses du patient\r\n");
+		texteConsole.Insert(texteConsole.GetLength(), messageA1);
+		UpdateData(false);
+
 		for (vector<Analyse>::iterator i = analyses.begin(); i != analyses.end(); ++i) 
 		{ 
 			affichageAnalyses.append((*i).toString());
@@ -350,7 +359,15 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	}
 	else if (nomCommande.compare("consulterResultatAnalyse") == 0) {
 		int idAnalyse = stoi(requete.substr(requete.find(":") + 1));
-		//servicesM.ConsulterResultatsAnalyse(idAnalyse);
+		Analyse analyse = servicesM.ConsulterResultatsAnalyse(idAnalyse);
+		CString messageR1("Voici le résultat de cette analyse :\r\n");
+		texteConsole.Insert(texteConsole.GetLength(), messageR1);
+		UpdateData(false);
+
+	//	CString messageR((analyse.get_resultat()).c_str());
+		//texteConsole.Insert(texteConsole.GetLength(), messageR);
+		//texteConsole.Insert(texteConsole.GetLength(), (CString)"\r\n");
+		//UpdateData(false);
 	}
 	else if (nomCommande.compare("effectuerAnalyse") == 0) {
 		//A voir s'il faut découper la réalisation (cf exigences fonctionnelles)

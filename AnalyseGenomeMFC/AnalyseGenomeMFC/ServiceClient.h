@@ -15,7 +15,7 @@ public:
 	bool DeconnexionMedecin();
 
 	int CreerDossierPatient(Patient p);
-	int ConsulterDossierPatient(Patient p, int id_patient);
+	Patient ConsulterDossierPatient(int id_patient);
 	vector<Analyse> ConsulterAnalysesPatient(int id_patient);
 
 	Analyse ConsulterResultatsAnalyse(int id_analyse);
@@ -25,13 +25,13 @@ public:
 	
 	bool ConnexionEntreprise(int id);
 	bool DeconnexionEntreprise();
-
+	/*
 	int ModifierDescriptionDictionnaire(string desc);
 	int AjouterMaladie(Maladie m);
 	int ModifierMaladie(Maladie m);
 	int SupprimerMaladie(Maladie m);
 	int ConsulterDictionnaire(int id_serveur);
-	
+	*/
 
 	ServiceClient();
 	~ServiceClient();

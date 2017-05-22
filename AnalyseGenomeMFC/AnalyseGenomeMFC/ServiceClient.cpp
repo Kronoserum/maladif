@@ -38,10 +38,11 @@ int ServiceClient::CreerDossierPatient(Patient p) {
 }
 
 
-int ServiceClient::ConsulterDossierPatient(Patient p, int id_patient) {
+Patient ServiceClient::ConsulterDossierPatient(int id_patient) {
 	PatientDADatabase pda;
-	int codeR = pda.read_patient(p, id_patient);
-	return codeR;
+	Patient patient_a_consulter;
+	int codeR = pda.read_patient(patient_a_consulter, id_patient);
+	return patient_a_consulter;
 }
 
 vector<Analyse> ServiceClient::ConsulterAnalysesPatient(int id_patient) {
@@ -87,8 +88,10 @@ bool ServiceClient::ConnexionEntreprise(int id) {
 
 bool ServiceClient::DeconnexionEntreprise() {
 	entrCo = NULL;
+	return false; //ATTENTION
 }
 
+/*
 int ModifierDescriptionDictionnaire(string desc) {
 		
 }
@@ -104,7 +107,7 @@ int ModifierMaladie(Maladie m) {
 int SupprimerMaladie(Maladie m) {
 
 }
-
+*/
 Serveur ConsulterDictionnaire(int id_serveur) {
 	ServeurDADatabase sda;
 	Serveur se;
