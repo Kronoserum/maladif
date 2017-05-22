@@ -134,6 +134,18 @@ void CAnalyseGenomeMFCDlg::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 }
 
+void CAnalyseGenomeMFCDlg::OnOK(void)
+{
+	CWnd* pWnd = GetFocus();
+	if (GetDlgItem(IDOK) == pWnd)
+	{
+		CDialog::OnOK();
+		return;
+	}
+
+	// Enter key was hit -> do whatever you want
+}
+
 // Si vous ajoutez un bouton Réduire à votre boîte de dialogue, vous devez utiliser le code ci-dessous
 //  pour dessiner l'icône.  Pour les applications MFC utilisant le modèle Document/Vue,
 //  cela est fait automatiquement par l'infrastructure.
@@ -347,5 +359,6 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton3()
 
 void CAnalyseGenomeMFCDlg::OnBnClickedButton4()
 {
-	socket.Close();
+	//socket.Close();
+	socket.Send("connexion:0:", strlen("connexion:0:"));
 }
