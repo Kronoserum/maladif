@@ -170,21 +170,13 @@ HCURSOR CAnalyseGenomeMFCDlg::OnQueryDragIcon()
 
 void CAnalyseGenomeMFCDlg::OnBnClickedStartserver()
 {
-	listenerSock.Create(LISTENER_PORT);
-
-	if (listenerSock.Listen())
-		AfxMessageBox(_T("Now listening"));
-	else
-	{
-		AfxMessageBox(_T("Unable to listen"));
-		listenerSock.Close();
-	}
+	
 }
 
 
 void CAnalyseGenomeMFCDlg::OnBnClickedShutdownserver()
 {
-	listenerSock.ShutDown(2);
+	
 }
 
 
@@ -245,9 +237,8 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	string nomCommande = requete.substr(0, requete.find(":"));
 	if (nomCommande.compare("connexionMedecin") == 0)
 	{
-		texteConsole.Insert(texteConsole.GetLength(), toto);
-		UpdateData(false);
-			//"Connexion effectuée ! (à supprimer quand service ok)"
+		CString message("Connexion effectuée ! (à supprimer quand service ok)\n");
+		texteConsole.Insert(texteConsole.GetLength(), message);
 		label->SetWindowText(_T("Connexion effectuée ! (à supprimer quand service ok)"));
 		int id = stoi(requete.substr(requete.find(":")+1));
 		bool connexion = servicesM.ConnexionMedecin(id);
@@ -260,6 +251,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		{
 			label->SetWindowText(_T("Connexion échouée. Essayez encore !"));
 		}
+		UpdateData(false);
 	}
 	else if(nomCommande.compare("deconnexionMedecin") == 0) {
 		bool deconnexion = servicesM.DeconnexionMedecin();
