@@ -333,9 +333,9 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		CString messageCDP("Voici le dossier de ce patient :\r\n");
 		texteConsole.Insert(texteConsole.GetLength(), messageCDP);
 		UpdateData(false);
-		//CString messageCDPD(patientTraite.toString().c_str());
-		//texteConsole.Insert(texteConsole.GetLength(), messageCDPD);
-		//UpdateData(false);
+		CString messageCDPD(patientTraite.toString().c_str());
+		texteConsole.Insert(texteConsole.GetLength(), messageCDPD);
+		UpdateData(false);
 	}
 	else if (nomCommande.compare("consulterAnalysesPatient") == 0) {
 		int idPatient = stoi(requete.substr(requete.find(":") + 1));
@@ -363,11 +363,20 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		CString messageR1("Voici le résultat de cette analyse :\r\n");
 		texteConsole.Insert(texteConsole.GetLength(), messageR1);
 		UpdateData(false);
-
-	//	CString messageR((analyse.get_resultat()).c_str());
-		//texteConsole.Insert(texteConsole.GetLength(), messageR);
-		//texteConsole.Insert(texteConsole.GetLength(), (CString)"\r\n");
-		//UpdateData(false);
+		int resultat = analyse.get_resultat();
+		if (resultat == 1)
+		{
+			CString messageR("Risque d'atteinte de la maladie");
+			texteConsole.Insert(texteConsole.GetLength(), messageR);
+		}
+		else
+		{
+			CString messageR("Absence de risque d'atteinte de la maladie");
+			texteConsole.Insert(texteConsole.GetLength(), messageR);
+		}
+		
+		texteConsole.Insert(texteConsole.GetLength(), (CString)"\r\n");
+		UpdateData(false);
 	}
 	else if (nomCommande.compare("effectuerAnalyse") == 0) {
 		//A voir s'il faut découper la réalisation (cf exigences fonctionnelles)
