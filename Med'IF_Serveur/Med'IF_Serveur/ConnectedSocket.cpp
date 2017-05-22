@@ -20,12 +20,11 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 	char szBuff[BUFF_LEN];
 
 	int nReceivedSize = Receive(szBuff, BUFF_LEN);
+	szBuff[nReceivedSize] = '\0';
 	CString str;
-	//AfxMessageBox((CString)to_string(nReceivedSize).c_str());
+	AfxMessageBox((CString)szBuff);
 	if (nReceivedSize <= 0)
 		return;
-
-	szBuff[nReceivedSize] = '\0';
 
 	string strResponse = "hello\r\n";
 
