@@ -22,7 +22,7 @@ public:
 	void EffectuerAnalyse();
 	vector<Serveur> ConsulterDictionnaires();
 
-	/*
+	
 	bool ConnexionEntreprise(int id);
 	bool DeconnexionEntreprise();
 
@@ -31,7 +31,7 @@ public:
 	int ModifierMaladie(Maladie m);
 	int SupprimerMaladie(Maladie m);
 	int ConsulterDictionnaire(int id_serveur);
-	*/
+	
 
 	ServiceClient();
 	~ServiceClient();

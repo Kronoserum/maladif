@@ -14,6 +14,7 @@
 #include <sstream>
 #include "ServeurDADatabase.h"
 #include "EntrepriseDADatabase.h"
+#include "MedecinDADatabase.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -205,12 +206,16 @@ void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()
 	string patient_str;
 	int patient_id = 8;
 
+	ServiceClient smc;
+	
+	
+
 	//database.create_tables();
 
-	ServeurDADatabase serveur_DA_database;
-	Serveur s("ok", "ok",1);
+	//ServeurDADatabase serveur_DA_database;
+	//Serveur s("ok", "ok",1);
 
-	serveur_DA_database.write_serveur(s);
+	//serveur_DA_database.write_serveur(s);
 
 	//EntrepriseDADatabase entreprise_DA_database;
 	//Entreprise e("ok", "ok");

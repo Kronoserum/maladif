@@ -11,6 +11,7 @@
 #include "Database.h"
 #include "ServeurDADatabase.h"
 #include "MedecinDADatabase.h"
+#include "EntrepriseDADatabase.h"
 
 /*  ---------- Services Médecin ---------- */ 
 
@@ -73,13 +74,19 @@ vector<Serveur> ServiceClient::ConsulterDictionnaires() {
 
 
 /*  ---------- Services Entreprise ---------- */
-/*
-bool ServiceClient::ConnexionEntreprise(int id) {
 
+bool ServiceClient::ConnexionEntreprise(int id) {
+	EntrepriseDADatabase eda;
+	Entreprise entreprise;
+	eda.read_entreprise(entreprise, id);
+
+	entrCo = &entreprise;
+
+	return true;
 }
 
 bool ServiceClient::DeconnexionEntreprise() {
-
+	entrCo = NULL;
 }
 
 int ModifierDescriptionDictionnaire(string desc) {
@@ -98,10 +105,13 @@ int SupprimerMaladie(Maladie m) {
 
 }
 
-int ConsulterDictionnaire(int id_serveur) {
-
+Serveur ConsulterDictionnaire(int id_serveur) {
+	ServeurDADatabase sda;
+	Serveur se;
+	sda.read_serveur(se, id_serveur);
+	
+	return se;
 }
-*/
 
 ServiceClient::ServiceClient() {
 
