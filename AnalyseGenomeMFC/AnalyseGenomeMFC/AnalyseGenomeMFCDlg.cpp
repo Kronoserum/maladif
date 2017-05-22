@@ -332,11 +332,13 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 
 void CAnalyseGenomeMFCDlg::OnBnClickedButton3()
 {
-	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
+	CString ip("localhost");
+	socket.Create();
+	socket.Connect(ip, 8080);
 }
 
 
 void CAnalyseGenomeMFCDlg::OnBnClickedButton4()
 {
-	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
+	socket.Close();
 }
