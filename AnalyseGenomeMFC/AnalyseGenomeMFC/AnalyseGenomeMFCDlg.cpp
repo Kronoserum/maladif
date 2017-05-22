@@ -80,6 +80,9 @@ BEGIN_MESSAGE_MAP(CAnalyseGenomeMFCDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_ShutDownServer, &CAnalyseGenomeMFCDlg::OnBnClickedShutdownserver)
 	ON_BN_CLICKED(IDC_Database, &CAnalyseGenomeMFCDlg::OnBnClickedDatabase)
 	ON_BN_CLICKED(IDC_BUTTON1, &CAnalyseGenomeMFCDlg::OnBnClickedButton1)
+	ON_EN_CHANGE(IDC_EDIT3, &CAnalyseGenomeMFCDlg::OnEnChangeEdit3)
+	ON_BN_CLICKED(IDC_BUTTON3, &CAnalyseGenomeMFCDlg::OnBnClickedButton3)
+	ON_BN_CLICKED(IDC_BUTTON4, &CAnalyseGenomeMFCDlg::OnBnClickedButton4)
 END_MESSAGE_MAP()
 
 
@@ -331,3 +334,14 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	
 }
 
+
+void CAnalyseGenomeMFCDlg::OnBnClickedButton3()
+{
+	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
+}
+
+
+void CAnalyseGenomeMFCDlg::OnBnClickedButton4()
+{
+	// TODO: ajoutez ici le code de votre gestionnaire de notification de contrôle
+}
