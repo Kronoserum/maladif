@@ -38,7 +38,7 @@ END_MESSAGE_MAP()
 
 void FenetreServeur::OnBnClickedButton1()
 {
-	/*listenerSock.Create(LISTENER_PORT);
+	listenerSock.Create(LISTENER_PORT);
 	if (listenerSock.Listen())
 	{
 		AfxMessageBox(_T("Now listening !"));
@@ -47,11 +47,13 @@ void FenetreServeur::OnBnClickedButton1()
 	{
 		AfxMessageBox(_T("Unable to listen !"));
 		listenerSock.Close();
-	}*/
+	}
 	Services s;
-	//int i = s.ajouterMaladie("Maladie 6" ,"AAAA,BBBB,CCCC,DDDD\r\n");
-	int i = s.modifierMaladie("Maladie 6", "AAAA,BBBB,CCCC,KKKK,LLLL,MMMM");
-	AfxMessageBox((CString)to_string(i).c_str());
+	//int i = s.ajouterMaladie(maladie ,"AAAA,BBBB,CCCC,DDDD");
+	//int i = s.modifierMaladie("Maladie 6", "AAAA,BBBB,CCCC,KKKK,LLLL,MMMM");
+	string mots = s.recupererMaladie("50");
+	//AfxMessageBox((CString)to_string(i).c_str());
+	AfxMessageBox((CString)mots.c_str());
 }
 
 
