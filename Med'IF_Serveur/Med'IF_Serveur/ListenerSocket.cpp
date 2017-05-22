@@ -28,10 +28,9 @@ void ListenerSocket::OnAccept(int nErrorCode)
 	if (Accept(*pConnectedSock))
 	{
 		pConnectedSock->GetPeerName(strPeerName, uiPort);
-		AfxMessageBox(_T("Connecté au serveur"));
+		pConnectedSock->Send("Connected to server\r\n", strlen("Connected to server\r\n"));
 	}
-
-	CAsyncSocket::OnAccept(nErrorCode);
+	//CAsyncSocket::OnAccept(nErrorCode);
 }
 
 void ListenerSocket::Close()
