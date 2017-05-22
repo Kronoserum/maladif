@@ -30,4 +30,7 @@ public:
 	int supprimerMaladie(string nom);
 
 	bool mettreAJourMaladie(string nom, string mots);
+
+private:
+	string nomDico = "dictionnaire.txt";
 };

@@ -35,7 +35,7 @@ string ServeurDA::getMetadonnees()
 {
 	string meta;
 	// Lire le fichier dictionnaire et extraire la premiere ligne
-	ifstream is("Dictionnaire.txt", ios::in);
+	ifstream is(nomDico, ios::in);
 	if (is)
 	{
 		getline(is, meta);
@@ -51,7 +51,7 @@ string ServeurDA::getNomsMaladies()
 {
 	string maladies;
 	// Lire le fichier dictionnaire et extraire le noms des maladies
-	ifstream is("Dictionnaire.txt", ios::in);
+	ifstream is(nomDico, ios::in);
 	if (is)
 	{
 		string tmp;
@@ -79,7 +79,7 @@ string ServeurDA::getMotsMaladie(string nomMaladie)
 {
 	string mots;
 	// Lire le dictionnaire et extraire les mots associés à une maladie
-	ifstream is("Dictionnaire.txt", ios::in);
+	ifstream is(nomDico, ios::in);
 	if (is)
 	{
 		string tmp;
@@ -106,13 +106,17 @@ string ServeurDA::getMotsMaladie(string nomMaladie)
 
 int ServeurDA::ajouterMaladie(string nom, string mots)
 {
+	if (mots[mots.length() - 1] != ';')
+	{
+		mots.append(";");
+	}
 	if (getMotsMaladie(nom).compare("") == 0)
 	{
-		ofstream os("Dictionnaire.txt", ios::out | ios::app);
+		ofstream os(nomDico, ios::out | ios::app);
 		if(os)
 		{
 			os.seekp(ios::end);
-			os << nom << ":" << mots << endl;
+			os << nom << ":" << mots << "\n";
 			os.close();
 		}
 		else
@@ -128,7 +132,7 @@ int ServeurDA::ajouterMaladie(string nom, string mots)
 int ServeurDA::supprimerMaladie(string nom)
 {
 	string final;
-	ifstream is("Dictionnaire.txt", ios::in);
+	ifstream is(nomDico, ios::in);
 	if (is)
 	{
 		string tmp;
@@ -168,7 +172,11 @@ int ServeurDA::supprimerMaladie(string nom)
 
 bool ServeurDA::mettreAJourMaladie(string nom, string mots)
 {
-	ifstream is("Dictionnaire.txt", ios::in);
+	if (mots[mots.length() - 1] != ';')
+	{
+		mots.append(";");
+	}
+	ifstream is(nomDico, ios::in);
 	if(is)
 	{
 		string final;

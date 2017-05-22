@@ -43,11 +43,7 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 		string requete = str.substr(0, str.find(":"));
 		string arguments = str.substr(str.find(":") + 1, str.size());
 		arguments = arguments.substr(0, arguments.find(":"));
-		if (requete.compare("disconnect") == 0)
-		{
-			this->Close();
-		}
-		else if (requete.compare("connexion")==0)
+		if (requete.compare("connexion")==0)
 		{
 			bool res = s.seConnecter(stoi(arguments)); // arguments doit etre un nombre entier
 			if (res)
@@ -59,6 +55,10 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 				strResponse = "return:not connected\r\n";
 			}
 		}
+		else if (requete.compare("disconnect") == 0)
+		{
+			this->Close();
+		}
 		else if (requete.compare("recupererMetaDonnees")==0)
 		{
 			strResponse = "return:";
@@ -69,7 +69,6 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 		{
 			string nom = arguments.substr(0, arguments.find(","));
 			string mots = arguments.substr(nom.size()+1, arguments.size()-nom.size());
-			mots.append("\r\n");
 			int ret = s.ajouterMaladie(nom, mots);
 			if (ret == 1)
 			{
@@ -87,7 +86,7 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 		else if (requete.compare("modifierMaladie")==0)
 		{
 			string nom = arguments.substr(0, arguments.find(","));
-			string mots = arguments.substr(nom.size(), arguments.size() - nom.size());
+			string mots = arguments.substr(nom.size()+1, arguments.size() - nom.size());
 			bool ret = s.modifierMaladie(nom, mots);
 			if (ret)
 			{
