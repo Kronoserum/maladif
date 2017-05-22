@@ -224,6 +224,8 @@ void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()
 void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 {
 	CWnd *label = GetDlgItem(IDC_STATIC_AFFICHAGE);
+	ServiceClient servicesM;
+
 	int t = UpdateData(true);
 	if (!t)
 	{
@@ -237,7 +239,6 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	{
 		label->SetWindowText(_T("Connexion effectuée ! (à supprimer quand service ok)"));
 		int id = stoi(requete.substr(requete.find(":")+1));
-		ServiceClient servicesM;
 		bool connexion = servicesM.ConnexionMedecin(id);
 		if (connexion)
 		{
@@ -250,7 +251,6 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		}
 	}
 	else if(nomCommande.compare("deconnexionMedecin") == 0) {
-		ServiceClient servicesM;
 		bool deconnexion = servicesM.DeconnexionMedecin();
 		if (deconnexion)
 		{
@@ -262,7 +262,6 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		}
 	}
 	else if (nomCommande.compare("creerDossier") == 0) {
-		ServiceClient servicesM;
 		string infosPatient = requete.substr(requete.find(":") + 1);
 		
 		vector<string> infos;
@@ -280,23 +279,35 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		}
 
 		Patient nouveauPatient = Patient(infos[0], infos[1],infos[2],infos[3]);
-		int creaD = 1;//= servicesM.CreerDossierPatient(nouveauPatient);
+		int creaD = servicesM.CreerDossierPatient(nouveauPatient);
 		if (creaD == 1)
 		{
 			label->SetWindowText(_T("Dossier patient créé avec succès !"));
 		}
+		else
+		{
+			label->SetWindowText(_T("Erreur lors de la création du patient !"));
+		}
 	}
 	else if (nomCommande.compare("supprimerDossier") == 0) {
-
+		int idPatient = stoi(requete.substr(requete.find(":") + 1));
 	}
 	else if (nomCommande.compare("consulterDossier") == 0) {
-
+		int idPatient = stoi(requete.substr(requete.find(":") + 1));
 	}
-	else if (nomCommande.compare("consulterAnalyse") == 0) {
-
+	else if (nomCommande.compare("consulterAnalysesPatient") == 0) {
+		int idPatient = stoi(requete.substr(requete.find(":") + 1));
+		vector<Analyse> analyses = servicesM.ConsulterAnalysesPatient(idPatient);
+		string affichageAnalyses;
+		for (vector<Analyse>::iterator i = analyses.begin(); i != analyses.end(); ++i) 
+		{ 
+			affichageAnalyses.append((*i).toString());
+			affichageAnalyses.append("\r\n");
+		}
 	}
-	else if (nomCommande.compare("consulterResultat") == 0) {
-
+	else if (nomCommande.compare("consulterResultatAnalyse") == 0) {
+		int idAnalyse = stoi(requete.substr(requete.find(":") + 1));
+		//servicesM.ConsulterResultatsAnalyse(idAnalyse);
 	}
 	else if (nomCommande.compare("effectuerAnalyse") == 0) {
 		//A voir s'il faut découper la réalisation (cf exigences fonctionnelles)
@@ -305,8 +316,6 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	{
 		AfxMessageBox(_T("Requête incorrecte !"));
 	}
-
-	AfxMessageBox(_T("Commande envoyée ! (à coder) " + commande ));
 	
 	
 }

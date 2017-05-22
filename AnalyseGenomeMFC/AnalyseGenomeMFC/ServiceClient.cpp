@@ -6,6 +6,9 @@
 #include "Serveur.h"
 #include "Maladie.h"
 #include "PatientDADatabase.h"
+#include "AnalyseDADatabase.h"
+#include <vector>
+#include "Database.h"
 
 /*  ---------- Services Médecin ---------- */ 
 
@@ -18,6 +21,7 @@ bool ServiceClient::DeconnexionMedecin() {
 }
 
 int ServiceClient::CreerDossierPatient(Patient p) {
+
 	PatientDADatabase pda;
 	int codeW = pda.write_patient(p);
 	return codeW;
@@ -34,8 +38,13 @@ int ServiceClient::ConsulterDossierPatient(Patient p, int id_patient) {
 	return codeR;
 }
 
-void ServiceClient::ConsulterAnalysesPatient(int id_patient) {
-
+vector<Analyse> ServiceClient::ConsulterAnalysesPatient(int id_patient) {
+	PatientDADatabase pda;
+	Patient patient_a_analyser;
+	int codeRP = pda.read_patient(patient_a_analyser, id_patient);
+	AnalyseDADatabase ada;
+	vector<Analyse> vecteurAnalyse = ada.read_analyse_patient(patient_a_analyser);
+	return vecteurAnalyse;
 }
 
 void ServiceClient::ConsulterResultatsAnalyse(int id_analyse) {
