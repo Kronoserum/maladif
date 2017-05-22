@@ -280,7 +280,8 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		}
 
 		Patient nouveauPatient = Patient(infos[0], infos[1],infos[2],infos[3]);
-		int creaD = 1;//= servicesM.CreerDossierPatient(nouveauPatient);
+		servicesM.CreerDossierPatient(nouveauPatient);
+		int creaD = 1;
 		if (creaD == 1)
 		{
 			label->SetWindowText(_T("Dossier patient créé avec succès !"));
