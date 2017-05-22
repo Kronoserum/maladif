@@ -58,6 +58,7 @@ END_MESSAGE_MAP()
 CAnalyseGenomeMFCDlg::CAnalyseGenomeMFCDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_ANALYSEGENOMEMFC_DIALOG, pParent)
 	, commande(_T(""))
+	, texteConsole(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -66,6 +67,7 @@ void CAnalyseGenomeMFCDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Text(pDX, IDC_EDIT1, commande);
+	DDX_Text(pDX, IDC_EDIT2, texteConsole);
 }
 
 BEGIN_MESSAGE_MAP(CAnalyseGenomeMFCDlg, CDialogEx)
@@ -233,6 +235,9 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	string nomCommande = requete.substr(0, requete.find(":"));
 	if (nomCommande.compare("connexionMedecin") == 0)
 	{
+		texteConsole.Insert(texteConsole.GetLength(), toto);
+		UpdateData(false);
+			//"Connexion effectuée ! (à supprimer quand service ok)"
 		label->SetWindowText(_T("Connexion effectuée ! (à supprimer quand service ok)"));
 		int id = stoi(requete.substr(requete.find(":")+1));
 		bool connexion = servicesM.ConnexionMedecin(id);

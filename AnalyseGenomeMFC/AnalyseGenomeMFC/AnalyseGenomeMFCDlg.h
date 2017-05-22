@@ -46,4 +46,5 @@ public:
 	afx_msg void OnStnClickedStaticAffichage();
 	// récupère la ligne de commande fournie dans le champ
 	CString commande;
+	CString texteConsole;
 };
