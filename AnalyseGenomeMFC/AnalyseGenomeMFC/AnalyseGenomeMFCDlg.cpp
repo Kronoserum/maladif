@@ -229,7 +229,6 @@ void CAnalyseGenomeMFCDlg::OnEnChangeEdit1()
 
 void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 {
-	CWnd *label = GetDlgItem(IDC_STATIC_AFFICHAGE);
 	ServiceClient servicesM;
 
 	int t = UpdateData(true);
@@ -243,31 +242,37 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	string nomCommande = requete.substr(0, requete.find(":"));
 	if (nomCommande.compare("connexionMedecin") == 0)
 	{
-		CString message ("Connexion effectuée ! (à supprimer quand service ok)\r\n");
+		CString message ("Connexion...\r\n");
 		texteConsole.Insert(texteConsole.GetLength(), message);
-		label->SetWindowText(_T("Connexion effectuée ! (à supprimer quand service ok)"));
 		int id = stoi(requete.substr(requete.find(":")+1));
 		bool connexion = servicesM.ConnexionMedecin(id);
 		if (connexion)
 		{
-			
-			label->SetWindowText(_T("Connexion effectuée !"));
+			CString messageC("Connexion effectuée !\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageC);
+			UpdateData(false);
 		}
 		else 
 		{
-			label->SetWindowText(_T("Connexion échouée. Essayez encore !"));
+			CString messageNC("Connexion échouée. Essayez encore !\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageNC);
+			UpdateData(false);
 		}
-		UpdateData(false);
+		
 	}
 	else if(nomCommande.compare("deconnexionMedecin") == 0) {
 		bool deconnexion = servicesM.DeconnexionMedecin();
 		if (deconnexion)
 		{
-			label->SetWindowText(_T("Déconnexion effectuée !"));
+			CString messageD("Déconnexion effectuée !\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageD);
+			UpdateData(false);
 		}
 		else
 		{
-			label->SetWindowText(_T("La déconnexion a échouée !"));
+			CString messageND("La déconnexion a échouée !\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageND);
+			UpdateData(false);
 		}
 	}
 	else if (nomCommande.compare("creerDossier") == 0) {
@@ -283,7 +288,10 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 
 		if (infos.size() != 4)
 		{
-			label->SetWindowText(_T("Problème lors de la création d'un patient au niveau des arguments fournis"));
+			CString messageE("Problème lors de la création d'un patient au niveau des arguments fournis\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageE);
+			UpdateData(false);
+			
 			return;
 		}
 
@@ -291,11 +299,15 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		int creaD = servicesM.CreerDossierPatient(nouveauPatient);
 		if (creaD == 1)
 		{
-			label->SetWindowText(_T("Dossier patient créé avec succès !"));
+			CString messageDP("Dossier patient créé avec succès !\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageDP);
+			UpdateData(false);
 		}
 		else
 		{
-			label->SetWindowText(_T("Erreur lors de la création du patient !"));
+			CString messageDPE("Erreur lors de la création du patient !\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageDPE);
+			UpdateData(false);
 		}
 	}
 	else if (nomCommande.compare("supprimerDossier") == 0) {
@@ -313,8 +325,10 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			affichageAnalyses.append((*i).toString());
 			affichageAnalyses.append("\r\n");
 		}
-		affichageAnalyses = "test";
-		label->SetWindowText(LPCTSTR(affichageAnalyses.c_str()));
+		
+		CString messageA(affichageAnalyses.c_str());
+		texteConsole.Insert(texteConsole.GetLength(), messageA);
+		UpdateData(false);
 
 	}
 	else if (nomCommande.compare("consulterResultatAnalyse") == 0) {
@@ -326,7 +340,9 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	}
 	else
 	{
-		AfxMessageBox(_T("Requête incorrecte !"));
+		CString messageI("Requête incorrecte !\r\n");
+		texteConsole.Insert(texteConsole.GetLength(), messageI);
+		UpdateData(false);
 	}
 	
 	
