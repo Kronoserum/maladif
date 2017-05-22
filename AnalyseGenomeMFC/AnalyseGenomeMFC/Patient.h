@@ -16,6 +16,7 @@ private:
 public:
 	Patient();
 	~Patient();
+	Patient(string nom_in,string pre_in, string mail_in, string mdp_in);
 
 	void set_id(int id_in);
 	void set_nom(string nom_in);

@@ -17,6 +17,12 @@ Entreprise::~Entreprise()
 {
 }
 
+Entreprise::Entreprise(string desc, string nom_in)
+{
+	description = desc;
+	nom = nom_in;
+}
+
 int Entreprise::get_id() {return id; }
 string Entreprise::get_nom() { return nom;}
 

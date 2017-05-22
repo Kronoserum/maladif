@@ -17,6 +17,16 @@ Analyse::~Analyse()
 {
 }
 
+Analyse::Analyse(int res_in, string date_in, int idMed, int idPat, int idMal, int idSer)
+{
+	resultat = res_in;
+	dateAnalyse = date_in;
+	idMedecin = idMed;
+	idPatient = idPat;
+	idMaladie = idMal;
+	idServeur = idSer;
+}
+
 int Analyse::get_id(){return id; }
 
 int Analyse::get_resultat(){return resultat; }

@@ -8,6 +8,8 @@ class Serveur
 public:
 	Serveur();
 	~Serveur();
+	Serveur(string ip_in, string desc_in, int ent_in);
+
 	void set_id(int id_in);
 	void set_IPServeur(string ip_in);
 	void set_description(string desc_in);

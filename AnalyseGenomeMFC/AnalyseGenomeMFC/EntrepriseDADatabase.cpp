@@ -19,7 +19,7 @@ int EntrepriseDADatabase::write_entreprise(Entreprise entreprise)
 	int code;
 	char *error;
 
-	string sqlInsertStr = "INSERT INTO Patient VALUES('" 
+	string sqlInsertStr = "INSERT INTO Entreprise VALUES('" 
 		+ to_string(entreprise.get_id()) + "', '"
 		+ entreprise.get_nom() + "', '"
 		+ entreprise.get_description() + "');";
@@ -42,7 +42,7 @@ int EntrepriseDADatabase::read_entreprise(Entreprise &entreprise, int id_in)
 	int code;
 	char *error;
 
-	string sqlSelectStr = "SELECT * FROM entreprise WHERE id = '" + to_string(id_in) + "';";
+	string sqlSelectStr = "SELECT * FROM Entreprise WHERE id = '" + to_string(id_in) + "';";
 
 	const char *sqlSelect = sqlSelectStr.c_str();
 
