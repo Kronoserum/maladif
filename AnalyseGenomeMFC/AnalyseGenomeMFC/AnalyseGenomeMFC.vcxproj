@@ -186,6 +186,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Desktop\wumanber.h" />
     <ClInclude Include="Analyse.h" />
     <ClInclude Include="AnalyseDADatabase.h" />
     <ClInclude Include="AnalyseGenomeMFC.h" />
@@ -211,6 +212,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\Desktop\wumanber.cpp" />
     <ClCompile Include="Analyse.cpp" />
     <ClCompile Include="AnalyseDADatabase.cpp" />
     <ClCompile Include="AnalyseGenomeMFC.cpp" />
