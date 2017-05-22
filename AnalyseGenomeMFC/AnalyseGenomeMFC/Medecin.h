@@ -17,6 +17,7 @@ private:
 public:
 	Medecin();
 	~Medecin();
+	Medecin(string,string,string,string,double);
 
 	void set_id(int id_in);
 	void set_nom(string nom_in);

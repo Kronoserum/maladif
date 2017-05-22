@@ -17,6 +17,13 @@ Serveur::~Serveur()
 {
 }
 
+Serveur::Serveur(string ip_in, string desc_in, int ent_in)
+{
+	IPServeur = ip_in;
+	description = desc_in;
+	idEntreprise = ent_in;
+}
+
 void Serveur::set_id(int id_in) { id = id_in; }
 void Serveur::set_IPServeur(string ip_in) { IPServeur = ip_in; }
 void Serveur::set_description(string desc_in) { description = desc_in; }

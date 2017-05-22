@@ -8,6 +8,8 @@ class Maladie
 public:
 	Maladie();
 	~Maladie();
+	Maladie(string,string);
+
 
 	int get_id();
 	string get_nom();

@@ -9,6 +9,7 @@ class Analyse
 public:
 	Analyse();
 	~Analyse();
+	Analyse(int, string, int, int, int, int);
 
 
 	int get_id();

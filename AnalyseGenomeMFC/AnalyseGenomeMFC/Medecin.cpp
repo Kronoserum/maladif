@@ -10,6 +10,15 @@ Medecin::~Medecin()
 {
 }
 
+Medecin::Medecin(string nom_in, string prenom_in, string adr_in, string mdp_in, double sal_in)
+{
+	nom = nom_in;
+	prenom = prenom_in;
+	adresse = adr_in;
+	mdp = mdp_in;
+	salaire = sal_in;
+}
+
 void Medecin::set_id(int id_in) {id = id_in; }
 
 void Medecin::set_nom(string nom_in) {nom = nom_in; }

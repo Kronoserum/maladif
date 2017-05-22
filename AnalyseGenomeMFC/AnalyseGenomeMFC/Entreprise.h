@@ -8,6 +8,7 @@ class Entreprise
 public:
 	Entreprise();
 	~Entreprise();
+	Entreprise(string, string);
 
 	int get_id();
 	string get_nom();

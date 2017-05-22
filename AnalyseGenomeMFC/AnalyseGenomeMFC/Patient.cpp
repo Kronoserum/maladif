@@ -10,6 +10,14 @@ Patient::~Patient()
 {
 }
 
+Patient::Patient(string nom_in, string pre_in, string mail_in, string mdp_in)
+{
+	nom = nom_in;
+	prenom = pre_in;
+	mail = mail_in;
+	mdp = mdp_in;
+}
+
 void Patient::set_id(int id_in) {id = id_in; }
 
 void Patient::set_nom(string nom_in) {nom = nom_in; }
