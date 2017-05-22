@@ -1,8 +1,12 @@
 #include "stdafx.h"
 #include "MaladieDADatabase.h"
+#include "Database.h"
 
 MaladieDADatabase::MaladieDADatabase()
 {
+	Database db;
+	db.open_database();
+	database = db.get_database();
 }
 
 MaladieDADatabase::~MaladieDADatabase()

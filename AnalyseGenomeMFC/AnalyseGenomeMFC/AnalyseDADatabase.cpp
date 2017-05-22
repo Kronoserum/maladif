@@ -1,8 +1,12 @@
 #include "stdafx.h"
 #include "AnalyseDADatabase.h"
+#include "Database.h"
 
 AnalyseDADatabase::AnalyseDADatabase()
 {
+	Database db;
+	db.open_database();
+	database = db.get_database();
 }
 
 AnalyseDADatabase::~AnalyseDADatabase()

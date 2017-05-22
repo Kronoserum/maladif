@@ -195,13 +195,9 @@ void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()
 	string patient_str;
 	int patient_id = 8;
 
-	Database database;
-	database.open_database();
-
 	//database.create_tables();
 
 	PatientDADatabase patient_DA_database;
-	patient_DA_database.set_database(database.get_database());
 
 	Patient p;
 	p.set_nom("lol");

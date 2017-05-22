@@ -4,6 +4,7 @@
 #include <string>
 #include "Serveur.h"
 #include "sqlite3.h"
+#include <vector>
 
 using namespace std;
 
@@ -20,5 +21,7 @@ public:
 
 	int write_serveur(Serveur serveur);
 	int read_serveur(Serveur &serveur, int id_in);
+	vector<Serveur> read_all_servers();
+
 
 };

@@ -1,9 +1,13 @@
 #include "stdafx.h"
 #include "PatientDADatabase.h"
 #include "Patient.h"
+#include "Database.h"
 
 PatientDADatabase::PatientDADatabase()
 {
+	Database db;
+	db.open_database();
+	database = db.get_database();
 }
 
 PatientDADatabase::~PatientDADatabase()
