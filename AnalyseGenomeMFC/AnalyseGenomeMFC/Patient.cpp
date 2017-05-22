@@ -38,5 +38,11 @@ string Patient::get_mail() {return mail; }
 string Patient::get_mdp() {return mdp; }
 
 string Patient::toString() {
-	return "Patient : " + nom + " " + prenom + " " + mail;
+	string res = "Patient : ";
+	res.append(nom);
+	res.append(" ");
+	res.append(prenom);
+	res.append(" : ");
+	res.append(mail);
+	return res;
 }
