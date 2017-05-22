@@ -42,3 +42,8 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 
 	CAsyncSocket::OnReceive(nErrorCode);
 }
+
+void ConnectedSocket::OnConnect(int nErrorCode)
+{
+	AfxMessageBox(_T("Connexion réussie."));
+}
