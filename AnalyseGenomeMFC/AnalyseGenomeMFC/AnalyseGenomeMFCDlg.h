@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "ListenerSocket.h"
+#include "ConnectedSocket.h"
 
 // boîte de dialogue CAnalyseGenomeMFCDlg
 class CAnalyseGenomeMFCDlg : public CDialogEx
@@ -38,8 +38,8 @@ public:
 	afx_msg void OnBnClickedDatabase();
 
 private:
-	const int LISTENER_PORT = 8080;
-	ListenerSocket listenerSock;
+	ConnectedSocket socket;
+
 public:
 	afx_msg void OnEnChangeEdit1();
 	afx_msg void OnBnClickedButton1();
