@@ -318,6 +318,9 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			affichageAnalyses.append((*i).toString());
 			affichageAnalyses.append("\r\n");
 		}
+		affichageAnalyses = "test";
+		label->SetWindowText(LPCTSTR(affichageAnalyses.c_str()));
+
 	}
 	else if (nomCommande.compare("consulterResultatAnalyse") == 0) {
 		int idAnalyse = stoi(requete.substr(requete.find(":") + 1));
