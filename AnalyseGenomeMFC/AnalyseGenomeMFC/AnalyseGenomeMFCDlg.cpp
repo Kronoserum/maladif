@@ -386,7 +386,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	{
 		if (socketLaunched)
 		{
-			metier.ConnexionEntreprise(arguments, *socket);
+			servicesM.ConnexionEntreprise(arguments, *socket);
 			UpdateData(false);
 		}
 	}

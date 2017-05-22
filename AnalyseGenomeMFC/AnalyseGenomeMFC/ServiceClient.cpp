@@ -150,7 +150,7 @@ CString ServiceClient::RetourSocket(CString retour)
 {
 	return NULL;
 }
-*/
+
 Serveur ConsulterDictionnaire(int id_serveur) {
 	ServeurDADatabase sda;
 	Serveur se;
