@@ -46,4 +46,7 @@ public:
 	// récupère la ligne de commande fournie dans le champ
 	CString commande;
 	CString texteConsole;
+	afx_msg void OnEnChangeEdit3();
+	afx_msg void OnBnClickedButton3();
+	afx_msg void OnBnClickedButton4();
 };
