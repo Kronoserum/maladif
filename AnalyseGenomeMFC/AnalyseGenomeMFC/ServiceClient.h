@@ -2,6 +2,8 @@
 #include "Analyse.h"
 #include "Serveur.h"
 #include <vector> 
+#include "Medecin.h"
+#include "Entreprise.h"
 
 #pragma once
 
@@ -13,14 +15,12 @@ public:
 	bool DeconnexionMedecin();
 
 	int CreerDossierPatient(Patient p);
-	int SupprimerDossierPatient(Patient p);
 	int ConsulterDossierPatient(Patient p, int id_patient);
 	vector<Analyse> ConsulterAnalysesPatient(int id_patient);
 
-	void ConsulterResultatsAnalyse(int id_analyse);
+	Analyse ConsulterResultatsAnalyse(int id_analyse);
 	void EffectuerAnalyse();
-
-	void ConsulterDictionnaires(Serveur s);
+	vector<Serveur> ConsulterDictionnaires();
 
 	/*
 	bool ConnexionEntreprise(int id);
@@ -35,5 +35,9 @@ public:
 
 	ServiceClient();
 	~ServiceClient();
+
+private: 
+	Medecin * medecinCo;
+	Entreprise * entrCo;
 };
 
