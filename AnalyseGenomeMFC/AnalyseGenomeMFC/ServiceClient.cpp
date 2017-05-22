@@ -66,6 +66,12 @@ Analyse ServiceClient::ConsulterResultatsAnalyse(int id_analyse) {
 }
 
 void ServiceClient::EffectuerAnalyse(string retSocket,string pathToGenome, int idPatient, int idMaladie, int idServeur) {
+	clock_t start;
+	double duration;
+	unsigned int capacity;
+
+	capacity = (int) retSocket.capacity();
+	start = clock();
 
 	WuManber wu;
 
@@ -82,6 +88,8 @@ void ServiceClient::EffectuerAnalyse(string retSocket,string pathToGenome, int i
 	string date = "23/05";
 	
 	int idMed = medecinCo->get_id();
+
+	duration = (clock() - start) / (double) CLOCKS_PER_SEC;
 
 
 	Analyse ana(resultat, date, idMed, idPatient, idMaladie, idServeur);
