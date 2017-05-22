@@ -14,6 +14,7 @@
 #include <sstream>
 #include "ServeurDADatabase.h"
 #include "EntrepriseDADatabase.h"
+#include "MedecinDADatabase.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -205,12 +206,16 @@ void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()
 	string patient_str;
 	int patient_id = 8;
 
+	ServiceClient smc;
+	
+	
+
 	//database.create_tables();
 
-	ServeurDADatabase serveur_DA_database;
-	Serveur s("ok", "ok",1);
+	//ServeurDADatabase serveur_DA_database;
+	//Serveur s("ok", "ok",1);
 
-	serveur_DA_database.write_serveur(s);
+	//serveur_DA_database.write_serveur(s);
 
 	//EntrepriseDADatabase entreprise_DA_database;
 	//Entreprise e("ok", "ok");
@@ -241,8 +246,6 @@ void CAnalyseGenomeMFCDlg::OnEnChangeEdit1()
 
 void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 {
-	ServiceClient metier;
-	CWnd *label = GetDlgItem(IDC_STATIC_AFFICHAGE);
 	ServiceClient servicesM;
 
 	int t = UpdateData(true);
@@ -257,31 +260,37 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	string arguments = requete.substr(requete.find(":")+1, requete.size()-nomCommande.size());
 	if (nomCommande.compare("connexionMedecin") == 0)
 	{
-		CString message ("Connexion effectuée ! (à supprimer quand service ok)\r\n");
+		CString message ("Connexion...\r\n");
 		texteConsole.Insert(texteConsole.GetLength(), message);
-		label->SetWindowText(_T("Connexion effectuée ! (à supprimer quand service ok)"));
 		int id = stoi(requete.substr(requete.find(":")+1));
 		bool connexion = servicesM.ConnexionMedecin(id);
 		if (connexion)
 		{
-			
-			label->SetWindowText(_T("Connexion effectuée !"));
+			CString messageC("Connexion effectuée !\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageC);
+			UpdateData(false);
 		}
 		else 
 		{
-			label->SetWindowText(_T("Connexion échouée. Essayez encore !"));
+			CString messageNC("Connexion échouée. Essayez encore !\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageNC);
+			UpdateData(false);
 		}
-		UpdateData(false);
+		
 	}
 	else if(nomCommande.compare("deconnexionMedecin") == 0) {
 		bool deconnexion = servicesM.DeconnexionMedecin();
 		if (deconnexion)
 		{
-			label->SetWindowText(_T("Déconnexion effectuée !"));
+			CString messageD("Déconnexion effectuée !\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageD);
+			UpdateData(false);
 		}
 		else
 		{
-			label->SetWindowText(_T("La déconnexion a échouée !"));
+			CString messageND("La déconnexion a échouée !\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageND);
+			UpdateData(false);
 		}
 	}
 	else if (nomCommande.compare("creerDossier") == 0) {
@@ -297,7 +306,10 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 
 		if (infos.size() != 4)
 		{
-			label->SetWindowText(_T("Problème lors de la création d'un patient au niveau des arguments fournis"));
+			CString messageE("Problème lors de la création d'un patient au niveau des arguments fournis\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageE);
+			UpdateData(false);
+			
 			return;
 		}
 
@@ -305,35 +317,67 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		int creaD = servicesM.CreerDossierPatient(nouveauPatient);
 		if (creaD == 1)
 		{
-			label->SetWindowText(_T("Dossier patient créé avec succès !"));
+			CString messageDP("Dossier patient créé avec succès !\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageDP);
+			UpdateData(false);
 		}
 		else
 		{
-			label->SetWindowText(_T("Erreur lors de la création du patient !"));
+			CString messageDPE("Erreur lors de la création du patient !\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageDPE);
+			UpdateData(false);
 		}
-	}
-	else if (nomCommande.compare("supprimerDossier") == 0) {
-		int idPatient = stoi(requete.substr(requete.find(":") + 1));
 	}
 	else if (nomCommande.compare("consulterDossier") == 0) {
 		int idPatient = stoi(requete.substr(requete.find(":") + 1));
+		Patient patientTraite = servicesM.ConsulterDossierPatient(idPatient);
+		CString messageCDP("Voici le dossier de ce patient :\r\n");
+		texteConsole.Insert(texteConsole.GetLength(), messageCDP);
+		UpdateData(false);
+		CString messageCDPD(patientTraite.toString().c_str());
+		texteConsole.Insert(texteConsole.GetLength(), messageCDPD);
+		UpdateData(false);
 	}
 	else if (nomCommande.compare("consulterAnalysesPatient") == 0) {
 		int idPatient = stoi(requete.substr(requete.find(":") + 1));
 		vector<Analyse> analyses = servicesM.ConsulterAnalysesPatient(idPatient);
+
 		string affichageAnalyses;
+		CString messageA1("Liste des analyses du patient\r\n");
+		texteConsole.Insert(texteConsole.GetLength(), messageA1);
+		UpdateData(false);
+
 		for (vector<Analyse>::iterator i = analyses.begin(); i != analyses.end(); ++i) 
 		{ 
 			affichageAnalyses.append((*i).toString());
 			affichageAnalyses.append("\r\n");
 		}
-		affichageAnalyses = "test";
-		label->SetWindowText(LPCTSTR(affichageAnalyses.c_str()));
+		
+		CString messageA(affichageAnalyses.c_str());
+		texteConsole.Insert(texteConsole.GetLength(), messageA);
+		UpdateData(false);
 
 	}
 	else if (nomCommande.compare("consulterResultatAnalyse") == 0) {
 		int idAnalyse = stoi(requete.substr(requete.find(":") + 1));
-		//servicesM.ConsulterResultatsAnalyse(idAnalyse);
+		Analyse analyse = servicesM.ConsulterResultatsAnalyse(idAnalyse);
+		CString messageR1("Voici le résultat de cette analyse :\r\n");
+		texteConsole.Insert(texteConsole.GetLength(), messageR1);
+		UpdateData(false);
+		int resultat = analyse.get_resultat();
+		if (resultat == 1)
+		{
+			CString messageR("Risque d'atteinte de la maladie");
+			texteConsole.Insert(texteConsole.GetLength(), messageR);
+		}
+		else
+		{
+			CString messageR("Absence de risque d'atteinte de la maladie");
+			texteConsole.Insert(texteConsole.GetLength(), messageR);
+		}
+		
+		texteConsole.Insert(texteConsole.GetLength(), (CString)"\r\n");
+		UpdateData(false);
 	}
 	else if (nomCommande.compare("effectuerAnalyse") == 0) {
 		//A voir s'il faut découper la réalisation (cf exigences fonctionnelles)
@@ -348,7 +392,9 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	}
 	else
 	{
-		AfxMessageBox(_T("Requête incorrecte !"));
+		CString messageI("Requête incorrecte !\r\n");
+		texteConsole.Insert(texteConsole.GetLength(), messageI);
+		UpdateData(false);
 	}
 	
 	

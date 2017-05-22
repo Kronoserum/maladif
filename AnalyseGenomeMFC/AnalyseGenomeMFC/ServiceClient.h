@@ -6,6 +6,8 @@
 #include "Maladie.h"
 #include "ConnectedSocket.h"
 #include <vector> 
+#include "Medecin.h"
+#include "Entreprise.h"
 
 
 class ServiceClient
@@ -16,12 +18,12 @@ public:
 	bool DeconnexionMedecin();
 
 	int CreerDossierPatient(Patient p);
-	int SupprimerDossierPatient(Patient p);
-	int ConsulterDossierPatient(Patient p, int id_patient);
+	Patient ConsulterDossierPatient(int id_patient);
 	vector<Analyse> ConsulterAnalysesPatient(int id_patient);
 
-	void ConsulterResultatsAnalyse(int id_analyse);
-	void EffectuerAnalyse();
+	Analyse ConsulterResultatsAnalyse(int id_analyse);
+	void ServiceClient::EffectuerAnalyse(string retSocket, string pathToGenome, int idPatient, int idMaladie, int idServeur);
+	vector<Serveur> ConsulterDictionnaires();
 
 	void ConsulterDictionnaires(Serveur s);
 	
@@ -39,5 +41,9 @@ public:
 	
 	ServiceClient();
 	~ServiceClient();
+
+private: 
+	Medecin * medecinCo;
+	Entreprise * entrCo;
 };
 

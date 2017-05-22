@@ -29,4 +29,5 @@ public:
 	string get_prenom();
 	string get_mail();
 	string get_mdp();
+	string toString();
 };

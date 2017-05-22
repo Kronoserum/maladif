@@ -11,15 +11,28 @@
 #include "AnalyseDADatabase.h"
 #include <vector>
 #include "Database.h"
+#include "ServeurDADatabase.h"
+#include "MedecinDADatabase.h"
+#include "EntrepriseDADatabase.h"
+#include "wumanber.h"
+#include "fstream"
+#include "iostream"
 
 /*  ---------- Services Médecin ---------- */ 
 
 bool ServiceClient::ConnexionMedecin(int id) {
-	return false;
+	MedecinDADatabase mda;
+	Medecin medecin;
+	mda.read_medecin(medecin, id);
+
+	medecinCo = &medecin;
+
+	return true;
 }
 
 bool ServiceClient::DeconnexionMedecin() {
-	return false;
+	medecinCo = NULL;
+	return true;
 }
 
 int ServiceClient::CreerDossierPatient(Patient p) {
@@ -29,15 +42,12 @@ int ServiceClient::CreerDossierPatient(Patient p) {
 	return codeW;
 }
 
-int ServiceClient::SupprimerDossierPatient(Patient p) {
-	//A implémenter dans DA
-	return 0;
-}
 
-int ServiceClient::ConsulterDossierPatient(Patient p, int id_patient) {
+Patient ServiceClient::ConsulterDossierPatient(int id_patient) {
 	PatientDADatabase pda;
-	int codeR = pda.read_patient(p, id_patient);
-	return codeR;
+	Patient patient_a_consulter;
+	int codeR = pda.read_patient(patient_a_consulter, id_patient);
+	return patient_a_consulter;
 }
 
 vector<Analyse> ServiceClient::ConsulterAnalysesPatient(int id_patient) {
@@ -45,20 +55,56 @@ vector<Analyse> ServiceClient::ConsulterAnalysesPatient(int id_patient) {
 	Patient patient_a_analyser;
 	int codeRP = pda.read_patient(patient_a_analyser, id_patient);
 	AnalyseDADatabase ada;
-	vector<Analyse> vecteurAnalyse = ada.read_analyse_patient(patient_a_analyser);
-	return vecteurAnalyse;
+	vector<Analyse> vecteurAnalyses = ada.read_analyse_patient(patient_a_analyser);
+	return vecteurAnalyses;
 }
 
-void ServiceClient::ConsulterResultatsAnalyse(int id_analyse) {
+Analyse ServiceClient::ConsulterResultatsAnalyse(int id_analyse) {
+	AnalyseDADatabase ada;
+	Analyse analyse;
+	ada.read_analyse(analyse, id_analyse);
+
+	return analyse;
+}
+
+void ServiceClient::EffectuerAnalyse(string retSocket,string pathToGenome, int idPatient, int idMaladie, int idServeur) {
+	clock_t start;
+	double duration;
+	unsigned int capacity;
+
+	capacity = (int) retSocket.capacity();
+	start = clock();
+
+	WuManber wu;
+
+	vector<string> pattern = wu.Convert(retSocket);
+	wu.Init(pattern);
+
+	int resultat;
+
+	ifstream text(pathToGenome);
+	while (text>>retSocket) {
+		resultat = wu.Search(retSocket);
+	}
+
+	string date = "23/05";
+	
+	int idMed = medecinCo->get_id();
+
+	duration = (clock() - start) / (double) CLOCKS_PER_SEC;
+
+
+	Analyse ana(resultat, date, idMed, idPatient, idMaladie, idServeur);
+	AnalyseDADatabase ada;
+	ada.write_analyse(ana);
 
 }
 
-void ServiceClient::EffectuerAnalyse() {
-
-}
-
-void ServiceClient::ConsulterDictionnaires(Serveur s) {
-
+vector<Serveur> ServiceClient::ConsulterDictionnaires() {
+	ServeurDADatabase sda;
+	Serveur serveur;
+	vector<Serveur> vecteurServeurs = sda.read_all_servers();
+	return vecteurServeurs;
 }
 
 
@@ -104,7 +150,14 @@ CString ServiceClient::RetourSocket(CString retour)
 {
 	return NULL;
 }
-
+*/
+Serveur ConsulterDictionnaire(int id_serveur) {
+	ServeurDADatabase sda;
+	Serveur se;
+	sda.read_serveur(se, id_serveur);
+	
+	return se;
+}
 
 ServiceClient::ServiceClient()
 {
