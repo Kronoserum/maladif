@@ -12,6 +12,9 @@
 #include "ServeurDADatabase.h"
 #include "MedecinDADatabase.h"
 #include "EntrepriseDADatabase.h"
+#include "wumanber.h"
+#include "fstream"
+#include "iostream"
 
 /*  ---------- Services Médecin ---------- */ 
 
@@ -62,7 +65,28 @@ Analyse ServiceClient::ConsulterResultatsAnalyse(int id_analyse) {
 	return analyse;
 }
 
-void ServiceClient::EffectuerAnalyse() {
+void ServiceClient::EffectuerAnalyse(string retSocket,string pathToGenome, int idPatient, int idMaladie, int idServeur) {
+
+	WuManber wu;
+
+	vector<string> pattern = wu.Convert(retSocket);
+	wu.Init(pattern);
+
+	int resultat;
+
+	ifstream text(pathToGenome);
+	while (text>>retSocket) {
+		resultat = wu.Search(retSocket);
+	}
+
+	string date = "23/05";
+	
+	int idMed = medecinCo->get_id();
+
+
+	Analyse ana(resultat, date, idMed, idPatient, idMaladie, idServeur);
+	AnalyseDADatabase ada;
+	ada.write_analyse(ana);
 
 }
 

@@ -19,7 +19,7 @@ public:
 	vector<Analyse> ConsulterAnalysesPatient(int id_patient);
 
 	Analyse ConsulterResultatsAnalyse(int id_analyse);
-	void EffectuerAnalyse();
+	void ServiceClient::EffectuerAnalyse(string retSocket, string pathToGenome, int idPatient, int idMaladie, int idServeur);
 	vector<Serveur> ConsulterDictionnaires();
 
 	
