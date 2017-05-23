@@ -40,7 +40,7 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 		ServiceClient m;
 		CString pathToGenome("genomeMalade.txt");
 		m.EffectuerAnalyse(data.substr(data.find(":")+1), pathToGenome, owner->idPatient, owner->idMaladie);
-		CString tmp(">> Analyse en cours\r\n");
+		CString tmp(">> Analyse terminée.\r\n");
 		owner->texteConsole.Insert(owner->texteConsole.GetLength(), tmp);
 		owner->UpdateData(false);
 		return;
@@ -53,8 +53,12 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 	}
 	else
 	{
-		owner->texteConsole.Insert(owner->texteConsole.GetLength(), (CString)data.c_str());
-		owner->UpdateData(false);
+		if (data.size()<1000)
+		{
+			owner->texteConsole.Insert(owner->texteConsole.GetLength(), (CString)data.c_str());
+			owner->UpdateData(false);
+		}
+		
 		
 	}
 
