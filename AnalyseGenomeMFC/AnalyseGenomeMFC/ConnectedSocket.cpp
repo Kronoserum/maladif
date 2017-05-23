@@ -42,6 +42,13 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 		owner->texteConsole.Insert(owner->texteConsole.GetLength(), (CString)data.c_str());
 		owner->UpdateData(false);
 	}
+	else if (data.compare("return:connected\r\n") == 0)
+	{
+		owner->entrepriseConnected = 1;
+		owner->texteConsole.Insert(owner->texteConsole.GetLength(), (CString)data.substr(data.find(":")+1).c_str());
+		//owner->texteConsole.Insert(owner->texteConsole.GetLength(), (CString)"\r\n");
+		owner->UpdateData(false);
+	}
 	else
 	{
 		owner->texteConsole.Insert(owner->texteConsole.GetLength(), (CString)data.c_str());

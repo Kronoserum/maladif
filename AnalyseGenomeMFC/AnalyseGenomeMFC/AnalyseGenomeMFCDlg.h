@@ -57,6 +57,8 @@ public:
 	CString pathToGenome;
 	int idPatient;
 	int idMaladie;
+	int medecinConnected = -1;
+	int entrepriseConnected = -1;
 	afx_msg void OnBnClickedButton3();
 	afx_msg void OnBnClickedButton4();
 };

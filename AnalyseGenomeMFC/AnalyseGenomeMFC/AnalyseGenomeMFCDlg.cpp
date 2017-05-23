@@ -269,6 +269,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			CString messageC("Connexion effectuée !\r\n");
 			texteConsole.Insert(texteConsole.GetLength(), messageC);
 			UpdateData(false);
+			medecinConnected = stoi(arguments);
 		}
 		else 
 		{
@@ -276,144 +277,6 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			texteConsole.Insert(texteConsole.GetLength(), messageNC);
 			UpdateData(false);
 		}
-		
-	}
-	else if(nomCommande.compare("deconnexionMedecin") == 0) {
-		bool deconnexion = servicesM.DeconnexionMedecin();
-		if (deconnexion)
-		{
-			CString messageD("Déconnexion effectuée !\r\n");
-			texteConsole.Insert(texteConsole.GetLength(), messageD);
-			UpdateData(false);
-		}
-		else
-		{
-			CString messageND("La déconnexion a échouée !\r\n");
-			texteConsole.Insert(texteConsole.GetLength(), messageND);
-			UpdateData(false);
-		}
-	}
-	else if (nomCommande.compare("creerDossier") == 0) {
-		string infosPatient = requete.substr(requete.find(":") + 1);
-		
-		vector<string> infos;
-		stringstream ss(infosPatient); // Turn the string into a stream.
-		string elem;
-
-		while (getline(ss, elem, ',')) {
-			infos.push_back(elem);
-		}
-
-		if (infos.size() != 4)
-		{
-			CString messageE("Problème lors de la création d'un patient au niveau des arguments fournis\r\n");
-			texteConsole.Insert(texteConsole.GetLength(), messageE);
-			UpdateData(false);
-			
-			return;
-		}
-
-		Patient nouveauPatient = Patient(infos[0], infos[1],infos[2],infos[3]);
-		int creaD = servicesM.CreerDossierPatient(nouveauPatient);
-		if (creaD == 1)
-		{
-			CString messageDP("Dossier patient créé avec succès !\r\n");
-			texteConsole.Insert(texteConsole.GetLength(), messageDP);
-			UpdateData(false);
-		}
-		else
-		{
-			CString messageDPE("Erreur lors de la création du patient !\r\n");
-			texteConsole.Insert(texteConsole.GetLength(), messageDPE);
-			UpdateData(false);
-		}
-	}
-	else if (nomCommande.compare("consulterDossier") == 0) {
-		int idPatient = stoi(requete.substr(requete.find(":") + 1));
-		Patient patientTraite = servicesM.ConsulterDossierPatient(idPatient);
-		CString messageCDP("Voici le dossier de ce patient :\r\n");
-		texteConsole.Insert(texteConsole.GetLength(), messageCDP);
-		UpdateData(false);
-		CString messageCDPD(patientTraite.toString().c_str());
-		texteConsole.Insert(texteConsole.GetLength(), messageCDPD);
-		UpdateData(false);
-	}
-	else if (nomCommande.compare("parcourirDictionnaires") == 0) {
-		vector<Serveur> dicos = servicesM.ConsulterDictionnaires();
-		string affichageServeurs;
-		CString messageS1("Liste des serveurs :\r\n");
-		texteConsole.Insert(texteConsole.GetLength(), messageS1);
-		UpdateData(false);
-		for (vector<Serveur>::iterator i = dicos.begin(); i != dicos.end(); ++i)
-		{
-			affichageServeurs.append((*i).toString());
-			affichageServeurs.append("\r\n");
-		}
-
-		CString messageS(affichageServeurs.c_str());
-		texteConsole.Insert(texteConsole.GetLength(), messageS);
-		texteConsole.Insert(texteConsole.GetLength(), (CString) "\r\n");
-		UpdateData(false);
-	}
-	else if (nomCommande.compare("consulterAnalysesPatient") == 0) {
-		int idPatient = stoi(requete.substr(requete.find(":") + 1));
-		vector<Analyse> analyses = servicesM.ConsulterAnalysesPatient(idPatient);
-
-		string affichageAnalyses;
-		CString messageA1("Liste des analyses du patient\r\n");
-		texteConsole.Insert(texteConsole.GetLength(), messageA1);
-		UpdateData(false);
-
-		for (vector<Analyse>::iterator i = analyses.begin(); i != analyses.end(); ++i) 
-		{ 
-			affichageAnalyses.append((*i).toString());
-			affichageAnalyses.append("\r\n");
-		}
-		
-		CString messageA(affichageAnalyses.c_str());
-		texteConsole.Insert(texteConsole.GetLength(), messageA);
-		texteConsole.Insert(texteConsole.GetLength(), (CString) "\r\n");
-		UpdateData(false);
-
-	}
-	else if (nomCommande.compare("consulterResultatAnalyse") == 0) {
-		int idAnalyse = stoi(requete.substr(requete.find(":") + 1));
-		Analyse analyse = servicesM.ConsulterResultatsAnalyse(idAnalyse);
-		CString messageR1("Voici le résultat de cette analyse :\r\n");
-		texteConsole.Insert(texteConsole.GetLength(), messageR1);
-		UpdateData(false);
-		int resultat = analyse.get_resultat();
-		if (resultat == 1)
-		{
-			CString messageR("Risque d'atteinte de la maladie");
-			texteConsole.Insert(texteConsole.GetLength(), messageR);
-		}
-		else
-		{
-			CString messageR("Absence de risque d'atteinte de la maladie");
-			texteConsole.Insert(texteConsole.GetLength(), messageR);
-		}
-		
-		texteConsole.Insert(texteConsole.GetLength(), (CString)"\r\n");
-		UpdateData(false);
-	}
-	else if (nomCommande.compare("effectuerAnalyse") == 0) {
-		//A voir s'il faut découper la réalisation (cf exigences fonctionnelles)
-		string args = requete.substr(requete.find(":") + 1);
-
-		vector<string> infos;
-		stringstream ss(args); // Turn the string into a stream.
-		string elem;
-
-		while (getline(ss, elem, ',')) {
-			infos.push_back(elem);
-		}
-		string maladie = infos[0];
-		int idPatient = stoi(infos[2]);
-		int idMaladie = stoi(infos[3]);
-		string pathToGenome = infos[1];
-		AfxMessageBox((CString)pathToGenome.c_str());
-		servicesM.recupererMots(*socket, maladie);
 	}
 	else if (nomCommande.compare("connexionEntreprise") == 0)
 	{
@@ -423,10 +286,159 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			UpdateData(false);
 		}
 	}
-	else if (nomCommande.compare("deconnexionEntreprise") == 0) { //A voir !
-		servicesM.DeconnexionEntreprise(*socket);
+	if (medecinConnected != -1)
+	{
+		if(nomCommande.compare("deconnexionMedecin") == 0) {
+			bool deconnexion = servicesM.DeconnexionMedecin();
+			if (deconnexion)
+			{
+				CString messageD("Déconnexion effectuée !\r\n");
+				texteConsole.Insert(texteConsole.GetLength(), messageD);
+				UpdateData(false);
+				medecinConnected = -1;
+			}
+			else
+			{
+				CString messageND("La déconnexion a échouée !\r\n");
+				texteConsole.Insert(texteConsole.GetLength(), messageND);
+				UpdateData(false);
+			}
+		}
+		else if (nomCommande.compare("creerDossier") == 0) {
+			string infosPatient = requete.substr(requete.find(":") + 1);
+		
+			vector<string> infos;
+			stringstream ss(infosPatient); // Turn the string into a stream.
+			string elem;
+
+			while (getline(ss, elem, ',')) {
+				infos.push_back(elem);
+			}
+
+			if (infos.size() != 4)
+			{
+				CString messageE("Problème lors de la création d'un patient au niveau des arguments fournis\r\n");
+				texteConsole.Insert(texteConsole.GetLength(), messageE);
+				UpdateData(false);
+			
+				return;
+			}
+
+			Patient nouveauPatient = Patient(infos[0], infos[1],infos[2],infos[3]);
+			int creaD = servicesM.CreerDossierPatient(nouveauPatient);
+			if (creaD == 1)
+			{
+				CString messageDP("Dossier patient créé avec succès !\r\n");
+				texteConsole.Insert(texteConsole.GetLength(), messageDP);
+				UpdateData(false);
+			}
+			else
+			{
+				CString messageDPE("Erreur lors de la création du patient !\r\n");
+				texteConsole.Insert(texteConsole.GetLength(), messageDPE);
+				UpdateData(false);
+			}
+		}
+		else if (nomCommande.compare("consulterDossier") == 0) {
+			int idPatient = stoi(requete.substr(requete.find(":") + 1));
+			Patient patientTraite = servicesM.ConsulterDossierPatient(idPatient);
+			CString messageCDP("Voici le dossier de ce patient :\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageCDP);
+			UpdateData(false);
+			CString messageCDPD(patientTraite.toString().c_str());
+			texteConsole.Insert(texteConsole.GetLength(), messageCDPD);
+			UpdateData(false);
+		}
+		else if (nomCommande.compare("parcourirDictionnaires") == 0) {
+			vector<Serveur> dicos = servicesM.ConsulterDictionnaires();
+			string affichageServeurs;
+			CString messageS1("Liste des serveurs :\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageS1);
+			UpdateData(false);
+			for (vector<Serveur>::iterator i = dicos.begin(); i != dicos.end(); ++i)
+			{
+				affichageServeurs.append((*i).toString());
+				affichageServeurs.append("\r\n");
+			}
+
+			CString messageS(affichageServeurs.c_str());
+			texteConsole.Insert(texteConsole.GetLength(), messageS);
+			texteConsole.Insert(texteConsole.GetLength(), (CString) "\r\n");
+			UpdateData(false);
+		}
+		else if (nomCommande.compare("consulterAnalysesPatient") == 0) {
+			int idPatient = stoi(requete.substr(requete.find(":") + 1));
+			vector<Analyse> analyses = servicesM.ConsulterAnalysesPatient(idPatient);
+
+			string affichageAnalyses;
+			CString messageA1("Liste des analyses du patient\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageA1);
+			UpdateData(false);
+
+			for (vector<Analyse>::iterator i = analyses.begin(); i != analyses.end(); ++i) 
+			{ 
+				affichageAnalyses.append((*i).toString());
+				affichageAnalyses.append("\r\n");
+			}
+		
+			CString messageA(affichageAnalyses.c_str());
+			texteConsole.Insert(texteConsole.GetLength(), messageA);
+			texteConsole.Insert(texteConsole.GetLength(), (CString) "\r\n");
+			UpdateData(false);
+
+		}
+		else if (nomCommande.compare("consulterResultatAnalyse") == 0) {
+			int idAnalyse = stoi(requete.substr(requete.find(":") + 1));
+			Analyse analyse = servicesM.ConsulterResultatsAnalyse(idAnalyse);
+			CString messageR1("Voici le résultat de cette analyse :\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageR1);
+			UpdateData(false);
+			int resultat = analyse.get_resultat();
+			if (resultat == 1)
+			{
+				CString messageR("Risque d'atteinte de la maladie");
+				texteConsole.Insert(texteConsole.GetLength(), messageR);
+			}
+			else
+			{
+				CString messageR("Absence de risque d'atteinte de la maladie");
+				texteConsole.Insert(texteConsole.GetLength(), messageR);
+			}
+		
+			texteConsole.Insert(texteConsole.GetLength(), (CString)"\r\n");
+			UpdateData(false);
+		}
+		else if (nomCommande.compare("effectuerAnalyse") == 0) {
+			//A voir s'il faut découper la réalisation (cf exigences fonctionnelles)
+			string args = requete.substr(requete.find(":") + 1);
+
+			vector<string> infos;
+			stringstream ss(args); // Turn the string into a stream.
+			string elem;
+
+			while (getline(ss, elem, ',')) {
+				infos.push_back(elem);
+			}
+			string maladie = infos[0];
+			int idPatient = stoi(infos[2]);
+			int idMaladie = stoi(infos[3]);
+			string pathToGenome = infos[1];
+			AfxMessageBox((CString)pathToGenome.c_str());
+			servicesM.recupererMots(*socket, maladie);
+		}
 	}
-	else if (nomCommande.compare("consulterDictionnaire") == 0) {
+	if (entrepriseConnected != -1)
+	{
+		if (nomCommande.compare("deconnexionEntreprise") == 0) { //A voir !
+			servicesM.DeconnexionEntreprise(*socket);
+		}
+		else if (nomCommande.compare("test") == 0)
+		{
+
+		}
+	}
+	
+	/*else if (nomCommande.compare("consulterDictionnaire") == 0) {
 		int idServeur = stoi(requete.substr(requete.find(":") + 1));
 		Serveur serveur = servicesM.ConsulterDictionnaire(idServeur);
 
@@ -442,7 +454,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		CString messageI("Requête incorrecte !\r\n");
 		texteConsole.Insert(texteConsole.GetLength(), messageI);
 		UpdateData(false);
-	}
+	}*/
 	
 	
 }
