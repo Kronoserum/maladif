@@ -35,6 +35,9 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 	szBuff[nReceivedSize] = '\0';
 	CString data(szBuff);
 	owner->texteConsole.Insert(owner->texteConsole.GetLength(), data);
+	owner->texteConsole.Insert(owner->texteConsole.GetLength(), (CString)"\r\n");
+	owner->UpdateData(false);
+	
 
 	CAsyncSocket::OnReceive(nErrorCode);
 }
