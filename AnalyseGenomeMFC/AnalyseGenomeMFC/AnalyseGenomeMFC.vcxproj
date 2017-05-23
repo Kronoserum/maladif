@@ -182,6 +182,8 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="dicoMalade.txt" />
+    <Text Include="genomeMalade.txt" />
     <Text Include="patient.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>

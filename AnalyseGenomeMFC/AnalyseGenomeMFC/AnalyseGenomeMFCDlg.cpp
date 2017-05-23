@@ -15,6 +15,10 @@
 #include "ServeurDADatabase.h"
 #include "EntrepriseDADatabase.h"
 #include "MedecinDADatabase.h"
+#include <fstream>
+#include <iostream>
+
+using namespace std;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -207,36 +211,6 @@ void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()
 	int patient_id = 8;
 
 	ServiceClient smc;
-	
-	
-
-	//database.create_tables();
-
-	//ServeurDADatabase serveur_DA_database;
-	//Serveur s("ok", "ok",1);
-
-	//serveur_DA_database.write_serveur(s);
-
-	//EntrepriseDADatabase entreprise_DA_database;
-	//Entreprise e("ok", "ok");
-
-	//entreprise_DA_database.write_entreprise(e);
-
-	//Patient p;
-	//p.set_nom("lol");
-
-	//patient_DA_database.write_patient(p);
-
-	/*if (patient_DA_database.read_patient(patient, patient_id) == 0)
-	{
-		patient_str = to_string(patient.get_id()) + ", " +
-			patient.get_nom() + ", " +
-			patient.get_prenom() + ", " +
-			patient.get_mail() + ", " +
-			patient.get_mdp();
-
-		AfxMessageBox(CString(patient_str.c_str()));
-	}*/
 }
 
 
@@ -431,8 +405,8 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			texteConsole.Insert(texteConsole.GetLength(), (CString)"\r\n");
 			UpdateData(false);
 		}
-		else if (nomCommande.compare("effectuerAnalyse") == 0) {
-			//A voir s'il faut découper la réalisation (cf exigences fonctionnelles)
+		else if (nomCommande.compare("effectuerAnalyse") == 0) 
+		{
 			string args = requete.substr(requete.find(":") + 1);
 
 			vector<string> infos;
@@ -446,8 +420,17 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			int idPatient = stoi(infos[2]);
 			int idMaladie = stoi(infos[3]);
 			string pathToGenome = infos[1];
-			AfxMessageBox((CString)pathToGenome.c_str());
+			//-------------------------------------------------------------------------------
+			AfxMessageBox(_T("Avant appel service metier"));
 			servicesM.recupererMots(*socket, maladie);
+			/*ifstream dico("dicoMalade.txt");
+			string retSock;
+			dico>>retSock;
+			CString pathGenome("genomeMalade.txt");
+			int idPatient2 = 10;
+			int idMaladie2 = 1;
+			AfxMessageBox((CString) retSock.c_str());
+			servicesM.EffectuerAnalyse(retSock, pathGenome, idPatient2, idMaladie2);*/
 		}
 	}
 	if (entrepriseConnected != -1)
