@@ -65,8 +65,13 @@ int AnalyseDADatabase::read_analyse(Analyse &analyse, int id_in)
 	}
 	else
 	{
+		if (rows == 0)
+		{
+			analyse.set_resultat(-1);
+			return -1;
+		}
 		analyse.set_id(stoi(results[0 + columns]));
-		analyse.set_date(results[1 + columns]);
+		//analyse.set_date(results[1 + columns]);
 		analyse.set_resultat(stoi(results[2 + columns]));
 		analyse.set_idMaladie(stoi(results[3 + columns]));
 		analyse.set_idMedecin(stoi(results[4 + columns]));
@@ -107,13 +112,12 @@ vector<Analyse> AnalyseDADatabase::read_analyse_patient(Patient patient)
 		{
 			Analyse analyse;
 			analyse.set_id(stoi(results[i * columns + 0]));
-			analyse.set_date(results[i * columns + 1]);
+			//analyse.set_date(results[i * columns + 1]);
 			analyse.set_resultat(stoi(results[i * columns + 2]));
 			analyse.set_idMaladie(stoi(results[i * columns + 3]));
 			analyse.set_idMedecin(stoi(results[i * columns + 4]));
 			analyse.set_idPatient(stoi(results[i * columns + 5]));
 			analyse.set_idServeur(stoi(results[i * columns + 6]));
-
 			retour.push_back(analyse);
 		}
 

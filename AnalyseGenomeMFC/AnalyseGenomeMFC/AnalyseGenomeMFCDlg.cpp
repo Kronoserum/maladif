@@ -15,20 +15,24 @@
 #include "ServeurDADatabase.h"
 #include "EntrepriseDADatabase.h"
 #include "MedecinDADatabase.h"
+#include <fstream>
+#include <iostream>
+
+using namespace std;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
 
-// boÓte de dialogue CAboutDlg utilisÈe pour la boÓte de dialogue '¿ propos de' pour votre application
+// bo˚ëe de dialogue CAboutDlg utilisÈe pour la bo˚ëe de dialogue '¿ propos de' pour votre application
 
 class CAboutDlg : public CDialogEx
 {
 public:
 	CAboutDlg();
 
-// DonnÈes de boÓte de dialogue
+// DonnÈes de bo˚ëe de dialogue
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_ABOUTBOX };
 #endif
@@ -54,7 +58,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// boÓte de dialogue CAnalyseGenomeMFCDlg
+// bo˚ëe de dialogue CAnalyseGenomeMFCDlg
 
 
 
@@ -112,8 +116,8 @@ BOOL CAnalyseGenomeMFCDlg::OnInitDialog()
 		}
 	}
 
-	// DÈfinir l'icÙne de cette boÓte de dialogue.  L'infrastructure effectue cela automatiquement
-	//  lorsque la fenÍtre principale de l'application n'est pas une boÓte de dialogue
+	// DÈfinir l'icÙne de cette bo˚ëe de dialogue.  L'infrastructure effectue cela automatiquement
+	//  lorsque la fenÍtre principale de l'application n'est pas une bo˚ëe de dialogue
 	SetIcon(m_hIcon, TRUE);			// DÈfinir une grande icÙne
 	SetIcon(m_hIcon, FALSE);		// DÈfinir une petite icÙne
 
@@ -147,7 +151,7 @@ void CAnalyseGenomeMFCDlg::OnOK(void)
 	// Enter key was hit -> do whatever you want
 }
 
-// Si vous ajoutez un bouton RÈduire ‡ votre boÓte de dialogue, vous devez utiliser le code ci-dessous
+// Si vous ajoutez un bouton RÈduire ÅEvotre bo˚ëe de dialogue, vous devez utiliser le code ci-dessous
 //  pour dessiner l'icÙne.  Pour les applications MFC utilisant le modËle Document/Vue,
 //  cela est fait automatiquement par l'infrastructure.
 
@@ -176,7 +180,7 @@ void CAnalyseGenomeMFCDlg::OnPaint()
 	}
 }
 
-// Le systËme appelle cette fonction pour obtenir le curseur ‡ afficher lorsque l'utilisateur fait glisser
+// Le systËme appelle cette fonction pour obtenir le curseur ÅEafficher lorsque l'utilisateur fait glisser
 //  la fenÍtre rÈduite.
 HCURSOR CAnalyseGenomeMFCDlg::OnQueryDragIcon()
 {
@@ -207,36 +211,6 @@ void CAnalyseGenomeMFCDlg::OnBnClickedDatabase()
 	int patient_id = 8;
 
 	ServiceClient smc;
-	
-	
-
-	//database.create_tables();
-
-	//ServeurDADatabase serveur_DA_database;
-	//Serveur s("ok", "ok",1);
-
-	//serveur_DA_database.write_serveur(s);
-
-	//EntrepriseDADatabase entreprise_DA_database;
-	//Entreprise e("ok", "ok");
-
-	//entreprise_DA_database.write_entreprise(e);
-
-	//Patient p;
-	//p.set_nom("lol");
-
-	//patient_DA_database.write_patient(p);
-
-	/*if (patient_DA_database.read_patient(patient, patient_id) == 0)
-	{
-		patient_str = to_string(patient.get_id()) + ", " +
-			patient.get_nom() + ", " +
-			patient.get_prenom() + ", " +
-			patient.get_mail() + ", " +
-			patient.get_mdp();
-
-		AfxMessageBox(CString(patient_str.c_str()));
-	}*/
 }
 
 
@@ -328,7 +302,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 
 			Patient nouveauPatient = Patient(infos[0], infos[1],infos[2],infos[3]);
 			int creaD = servicesM.CreerDossierPatient(nouveauPatient);
-			if (creaD == 1)
+			if (creaD == 0)
 			{
 				CString messageDP("Dossier patient crÈÈ avec succËs !\r\n");
 				texteConsole.Insert(texteConsole.GetLength(), messageDP);
@@ -344,11 +318,20 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		else if (nomCommande.compare("consulterDossier") == 0) {
 			int idPatient = stoi(requete.substr(requete.find(":") + 1));
 			Patient patientTraite = servicesM.ConsulterDossierPatient(idPatient);
-			CString messageCDP("Voici le dossier de ce patient :\r\n");
-			texteConsole.Insert(texteConsole.GetLength(), messageCDP);
-			UpdateData(false);
-			CString messageCDPD(patientTraite.toString().c_str());
-			texteConsole.Insert(texteConsole.GetLength(), messageCDPD);
+			if (patientTraite.get_nom().size()==0)
+			{
+				CString messageCDP("Ce patient n'existe pas\r\n");
+				texteConsole.Insert(texteConsole.GetLength(), messageCDP);
+			} 
+			else
+			{
+				CString messageCDP("Voici le dossier de ce patient :\r\n");
+				texteConsole.Insert(texteConsole.GetLength(), messageCDP);
+				UpdateData(false);
+				CString messageCDPD(patientTraite.toString().c_str());
+				texteConsole.Insert(texteConsole.GetLength(), messageCDPD);
+			}
+			
 			UpdateData(false);
 		}
 		else if (nomCommande.compare("parcourirDictionnaires") == 0) {
@@ -371,21 +354,28 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		else if (nomCommande.compare("consulterAnalysesPatient") == 0) {
 			int idPatient = stoi(requete.substr(requete.find(":") + 1));
 			vector<Analyse> analyses = servicesM.ConsulterAnalysesPatient(idPatient);
-
-			string affichageAnalyses;
-			CString messageA1("Liste des analyses du patient\r\n");
-			texteConsole.Insert(texteConsole.GetLength(), messageA1);
-			UpdateData(false);
-
-			for (vector<Analyse>::iterator i = analyses.begin(); i != analyses.end(); ++i) 
-			{ 
-				affichageAnalyses.append((*i).toString());
-				affichageAnalyses.append("\r\n");
+			if (analyses.size() == 0)
+			{
+				CString messageA1("Aucune analyse pour ce patient.\r\n");
+				texteConsole.Insert(texteConsole.GetLength(), messageA1);
 			}
-		
-			CString messageA(affichageAnalyses.c_str());
-			texteConsole.Insert(texteConsole.GetLength(), messageA);
-			texteConsole.Insert(texteConsole.GetLength(), (CString) "\r\n");
+			else
+			{
+				string affichageAnalyses;
+				CString messageA1("Liste des analyses du patient : \r\n");
+				texteConsole.Insert(texteConsole.GetLength(), messageA1);
+				UpdateData(false);
+
+				for (vector<Analyse>::iterator i = analyses.begin(); i != analyses.end(); ++i)
+				{
+					affichageAnalyses.append((*i).toString());
+					affichageAnalyses.append("\r\n");
+				}
+
+				CString messageA(affichageAnalyses.c_str());
+				texteConsole.Insert(texteConsole.GetLength(), messageA);
+				texteConsole.Insert(texteConsole.GetLength(), (CString) "\r\n");
+			}
 			UpdateData(false);
 
 		}
@@ -401,17 +391,22 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 				CString messageR("Risque d'atteinte de la maladie");
 				texteConsole.Insert(texteConsole.GetLength(), messageR);
 			}
-			else
+			else if(resultat==0)
 			{
 				CString messageR("Absence de risque d'atteinte de la maladie");
+				texteConsole.Insert(texteConsole.GetLength(), messageR);
+			}
+			else
+			{
+				CString messageR("Aucune analyse avec cet ID.");
 				texteConsole.Insert(texteConsole.GetLength(), messageR);
 			}
 		
 			texteConsole.Insert(texteConsole.GetLength(), (CString)"\r\n");
 			UpdateData(false);
 		}
-		else if (nomCommande.compare("effectuerAnalyse") == 0) {
-			//A voir s'il faut dÈcouper la rÈalisation (cf exigences fonctionnelles)
+		else if (nomCommande.compare("effectuerAnalyse") == 0) 
+		{
 			string args = requete.substr(requete.find(":") + 1);
 
 			vector<string> infos;
@@ -425,8 +420,17 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			int idPatient = stoi(infos[2]);
 			int idMaladie = stoi(infos[3]);
 			string pathToGenome = infos[1];
-			AfxMessageBox((CString)pathToGenome.c_str());
+			//-------------------------------------------------------------------------------
+			AfxMessageBox(_T("Avant appel service metier"));
 			servicesM.recupererMots(*socket, maladie);
+			/*ifstream dico("dicoMalade.txt");
+			string retSock;
+			dico>>retSock;
+			CString pathGenome("genomeMalade.txt");
+			int idPatient2 = 10;
+			int idMaladie2 = 1;
+			AfxMessageBox((CString) retSock.c_str());
+			servicesM.EffectuerAnalyse(retSock, pathGenome, idPatient2, idMaladie2);*/
 		}
 	} 
 	if (entrepriseConnected != -1)
@@ -480,27 +484,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			}
 			servicesM.ModifierMaladie(infos[0], infos[1], *socket);
 		}
-	}
-	
-	/*else if (nomCommande.compare("consulterDictionnaire") == 0) {
-		int idServeur = stoi(requete.substr(requete.find(":") + 1));
-		Serveur serveur = servicesM.ConsulterDictionnaire(idServeur);
-
-		CString messageServ1("Informations sur le dictionnaire :\r\n");
-		texteConsole.Insert(texteConsole.GetLength(), messageServ1);
-		CString messageServ(serveur.toString().c_str());
-		texteConsole.Insert(texteConsole.GetLength(), messageServ);
-		texteConsole.Insert(texteConsole.GetLength(), (CString) "\r\n");
-		UpdateData(false);
-	}
-	else
-	{
-		CString messageI("RequÍte incorrecte !\r\n");
-		texteConsole.Insert(texteConsole.GetLength(), messageI);
-		UpdateData(false);
-	}*/
-	
-	
+	}	
 }
 
 void CAnalyseGenomeMFCDlg::OnStnClickedStaticAffichage()

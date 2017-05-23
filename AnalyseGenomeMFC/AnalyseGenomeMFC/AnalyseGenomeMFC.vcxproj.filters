@@ -32,6 +32,12 @@
     <Text Include="patient.txt">
       <Filter>Persistence</Filter>
     </Text>
+    <Text Include="genomeMalade.txt">
+      <Filter>Persistence</Filter>
+    </Text>
+    <Text Include="dicoMalade.txt">
+      <Filter>Persistence</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConnectedSocket.h">

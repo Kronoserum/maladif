@@ -11,6 +11,7 @@
 #include "AnalyseDADatabase.h"
 #include "MaladieDADatabase.h"
 #include <vector>
+#include <ctime>
 #include "Database.h"
 #include "ServeurDADatabase.h"
 #include "MedecinDADatabase.h"
@@ -25,7 +26,6 @@ int ServiceClient::ConnexionMedecin(int id) {
 	MedecinDADatabase mda;
 	Medecin medecin;
 	int code = mda.read_medecin(medecin, id);
-
 	medecinCo = &medecin;
 
 	return code;
@@ -54,7 +54,9 @@ Patient ServiceClient::ConsulterDossierPatient(int id_patient) {
 vector<Analyse> ServiceClient::ConsulterAnalysesPatient(int id_patient) {
 	PatientDADatabase pda;
 	Patient patient_a_analyser;
+	
 	int codeRP = pda.read_patient(patient_a_analyser, id_patient);
+	
 	AnalyseDADatabase ada;
 	vector<Analyse> vecteurAnalyses = ada.read_analyse_patient(patient_a_analyser);
 	return vecteurAnalyses;
