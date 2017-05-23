@@ -64,6 +64,10 @@ int PatientDADatabase::read_patient(Patient &patient, int id_in)
 	}
 	else
 	{
+		if (rows == 0)
+		{
+			return -1;
+		}
 		patient.set_id(stoi(results[0 + columns]));
 		patient.set_nom(results[1 + columns]);
 		patient.set_prenom(results[2 + columns]);

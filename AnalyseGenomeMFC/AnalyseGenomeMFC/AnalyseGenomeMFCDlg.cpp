@@ -328,7 +328,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 
 			Patient nouveauPatient = Patient(infos[0], infos[1],infos[2],infos[3]);
 			int creaD = servicesM.CreerDossierPatient(nouveauPatient);
-			if (creaD == 1)
+			if (creaD == 0)
 			{
 				CString messageDP("Dossier patient créé avec succès !\r\n");
 				texteConsole.Insert(texteConsole.GetLength(), messageDP);
@@ -344,11 +344,20 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		else if (nomCommande.compare("consulterDossier") == 0) {
 			int idPatient = stoi(requete.substr(requete.find(":") + 1));
 			Patient patientTraite = servicesM.ConsulterDossierPatient(idPatient);
-			CString messageCDP("Voici le dossier de ce patient :\r\n");
-			texteConsole.Insert(texteConsole.GetLength(), messageCDP);
-			UpdateData(false);
-			CString messageCDPD(patientTraite.toString().c_str());
-			texteConsole.Insert(texteConsole.GetLength(), messageCDPD);
+			if (patientTraite.get_nom().size()==0)
+			{
+				CString messageCDP("Ce patient n'existe pas\r\n");
+				texteConsole.Insert(texteConsole.GetLength(), messageCDP);
+			} 
+			else
+			{
+				CString messageCDP("Voici le dossier de ce patient :\r\n");
+				texteConsole.Insert(texteConsole.GetLength(), messageCDP);
+				UpdateData(false);
+				CString messageCDPD(patientTraite.toString().c_str());
+				texteConsole.Insert(texteConsole.GetLength(), messageCDPD);
+			}
+			
 			UpdateData(false);
 		}
 		else if (nomCommande.compare("parcourirDictionnaires") == 0) {
