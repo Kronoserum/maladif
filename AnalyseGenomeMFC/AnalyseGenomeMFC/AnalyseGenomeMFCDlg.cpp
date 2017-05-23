@@ -25,14 +25,14 @@ using namespace std;
 #endif
 
 
-// boîte de dialogue CAboutDlg utilisée pour la boîte de dialogue 'À propos de' pour votre application
+// boû‘e de dialogue CAboutDlg utilisée pour la boû‘e de dialogue 'À propos de' pour votre application
 
 class CAboutDlg : public CDialogEx
 {
 public:
 	CAboutDlg();
 
-// Données de boîte de dialogue
+// Données de boû‘e de dialogue
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_ABOUTBOX };
 #endif
@@ -58,7 +58,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// boîte de dialogue CAnalyseGenomeMFCDlg
+// boû‘e de dialogue CAnalyseGenomeMFCDlg
 
 
 
@@ -116,8 +116,8 @@ BOOL CAnalyseGenomeMFCDlg::OnInitDialog()
 		}
 	}
 
-	// Définir l'icône de cette boîte de dialogue.  L'infrastructure effectue cela automatiquement
-	//  lorsque la fenêtre principale de l'application n'est pas une boîte de dialogue
+	// Définir l'icône de cette boû‘e de dialogue.  L'infrastructure effectue cela automatiquement
+	//  lorsque la fenêtre principale de l'application n'est pas une boû‘e de dialogue
 	SetIcon(m_hIcon, TRUE);			// Définir une grande icône
 	SetIcon(m_hIcon, FALSE);		// Définir une petite icône
 
@@ -151,7 +151,7 @@ void CAnalyseGenomeMFCDlg::OnOK(void)
 	// Enter key was hit -> do whatever you want
 }
 
-// Si vous ajoutez un bouton Réduire à votre boîte de dialogue, vous devez utiliser le code ci-dessous
+// Si vous ajoutez un bouton Réduire Evotre boû‘e de dialogue, vous devez utiliser le code ci-dessous
 //  pour dessiner l'icône.  Pour les applications MFC utilisant le modèle Document/Vue,
 //  cela est fait automatiquement par l'infrastructure.
 
@@ -180,7 +180,7 @@ void CAnalyseGenomeMFCDlg::OnPaint()
 	}
 }
 
-// Le système appelle cette fonction pour obtenir le curseur à afficher lorsque l'utilisateur fait glisser
+// Le système appelle cette fonction pour obtenir le curseur Eafficher lorsque l'utilisateur fait glisser
 //  la fenêtre réduite.
 HCURSOR CAnalyseGenomeMFCDlg::OnQueryDragIcon()
 {
@@ -430,7 +430,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			int idMaladie2 = 1;
 			servicesM.EffectuerAnalyse(retSock, pathGenome, idPatient2, idMaladie2);*/
 		}
-	}
+	} 
 	if (entrepriseConnected != -1)
 	{
 		if (nomCommande.compare("deconnexionEntreprise") == 0) { //A voir !
