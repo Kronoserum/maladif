@@ -422,6 +422,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			string pathToGenome = infos[1];
 			//-------------------------------------------------------------------------------
 			servicesM.recupererMots(*socket, maladie);
+
 			/*ifstream dico("dicoMalade.txt");
 			string retSock;
 			dico>>retSock;

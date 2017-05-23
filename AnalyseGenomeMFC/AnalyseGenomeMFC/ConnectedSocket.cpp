@@ -25,7 +25,7 @@ void ConnectedSocket::setOwner(CAnalyseGenomeMFCDlg * o)
 
 void ConnectedSocket::OnReceive(int nErrorCode)
 {
-	const int BUFF_LEN = 524288;
+	const int BUFF_LEN = 262000;
 	char szBuff[BUFF_LEN];
 
 	int nReceivedSize = Receive(szBuff, BUFF_LEN);
