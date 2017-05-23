@@ -22,6 +22,8 @@
 
 /*  ---------- Services Médecin ---------- */ 
 
+static int idMedco = -1;
+
 int ServiceClient::ConnexionMedecin(int id) {
 	MedecinDADatabase mda;
 	Medecin medecin;
@@ -94,12 +96,11 @@ void ServiceClient::EffectuerAnalyse(string &retSocket,CString pathToGenome, int
 
 	string date = "23/05";
 	
-	int idMed = idMedco;
 
 	duration = (clock() - start) / (double) CLOCKS_PER_SEC;
 
 
-	Analyse ana((int) resultat, date, idMed, idPatient, idMaladie, 1);
+	Analyse ana((int) resultat, date, idMedco, idPatient, idMaladie, 1);
 	AnalyseDADatabase ada;
 	ada.write_analyse(ana);
 
