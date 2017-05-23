@@ -11,6 +11,7 @@
 #include "AnalyseDADatabase.h"
 #include "MaladieDADatabase.h"
 #include <vector>
+#include <ctime>
 #include "Database.h"
 #include "ServeurDADatabase.h"
 #include "MedecinDADatabase.h"
