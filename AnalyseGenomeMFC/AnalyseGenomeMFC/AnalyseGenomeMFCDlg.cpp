@@ -258,6 +258,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	string requete(pszConvertedAnsiString);
 	string nomCommande = requete.substr(0, requete.find(":"));
 	string arguments = requete.substr(requete.find(":")+1, requete.size()-nomCommande.size());
+
 	if (nomCommande.compare("connexionMedecin") == 0)
 	{
 		CString message ("Connexion...\r\n");
@@ -286,6 +287,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			UpdateData(false);
 		}
 	}
+
 	if (medecinConnected != -1)
 	{
 		if(nomCommande.compare("deconnexionMedecin") == 0) {
