@@ -19,6 +19,7 @@
 #include "wumanber.h"
 #include "fstream"
 #include "iostream"
+#include <string>
 
 /*  ---------- Services M馘ecin ---------- */ 
 
@@ -74,8 +75,8 @@ Analyse ServiceClient::ConsulterResultatsAnalyse(int id_analyse) {
 	return analyse;
 }
 
-void ServiceClient::EffectuerAnalyse(string &retSocket,CString pathToGenome, int idPatient, int idMaladie) {
-
+void ServiceClient::EffectuerAnalyse(string &retSocket,CString pathToGenome, int idPatient, int idMaladie) 
+{
 	clock_t start;
 	double duration;
 	unsigned int capacity;
@@ -101,9 +102,12 @@ void ServiceClient::EffectuerAnalyse(string &retSocket,CString pathToGenome, int
 
 	string date = "23/05";
 	
+	CString sNum;
+	CString sInt;
+	sNum.Format(_T("%d"), retSocket.capacity()/1000);
 
 	duration = (clock() - start) / (double) CLOCKS_PER_SEC;
-	CString sNum;
+	
 	sNum.Format(_T("%f"), duration);
 	AfxMessageBox((CString) ("Temps de calcul : ") + sNum);
 
@@ -112,9 +116,11 @@ void ServiceClient::EffectuerAnalyse(string &retSocket,CString pathToGenome, int
 	sTot.Format(_T("%f"), durationTot);
 	AfxMessageBox((CString)("Temps de calcul + communication : ") + sTot);
 
-	CString sInt;
-	sNum.Format(_T("%d"), retSocket.capacity() / 1000);
 	AfxMessageBox((CString)("Taille de données : ") + sInt);
+
+	ofstream os("taille.txt");
+	os << retSocket.capacity();
+	os.close();
 
 	Analyse ana((int) resultat, date, idMedco, idPatient, idMaladie, 1);
 	AnalyseDADatabase ada;
