@@ -38,8 +38,8 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 	if (data.substr(0, data.find(":")).compare("returnMots")==0)
 	{
 		ServiceClient m;
-		AfxMessageBox((CString)data.substr(data.find(":") + 1).c_str());
-		CString pathToGenome("genome.txt");
+		//AfxMessageBox((CString)data.substr(data.find(":") + 1).c_str());
+		CString pathToGenome("genomeMalade.txt");
 		m.EffectuerAnalyse(data.substr(data.find(":")+1), pathToGenome, owner->idPatient, owner->idMaladie);
 		owner->texteConsole.Insert(owner->texteConsole.GetLength(), (CString)data.c_str());
 		owner->UpdateData(false);
