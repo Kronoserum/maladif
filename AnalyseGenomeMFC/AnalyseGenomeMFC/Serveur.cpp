@@ -33,3 +33,16 @@ int Serveur::get_id() { return id; }
 string Serveur::get_IPServeur() { return IPServeur; }
 string Serveur::get_description() { return description; }
 int Serveur::get_idEntreprise() { return idEntreprise; }
+
+string Serveur::toString()
+{
+	string res = "IDServeur :";
+	res.append(to_string(id));
+	res.append("; IPServeur :");
+	res.append(IPServeur);
+	res.append("; Description :");
+	res.append(description);
+	res.append("; IDEntreprise :");
+	res.append(to_string(idEntreprise));
+	return res;
+}

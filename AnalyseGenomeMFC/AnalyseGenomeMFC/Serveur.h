@@ -19,6 +19,7 @@ public:
 	string get_IPServeur();
 	string get_description();
 	int get_idEntreprise();
+	string toString();
 private:
 	int id;
 	string IPServeur, description;

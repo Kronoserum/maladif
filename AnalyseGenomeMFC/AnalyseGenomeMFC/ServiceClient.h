@@ -14,7 +14,7 @@ class ServiceClient
 {
 public:
 
-	bool ConnexionMedecin(int id);
+	int ConnexionMedecin(int id);
 	bool DeconnexionMedecin();
 
 	int CreerDossierPatient(Patient p);
@@ -24,18 +24,14 @@ public:
 	Analyse ConsulterResultatsAnalyse(int id_analyse);
 	void ServiceClient::EffectuerAnalyse(string retSocket, string pathToGenome, int idPatient, int idMaladie, int idServeur);
 	vector<Serveur> ConsulterDictionnaires();
-
-	void ConsulterDictionnaires(Serveur s);
 	
 	
 	void ConnexionEntreprise(string id, ConnectedSocket & s);
-	bool DeconnexionEntreprise(ConnectedSocket & s);
+	void DeconnexionEntreprise(ConnectedSocket & s);
 
 	int ModifierDescriptionDictionnaire(string desc, ConnectedSocket & s);
 	int AjouterMaladie(Maladie m, ConnectedSocket & s);
-	int ModifierMaladie(Maladie m, ConnectedSocket & s);
-	int SupprimerMaladie(Maladie m, ConnectedSocket & s);
-	int ConsulterDictionnaire(int id_serveur, ConnectedSocket & s);
+	Serveur ConsulterDictionnaire(int id_serveur);
 
 	CString RetourSocket(CString retour);
 	

@@ -263,8 +263,8 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		CString message ("Connexion...\r\n");
 		texteConsole.Insert(texteConsole.GetLength(), message);
 		int id = stoi(requete.substr(requete.find(":")+1));
-		bool connexion = servicesM.ConnexionMedecin(id);
-		if (connexion)
+		int connexion = servicesM.ConnexionMedecin(id);
+		if (connexion == 0)
 		{
 			CString messageC("Connexion effectuée !\r\n");
 			texteConsole.Insert(texteConsole.GetLength(), messageC);
@@ -338,6 +338,23 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		texteConsole.Insert(texteConsole.GetLength(), messageCDPD);
 		UpdateData(false);
 	}
+	else if (nomCommande.compare("parcourirDictionnaires") == 0) {
+		vector<Serveur> dicos = servicesM.ConsulterDictionnaires();
+		string affichageServeurs;
+		CString messageS1("Liste des serveurs :\r\n");
+		texteConsole.Insert(texteConsole.GetLength(), messageS1);
+		UpdateData(false);
+		for (vector<Serveur>::iterator i = dicos.begin(); i != dicos.end(); ++i)
+		{
+			affichageServeurs.append((*i).toString());
+			affichageServeurs.append("\r\n");
+		}
+
+		CString messageS(affichageServeurs.c_str());
+		texteConsole.Insert(texteConsole.GetLength(), messageS);
+		texteConsole.Insert(texteConsole.GetLength(), (CString) "\r\n");
+		UpdateData(false);
+	}
 	else if (nomCommande.compare("consulterAnalysesPatient") == 0) {
 		int idPatient = stoi(requete.substr(requete.find(":") + 1));
 		vector<Analyse> analyses = servicesM.ConsulterAnalysesPatient(idPatient);
@@ -355,6 +372,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		
 		CString messageA(affichageAnalyses.c_str());
 		texteConsole.Insert(texteConsole.GetLength(), messageA);
+		texteConsole.Insert(texteConsole.GetLength(), (CString) "\r\n");
 		UpdateData(false);
 
 	}
@@ -389,6 +407,20 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			servicesM.ConnexionEntreprise(arguments, *socket);
 			UpdateData(false);
 		}
+	}
+	else if (nomCommande.compare("deconnexionEntreprise") == 0) { //A voir !
+		servicesM.DeconnexionEntreprise(*socket);
+	}
+	else if (nomCommande.compare("consulterDictionnaire") == 0) {
+		int idServeur = stoi(requete.substr(requete.find(":") + 1));
+		Serveur serveur = servicesM.ConsulterDictionnaire(idServeur);
+
+		CString messageServ1("Informations sur le dictionnaire :\r\n");
+		texteConsole.Insert(texteConsole.GetLength(), messageServ1);
+		CString messageServ(serveur.toString().c_str());
+		texteConsole.Insert(texteConsole.GetLength(), messageServ);
+		texteConsole.Insert(texteConsole.GetLength(), (CString) "\r\n");
+		UpdateData(false);
 	}
 	else
 	{

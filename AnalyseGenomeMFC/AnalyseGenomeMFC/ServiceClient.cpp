@@ -9,6 +9,7 @@
 #include "Maladie.h"
 #include "PatientDADatabase.h"
 #include "AnalyseDADatabase.h"
+#include "MaladieDADatabase.h"
 #include <vector>
 #include "Database.h"
 #include "ServeurDADatabase.h"
@@ -20,14 +21,14 @@
 
 /*  ---------- Services Médecin ---------- */ 
 
-bool ServiceClient::ConnexionMedecin(int id) {
+int ServiceClient::ConnexionMedecin(int id) {
 	MedecinDADatabase mda;
 	Medecin medecin;
-	mda.read_medecin(medecin, id);
+	int code = mda.read_medecin(medecin, id);
 
 	medecinCo = &medecin;
 
-	return true;
+	return code;
 }
 
 bool ServiceClient::DeconnexionMedecin() {
@@ -117,32 +118,23 @@ void ServiceClient::ConnexionEntreprise(string id, ConnectedSocket & s) {
 	s.Send(commande.c_str(), commande.length());
 }
 
-bool ServiceClient::DeconnexionEntreprise(ConnectedSocket & s) {
-	return false;
+void ServiceClient::DeconnexionEntreprise(ConnectedSocket & s) {
+	string commande("disconnect:");
+	s.Send(commande.c_str(), commande.length());
 }
 
 int ServiceClient::ModifierDescriptionDictionnaire(string desc, ConnectedSocket & s)
 {
-	return 0;
+	return 0; //Quel service côté serveur ?
 }
 
 int ServiceClient::AjouterMaladie(Maladie m, ConnectedSocket & s)
 {
-	return 0;
-}
-
-int ServiceClient::ModifierMaladie(Maladie m, ConnectedSocket & s)
-{
-	return 0;
-}
-
-int ServiceClient::SupprimerMaladie(Maladie m, ConnectedSocket & s)
-{
-	return 0;
-}
-
-int ServiceClient::ConsulterDictionnaire(int id_serveur, ConnectedSocket & s)
-{
+	/*string commande("ajouterMaladie:");
+	commande.append(); NOM
+	commande.append(",");
+	commande.append(); MOTS
+	s.Send(commande.c_str(), commande.length());*/
 	return 0;
 }
 
@@ -151,7 +143,7 @@ CString ServiceClient::RetourSocket(CString retour)
 	return NULL;
 }
 
-Serveur ConsulterDictionnaire(int id_serveur) {
+Serveur ServiceClient::ConsulterDictionnaire(int id_serveur) {
 	ServeurDADatabase sda;
 	Serveur se;
 	sda.read_serveur(se, id_serveur);
