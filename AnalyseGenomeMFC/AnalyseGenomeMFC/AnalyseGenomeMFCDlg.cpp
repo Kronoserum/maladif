@@ -422,17 +422,10 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			int idMaladie = stoi(infos[3]);
 			string pathToGenome = infos[1];
 			//-------------------------------------------------------------------------------
-			clock_t start;
-			double duration;
-
-			start = clock();
+			
 
 			servicesM.recupererMots(*socket, maladie);
 
-			duration = (clock() - start) / (double)CLOCKS_PER_SEC;
-			CString sNum;
-			sNum.Format(_T("%f"), duration);
-			AfxMessageBox((CString)("Temps de calcul + communication : ") + sNum);
 
 			/*ifstream dico("dicoMalade.txt");
 			string retSock;
