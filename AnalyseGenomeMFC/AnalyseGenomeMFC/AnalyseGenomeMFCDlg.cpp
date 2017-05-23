@@ -480,27 +480,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			}
 			servicesM.ModifierMaladie(infos[0], infos[1], *socket);
 		}
-	}
-	
-	/*else if (nomCommande.compare("consulterDictionnaire") == 0) {
-		int idServeur = stoi(requete.substr(requete.find(":") + 1));
-		Serveur serveur = servicesM.ConsulterDictionnaire(idServeur);
-
-		CString messageServ1("Informations sur le dictionnaire :\r\n");
-		texteConsole.Insert(texteConsole.GetLength(), messageServ1);
-		CString messageServ(serveur.toString().c_str());
-		texteConsole.Insert(texteConsole.GetLength(), messageServ);
-		texteConsole.Insert(texteConsole.GetLength(), (CString) "\r\n");
-		UpdateData(false);
-	}
-	else
-	{
-		CString messageI("Requête incorrecte !\r\n");
-		texteConsole.Insert(texteConsole.GetLength(), messageI);
-		UpdateData(false);
-	}*/
-	
-	
+	}	
 }
 
 void CAnalyseGenomeMFCDlg::OnStnClickedStaticAffichage()
