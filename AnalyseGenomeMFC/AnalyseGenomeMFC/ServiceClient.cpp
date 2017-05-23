@@ -53,7 +53,9 @@ Patient ServiceClient::ConsulterDossierPatient(int id_patient) {
 vector<Analyse> ServiceClient::ConsulterAnalysesPatient(int id_patient) {
 	PatientDADatabase pda;
 	Patient patient_a_analyser;
+	
 	int codeRP = pda.read_patient(patient_a_analyser, id_patient);
+	
 	AnalyseDADatabase ada;
 	vector<Analyse> vecteurAnalyses = ada.read_analyse_patient(patient_a_analyser);
 	return vecteurAnalyses;

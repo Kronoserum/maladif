@@ -380,21 +380,28 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		else if (nomCommande.compare("consulterAnalysesPatient") == 0) {
 			int idPatient = stoi(requete.substr(requete.find(":") + 1));
 			vector<Analyse> analyses = servicesM.ConsulterAnalysesPatient(idPatient);
-
-			string affichageAnalyses;
-			CString messageA1("Liste des analyses du patient\r\n");
-			texteConsole.Insert(texteConsole.GetLength(), messageA1);
-			UpdateData(false);
-
-			for (vector<Analyse>::iterator i = analyses.begin(); i != analyses.end(); ++i) 
-			{ 
-				affichageAnalyses.append((*i).toString());
-				affichageAnalyses.append("\r\n");
+			if (analyses.size() == 0)
+			{
+				CString messageA1("Aucune analyse pour ce patient.\r\n");
+				texteConsole.Insert(texteConsole.GetLength(), messageA1);
 			}
-		
-			CString messageA(affichageAnalyses.c_str());
-			texteConsole.Insert(texteConsole.GetLength(), messageA);
-			texteConsole.Insert(texteConsole.GetLength(), (CString) "\r\n");
+			else
+			{
+				string affichageAnalyses;
+				CString messageA1("Liste des analyses du patient : \r\n");
+				texteConsole.Insert(texteConsole.GetLength(), messageA1);
+				UpdateData(false);
+
+				for (vector<Analyse>::iterator i = analyses.begin(); i != analyses.end(); ++i)
+				{
+					affichageAnalyses.append((*i).toString());
+					affichageAnalyses.append("\r\n");
+				}
+
+				CString messageA(affichageAnalyses.c_str());
+				texteConsole.Insert(texteConsole.GetLength(), messageA);
+				texteConsole.Insert(texteConsole.GetLength(), (CString) "\r\n");
+			}
 			UpdateData(false);
 
 		}
@@ -410,9 +417,14 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 				CString messageR("Risque d'atteinte de la maladie");
 				texteConsole.Insert(texteConsole.GetLength(), messageR);
 			}
-			else
+			else if(resultat==0)
 			{
 				CString messageR("Absence de risque d'atteinte de la maladie");
+				texteConsole.Insert(texteConsole.GetLength(), messageR);
+			}
+			else
+			{
+				CString messageR("Aucune analyse avec cet ID.");
 				texteConsole.Insert(texteConsole.GetLength(), messageR);
 			}
 		
