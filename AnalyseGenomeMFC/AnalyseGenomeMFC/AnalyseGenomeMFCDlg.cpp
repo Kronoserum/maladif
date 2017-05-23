@@ -11,6 +11,7 @@
 #include "PatientDADatabase.h"
 #include "ServiceClient.h"
 #include <vector>
+#include <ctime>
 #include <sstream>
 #include "ServeurDADatabase.h"
 #include "EntrepriseDADatabase.h"
