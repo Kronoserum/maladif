@@ -23,7 +23,7 @@ ConnectedSocket::~ConnectedSocket()
 void ConnectedSocket::OnReceive(int nErrorCode)
 {
 	//--------------------------------------------------------------------Debut de la reception
-	const int BUFF_LEN = 256;
+	const int BUFF_LEN = 262000;
 	char *szBuff = new char[BUFF_LEN]; // Initialisation du buffer
 	int nReceivedSize = Receive(szBuff, BUFF_LEN); // reception des donnees
 	if (nReceivedSize == SOCKET_ERROR)// Safety check
