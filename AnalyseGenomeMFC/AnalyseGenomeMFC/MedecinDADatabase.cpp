@@ -56,7 +56,6 @@ int MedecinDADatabase::read_medecin(Medecin &medecin, int id_in)
 	int rows, columns;
 
 	code = sqlite3_get_table(database, sqlSelect, &results, &rows, &columns, &error);
-
 	if (code != 0)
 	{
 		cerr << "Error executing SQLite3 query (read_medecin): " << sqlite3_errmsg(database) << endl;
@@ -64,6 +63,10 @@ int MedecinDADatabase::read_medecin(Medecin &medecin, int id_in)
 	}
 	else
 	{
+		if (rows == 0)
+		{
+			return -1;
+		}
 		medecin.set_id(stoi(results[0 + columns]));
 		medecin.set_nom(results[1 + columns]);
 		medecin.set_prenom(results[2 + columns]);

@@ -25,7 +25,6 @@ int ServiceClient::ConnexionMedecin(int id) {
 	MedecinDADatabase mda;
 	Medecin medecin;
 	int code = mda.read_medecin(medecin, id);
-
 	medecinCo = &medecin;
 
 	return code;
