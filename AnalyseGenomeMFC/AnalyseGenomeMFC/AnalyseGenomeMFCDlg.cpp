@@ -428,7 +428,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			AfxMessageBox((CString)pathToGenome.c_str());
 			servicesM.recupererMots(*socket, maladie);
 		}
-	}
+	} 
 	if (entrepriseConnected != -1)
 	{
 		if (nomCommande.compare("deconnexionEntreprise") == 0) { //A voir !
