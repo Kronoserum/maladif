@@ -134,31 +134,58 @@ void ServiceClient::DeconnexionEntreprise(ConnectedSocket & s) {
 
 int ServiceClient::ModifierDescriptionDictionnaire(string desc, ConnectedSocket & s)
 {
-	return 0; //Quel service côté serveur ?
-}
-
-int ServiceClient::AjouterMaladie(Maladie m, ConnectedSocket & s)
-{
-	/*string commande("ajouterMaladie:");
-	commande.append(); NOM
-	commande.append(",");
-	commande.append(); MOTS
-	s.Send(commande.c_str(), commande.length());*/
+	string commande("modifierMetaDonnees:");
+	commande.append(desc);
+	commande.append(":");
+	s.Send(commande.c_str(), commande.length());
 	return 0;
 }
 
-CString ServiceClient::RetourSocket(CString retour)
+int ServiceClient::AjouterMaladie(string nom, string desc, ConnectedSocket & s)
 {
-	return NULL;
+	string commande("ajouterMaladie:");
+	commande.append(nom);
+	commande.append(",");
+	commande.append(desc);
+	s.Send(commande.c_str(), commande.length());
+	return 0;
 }
 
-Serveur ServiceClient::ConsulterDictionnaire(int id_serveur) {
+void ServiceClient::ConsulterDictionnaire(ConnectedSocket & s)
+{
+	string commande("recupererNomsToutesMaladies:");
+	s.Send(commande.c_str(), commande.length());
+}
+
+void ServiceClient::consulterMetaDonnees(ConnectedSocket & s)
+{
+	string commande("recupererMetaDonnees:");
+	s.Send(commande.c_str(), commande.length());
+}
+
+void ServiceClient::SupprimerMaladie(string nom, ConnectedSocket & s)
+{
+	string commande("supprimerMaladie:");
+	commande.append(nom);
+	s.Send(commande.c_str(), commande.length());
+}
+
+void ServiceClient::ModifierMaladie(string nom, string desc, ConnectedSocket & socket)
+{
+	string commande("modifierMaladie:");
+	commande.append(nom);
+	commande.append(",");
+	commande.append(desc);
+	socket.Send(commande.c_str(), commande.length());
+}
+
+/*Serveur ServiceClient::ConsulterDictionnaire(int id_serveur) {
 	ServeurDADatabase sda;
 	Serveur se;
 	sda.read_serveur(se, id_serveur);
 	
 	return se;
-}
+}*/
 
 ServiceClient::ServiceClient()
 {

@@ -25,5 +25,6 @@ public:
 	string recupererMaladie(string nom);
 
 	string recupererNomsToutesMaladies();
+	bool modifierMetaDonnees(string meta);
 };
 

@@ -122,6 +122,18 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 			strResponse.append(s.recupererNomsToutesMaladies());
 			strResponse.append("\r\n");
 		}
+		else if (requete.compare("modifierMetaDonnees") == 0)
+		{
+			bool ret = s.modifierMetaDonnees(arguments);
+			if (ret)
+			{
+				strResponse = "return:metadonnees modifiee\r\n";
+			}
+			else
+			{
+				strResponse = "error:operation annulée\r\n";
+			}
+		}
 		else
 		{
 			strResponse = "error:requete inconnue\r\n";

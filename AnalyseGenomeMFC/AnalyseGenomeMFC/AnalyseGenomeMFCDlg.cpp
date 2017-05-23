@@ -431,10 +431,52 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	{
 		if (nomCommande.compare("deconnexionEntreprise") == 0) { //A voir !
 			servicesM.DeconnexionEntreprise(*socket);
+			CString messageNC("Déconnexion...\r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageNC);
 		}
-		else if (nomCommande.compare("test") == 0)
+		else if (nomCommande.compare("modifierDescriptionDictionaire") == 0)
 		{
+			servicesM.ModifierDescriptionDictionnaire(arguments, *socket);
+		}
+		else if (nomCommande.compare("ajouterMaladie") == 0)
+		{
+			string args = requete.substr(requete.find(":") + 1);
 
+			vector<string> infos;
+			stringstream ss(args); // Turn the string into a stream.
+			string elem;
+
+			while (getline(ss, elem, ',')) {
+				infos.push_back(elem);
+			}
+			servicesM.AjouterMaladie(infos[0], infos[1], *socket);
+		}
+		else if (nomCommande.compare("consulterDictionnaire") == 0)
+		{
+			CString messageServ("Noms des maladies du serveur : \r\n");
+			texteConsole.Insert(texteConsole.GetLength(), messageServ);
+			servicesM.ConsulterDictionnaire(*socket);
+		}
+		else if (nomCommande.compare("consulterMetaDonnees") == 0)
+		{
+			servicesM.consulterMetaDonnees(*socket);
+		}
+		else if (nomCommande.compare("supprimerMaladie") == 0)
+		{
+			servicesM.SupprimerMaladie(arguments, *socket);
+		}
+		else if (nomCommande.compare("modifierMaladie")==0)
+		{
+			string args = requete.substr(requete.find(":") + 1);
+
+			vector<string> infos;
+			stringstream ss(args); // Turn the string into a stream.
+			string elem;
+
+			while (getline(ss, elem, ',')) {
+				infos.push_back(elem);
+			}
+			servicesM.ModifierMaladie(infos[0], infos[1], *socket);
 		}
 	}
 	

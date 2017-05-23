@@ -215,3 +215,39 @@ bool ServeurDA::mettreAJourMaladie(string nom, string mots)
 	}
 	return false;
 }
+
+bool ServeurDA::modifierMeta(string meta)
+{
+	ifstream is(nomDico, ios::in);
+	if (is)
+	{
+		string met;
+		getline(is, met);
+		string tmp;
+		string final;
+		while (getline(is, tmp))
+		{
+			final.append(tmp);
+			final.append("\n");
+		}
+		is.close();
+
+		ofstream os("dictionnaire.txt", ios::out);
+		if (os)
+		{
+			os << meta << "\n";
+			os << final;
+			os.close();
+			return true;
+		}
+		else
+		{
+			cerr << "Erreur lors de l'ouverture du dictionnaire" << endl;
+		}
+	}
+	else
+	{
+		cerr << "Erreur lors de l'ouverture du dictionnaire" << endl;
+	}
+	return false;
+}

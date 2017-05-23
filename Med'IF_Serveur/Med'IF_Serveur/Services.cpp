@@ -79,3 +79,9 @@ string Services::recupererNomsToutesMaladies()
 	return listeNoms;
 }
 
+bool Services::modifierMetaDonnees(string meta) 
+{
+	ServeurDA da;
+	return da.modifierMeta(meta);
+}
+

@@ -25,19 +25,18 @@ public:
 	void ServiceClient::EffectuerAnalyse(string retSocket, CString pathToGenome, int idPatient, int idMaladie);
 	vector<Serveur> ConsulterDictionnaires();
 
-	void ConsulterDictionnaires(Serveur s);
+	//void ConsulterDictionnaires(Serveur s);
 
 	void recupererMots(ConnectedSocket & s, string maladie);
 	
-	
 	void ConnexionEntreprise(string id, ConnectedSocket & s);
 	void DeconnexionEntreprise(ConnectedSocket & s);
-
 	int ModifierDescriptionDictionnaire(string desc, ConnectedSocket & s);
-	int AjouterMaladie(Maladie m, ConnectedSocket & s);
-	Serveur ConsulterDictionnaire(int id_serveur);
-
-	CString RetourSocket(CString retour);
+	int AjouterMaladie(string nom, string desc, ConnectedSocket & s);
+	void ConsulterDictionnaire(ConnectedSocket & s);
+	void consulterMetaDonnees(ConnectedSocket & s);
+	void SupprimerMaladie(string nom, ConnectedSocket & s);
+	void ModifierMaladie(string nom, string desc, ConnectedSocket & socket);
 	
 	ServiceClient();
 	~ServiceClient();

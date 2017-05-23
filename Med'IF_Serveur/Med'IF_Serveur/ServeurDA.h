@@ -31,6 +31,8 @@ public:
 
 	bool mettreAJourMaladie(string nom, string mots);
 
+	bool modifierMeta(string meta);
+
 private:
 	string nomDico = "dictionnaire.txt";
 };
