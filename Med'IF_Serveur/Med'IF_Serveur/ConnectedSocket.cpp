@@ -112,7 +112,7 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 		}
 		else if (requete.compare("recupererMaladie") == 0)
 		{
-			strResponse = "return:";
+			strResponse = "returnMots:";
 			strResponse.append(s.recupererMaladie(arguments));
 			strResponse.append("\r\n");
 		}
@@ -140,7 +140,6 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 		nResponseSize = nResponseSize - nSentBytes;
 		pszBuff = pszBuff + nSentBytes;
 	}
-	//Send(strResponse, strResponse.GetLength());
 
 	CAsyncSocket::OnReceive(nErrorCode);
 }

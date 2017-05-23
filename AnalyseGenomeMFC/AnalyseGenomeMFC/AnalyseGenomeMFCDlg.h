@@ -3,8 +3,8 @@
 //
 
 #pragma once
-
 #include "ConnectedSocket.h"
+#include <string>
 
 class ConnectedSocket;
 
@@ -40,9 +40,12 @@ public:
 	afx_msg void OnBnClickedShutdownserver();
 	afx_msg void OnBnClickedDatabase();
 
+	
+
 private:
 	ConnectedSocket *socket;
 	bool socketLaunched = false;
+
 
 public:
 	afx_msg void OnEnChangeEdit1();
@@ -51,6 +54,9 @@ public:
 	// récupère la ligne de commande fournie dans le champ
 	CString commande;
 	CString texteConsole;
+	CString pathToGenome;
+	int idPatient;
+	int idMaladie;
 	afx_msg void OnBnClickedButton3();
 	afx_msg void OnBnClickedButton4();
 };
