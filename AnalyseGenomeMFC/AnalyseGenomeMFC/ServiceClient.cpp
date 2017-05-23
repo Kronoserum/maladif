@@ -70,12 +70,12 @@ Analyse ServiceClient::ConsulterResultatsAnalyse(int id_analyse) {
 	return analyse;
 }
 
-void ServiceClient::EffectuerAnalyse(string retSocket,CString pathToGenome, int idPatient, int idMaladie) {
+void ServiceClient::EffectuerAnalyse(string &retSocket,CString pathToGenome, int idPatient, int idMaladie) {
 	clock_t start;
 	double duration;
 	unsigned int capacity;
 
-	capacity = (int) retSocket.capacity();
+	//capacity = (int) retSocket.capacity();
 	start = clock();
 
 	WuManber wu;
@@ -83,21 +83,23 @@ void ServiceClient::EffectuerAnalyse(string retSocket,CString pathToGenome, int 
 	vector<string> pattern = wu.Convert(retSocket);
 	wu.Init(pattern);
 
-	int resultat;
+	bool resultat = false;
+	string s;
 
 	ifstream text(pathToGenome);
-	while (text>>retSocket) {
-		resultat = wu.Search(retSocket);
+	while (text>>s) {
+		resultat = wu.Search(s);
 	}
+
 
 	string date = "23/05";
 	
-	int idMed = medecinCo->get_id();
+	//int idMed = medecinCo->get_id();
 
 	duration = (clock() - start) / (double) CLOCKS_PER_SEC;
 
 
-	Analyse ana(resultat, date, idMed, idPatient, idMaladie, 1);
+	Analyse ana((int) resultat, date, 1, idPatient, idMaladie, 1);
 	AnalyseDADatabase ada;
 	ada.write_analyse(ana);
 
@@ -115,11 +117,10 @@ vector<Serveur> ServiceClient::ConsulterDictionnaires() {
 
 void ServiceClient::recupererMots(ConnectedSocket & s, string maladie)
 {
-	string commande = "recupererMaladie:";
+	string commande("recupererMaladie:");
 	commande.append(maladie);
 	commande.append(":");
-	s.Send(commande.c_str(), strlen(commande.c_str()));
-	AfxMessageBox(_T("Fin de recuperer mots"));
+	s.Send(commande.c_str(), commande.length());
 }
 
 void ServiceClient::ConnexionEntreprise(string id, ConnectedSocket & s) {

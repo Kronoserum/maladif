@@ -25,21 +25,22 @@ void ConnectedSocket::setOwner(CAnalyseGenomeMFCDlg * o)
 
 void ConnectedSocket::OnReceive(int nErrorCode)
 {
-	const int BUFF_LEN = 2048;
+	const int BUFF_LEN = 524288;
 	char szBuff[BUFF_LEN];
 
 	int nReceivedSize = Receive(szBuff, BUFF_LEN);
 
 	if (nReceivedSize <= 0)
 		return;
-
 	szBuff[nReceivedSize] = '\0';
+
 	string data(szBuff);
 	if (data.substr(0, data.find(":")).compare("returnMots")==0)
 	{
 		ServiceClient m;
-		AfxMessageBox((CString)data.c_str());
-		m.EffectuerAnalyse(data.substr(data.find(":")+1), owner->pathToGenome, owner->idPatient, owner->idMaladie);
+		AfxMessageBox((CString)data.substr(data.find(":") + 1).c_str());
+		CString pathToGenome("genome.txt");
+		m.EffectuerAnalyse(data.substr(data.find(":")+1), pathToGenome, owner->idPatient, owner->idMaladie);
 		owner->texteConsole.Insert(owner->texteConsole.GetLength(), (CString)data.c_str());
 		owner->UpdateData(false);
 	}

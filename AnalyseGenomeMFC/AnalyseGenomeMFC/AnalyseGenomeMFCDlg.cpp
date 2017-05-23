@@ -235,20 +235,20 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 
 	if (nomCommande.compare("connexionMedecin") == 0)
 	{
-		CString message ("Connexion...\r\n");
+		CString message (">> Connexion...\r\n");
 		texteConsole.Insert(texteConsole.GetLength(), message);
 		int id = stoi(requete.substr(requete.find(":")+1));
 		int connexion = servicesM.ConnexionMedecin(id);
 		if (connexion == 0)
 		{
-			CString messageC("Connexion effectuée !\r\n");
+			CString messageC(">> Connexion effectuée !\r\n");
 			texteConsole.Insert(texteConsole.GetLength(), messageC);
 			UpdateData(false);
 			medecinConnected = stoi(arguments);
 		}
 		else 
 		{
-			CString messageNC("Connexion échouée. Essayez encore !\r\n");
+			CString messageNC(">> Connexion échouée. Essayez encore !\r\n");
 			texteConsole.Insert(texteConsole.GetLength(), messageNC);
 			UpdateData(false);
 		}
@@ -268,14 +268,14 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			bool deconnexion = servicesM.DeconnexionMedecin();
 			if (deconnexion)
 			{
-				CString messageD("Déconnexion effectuée !\r\n");
+				CString messageD(">> Déconnexion effectuée !\r\n");
 				texteConsole.Insert(texteConsole.GetLength(), messageD);
 				UpdateData(false);
 				medecinConnected = -1;
 			}
 			else
 			{
-				CString messageND("La déconnexion a échouée !\r\n");
+				CString messageND(">> La déconnexion a échouée !\r\n");
 				texteConsole.Insert(texteConsole.GetLength(), messageND);
 				UpdateData(false);
 			}
@@ -293,7 +293,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 
 			if (infos.size() != 4)
 			{
-				CString messageE("Problème lors de la création d'un patient au niveau des arguments fournis\r\n");
+				CString messageE(">> Problème lors de la création d'un patient au niveau des arguments fournis\r\n");
 				texteConsole.Insert(texteConsole.GetLength(), messageE);
 				UpdateData(false);
 			
@@ -304,13 +304,13 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			int creaD = servicesM.CreerDossierPatient(nouveauPatient);
 			if (creaD == 0)
 			{
-				CString messageDP("Dossier patient créé avec succès !\r\n");
+				CString messageDP(">> Dossier patient créé avec succès !\r\n");
 				texteConsole.Insert(texteConsole.GetLength(), messageDP);
 				UpdateData(false);
 			}
 			else
 			{
-				CString messageDPE("Erreur lors de la création du patient !\r\n");
+				CString messageDPE(">> Erreur lors de la création du patient !\r\n");
 				texteConsole.Insert(texteConsole.GetLength(), messageDPE);
 				UpdateData(false);
 			}
@@ -320,12 +320,12 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			Patient patientTraite = servicesM.ConsulterDossierPatient(idPatient);
 			if (patientTraite.get_nom().size()==0)
 			{
-				CString messageCDP("Ce patient n'existe pas\r\n");
+				CString messageCDP(">> Ce patient n'existe pas\r\n");
 				texteConsole.Insert(texteConsole.GetLength(), messageCDP);
 			} 
 			else
 			{
-				CString messageCDP("Voici le dossier de ce patient :\r\n");
+				CString messageCDP(">> Voici le dossier de ce patient :\r\n");
 				texteConsole.Insert(texteConsole.GetLength(), messageCDP);
 				UpdateData(false);
 				CString messageCDPD(patientTraite.toString().c_str());
@@ -337,7 +337,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		else if (nomCommande.compare("parcourirDictionnaires") == 0) {
 			vector<Serveur> dicos = servicesM.ConsulterDictionnaires();
 			string affichageServeurs;
-			CString messageS1("Liste des serveurs :\r\n");
+			CString messageS1(">> Liste des serveurs :\r\n");
 			texteConsole.Insert(texteConsole.GetLength(), messageS1);
 			UpdateData(false);
 			for (vector<Serveur>::iterator i = dicos.begin(); i != dicos.end(); ++i)
@@ -356,13 +356,13 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			vector<Analyse> analyses = servicesM.ConsulterAnalysesPatient(idPatient);
 			if (analyses.size() == 0)
 			{
-				CString messageA1("Aucune analyse pour ce patient.\r\n");
+				CString messageA1(">> Aucune analyse pour ce patient.\r\n");
 				texteConsole.Insert(texteConsole.GetLength(), messageA1);
 			}
 			else
 			{
 				string affichageAnalyses;
-				CString messageA1("Liste des analyses du patient : \r\n");
+				CString messageA1(">> Liste des analyses du patient : \r\n");
 				texteConsole.Insert(texteConsole.GetLength(), messageA1);
 				UpdateData(false);
 
@@ -382,23 +382,23 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		else if (nomCommande.compare("consulterResultatAnalyse") == 0) {
 			int idAnalyse = stoi(requete.substr(requete.find(":") + 1));
 			Analyse analyse = servicesM.ConsulterResultatsAnalyse(idAnalyse);
-			CString messageR1("Voici le résultat de cette analyse :\r\n");
+			CString messageR1(">> Voici le résultat de cette analyse :\r\n");
 			texteConsole.Insert(texteConsole.GetLength(), messageR1);
 			UpdateData(false);
 			int resultat = analyse.get_resultat();
 			if (resultat == 1)
 			{
-				CString messageR("Risque d'atteinte de la maladie");
+				CString messageR(">> Risque d'atteinte de la maladie");
 				texteConsole.Insert(texteConsole.GetLength(), messageR);
 			}
 			else if(resultat==0)
 			{
-				CString messageR("Absence de risque d'atteinte de la maladie");
+				CString messageR(">> Absence de risque d'atteinte de la maladie");
 				texteConsole.Insert(texteConsole.GetLength(), messageR);
 			}
 			else
 			{
-				CString messageR("Aucune analyse avec cet ID.");
+				CString messageR(">> Aucune analyse avec cet ID.");
 				texteConsole.Insert(texteConsole.GetLength(), messageR);
 			}
 		
@@ -421,7 +421,6 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			int idMaladie = stoi(infos[3]);
 			string pathToGenome = infos[1];
 			//-------------------------------------------------------------------------------
-			AfxMessageBox(_T("Avant appel service metier"));
 			servicesM.recupererMots(*socket, maladie);
 			/*ifstream dico("dicoMalade.txt");
 			string retSock;
@@ -429,7 +428,6 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			CString pathGenome("genomeMalade.txt");
 			int idPatient2 = 10;
 			int idMaladie2 = 1;
-			AfxMessageBox((CString) retSock.c_str());
 			servicesM.EffectuerAnalyse(retSock, pathGenome, idPatient2, idMaladie2);*/
 		}
 	}
@@ -437,7 +435,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	{
 		if (nomCommande.compare("deconnexionEntreprise") == 0) { //A voir !
 			servicesM.DeconnexionEntreprise(*socket);
-			CString messageNC("Déconnexion...\r\n");
+			CString messageNC(">> Déconnexion...\r\n");
 			texteConsole.Insert(texteConsole.GetLength(), messageNC);
 		}
 		else if (nomCommande.compare("modifierDescriptionDictionaire") == 0)
@@ -459,7 +457,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 		}
 		else if (nomCommande.compare("consulterDictionnaire") == 0)
 		{
-			CString messageServ("Noms des maladies du serveur : \r\n");
+			CString messageServ(">> Noms des maladies du serveur : \r\n");
 			texteConsole.Insert(texteConsole.GetLength(), messageServ);
 			servicesM.ConsulterDictionnaire(*socket);
 		}
