@@ -23,6 +23,8 @@
 /*  ---------- Services M馘ecin ---------- */ 
 
 static int idMedco = -1;
+static clock_t startTot;
+static double durationTot;
 
 int ServiceClient::ConnexionMedecin(int id) {
 	MedecinDADatabase mda;
@@ -73,11 +75,12 @@ Analyse ServiceClient::ConsulterResultatsAnalyse(int id_analyse) {
 }
 
 void ServiceClient::EffectuerAnalyse(string &retSocket,CString pathToGenome, int idPatient, int idMaladie) {
+
 	clock_t start;
 	double duration;
 	unsigned int capacity;
 
-	capacity = (int) retSocket.capacity();
+	capacity = (unsigned int) retSocket.capacity();
 	
 
 	WuManber wu;
@@ -104,8 +107,13 @@ void ServiceClient::EffectuerAnalyse(string &retSocket,CString pathToGenome, int
 	sNum.Format(_T("%f"), duration);
 	AfxMessageBox((CString) ("Temps de calcul : ") + sNum);
 
+	durationTot = (clock() - startTot) / (double)CLOCKS_PER_SEC;
+	CString sTot;
+	sTot.Format(_T("%f"), durationTot);
+	AfxMessageBox((CString)("Temps de calcul + communication : ") + sTot);
+
 	CString sInt;
-	sNum.Format(_T("%d"), capacity);
+	sNum.Format(_T("%d"), retSocket.capacity() / 1000);
 	AfxMessageBox((CString)("Taille de données : ") + sInt);
 
 	Analyse ana((int) resultat, date, idMedco, idPatient, idMaladie, 1);
@@ -126,6 +134,8 @@ vector<Serveur> ServiceClient::ConsulterDictionnaires() {
 
 void ServiceClient::recupererMots(ConnectedSocket & s, string maladie)
 {
+	startTot = clock();
+
 	string commande("recupererMaladie:");
 	commande.append(maladie);
 	commande.append(":");

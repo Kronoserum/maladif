@@ -33,8 +33,8 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 	if (nReceivedSize <= 0)
 		return;
 	szBuff[nReceivedSize] = '\0';
-
 	string data(szBuff);
+
 	if (data.substr(0, data.find(":")).compare("returnMots")==0)
 	{
 		ServiceClient m;
@@ -43,6 +43,7 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 		CString tmp(">> Analyse en cours\r\n");
 		owner->texteConsole.Insert(owner->texteConsole.GetLength(), tmp);
 		owner->UpdateData(false);
+		return;
 	}
 	else if (data.compare("return:connected\r\n") == 0)
 	{
@@ -54,6 +55,7 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 	{
 		owner->texteConsole.Insert(owner->texteConsole.GetLength(), (CString)data.c_str());
 		owner->UpdateData(false);
+		
 	}
 
 	CAsyncSocket::OnReceive(nErrorCode);
