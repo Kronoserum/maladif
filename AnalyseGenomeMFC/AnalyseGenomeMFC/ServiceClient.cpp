@@ -68,7 +68,7 @@ Analyse ServiceClient::ConsulterResultatsAnalyse(int id_analyse) {
 	return analyse;
 }
 
-void ServiceClient::EffectuerAnalyse(string retSocket,string pathToGenome, int idPatient, int idMaladie, int idServeur) {
+void ServiceClient::EffectuerAnalyse(string retSocket,CString pathToGenome, int idPatient, int idMaladie) {
 	clock_t start;
 	double duration;
 	unsigned int capacity;
@@ -95,7 +95,7 @@ void ServiceClient::EffectuerAnalyse(string retSocket,string pathToGenome, int i
 	duration = (clock() - start) / (double) CLOCKS_PER_SEC;
 
 
-	Analyse ana(resultat, date, idMed, idPatient, idMaladie, idServeur);
+	Analyse ana(resultat, date, idMed, idPatient, idMaladie, 1);
 	AnalyseDADatabase ada;
 	ada.write_analyse(ana);
 
@@ -110,6 +110,15 @@ vector<Serveur> ServiceClient::ConsulterDictionnaires() {
 
 
 /*  ---------- Services Entreprise ---------- */
+
+void ServiceClient::recupererMots(ConnectedSocket & s, string maladie)
+{
+	string commande = "recupererMaladie:";
+	commande.append(maladie);
+	commande.append(":");
+	s.Send(commande.c_str(), strlen(commande.c_str()));
+	AfxMessageBox(_T("Fin de recuperer mots"));
+}
 
 void ServiceClient::ConnexionEntreprise(string id, ConnectedSocket & s) {
 	string commande("connexion:");

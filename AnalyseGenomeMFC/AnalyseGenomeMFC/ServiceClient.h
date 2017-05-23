@@ -22,8 +22,12 @@ public:
 	vector<Analyse> ConsulterAnalysesPatient(int id_patient);
 
 	Analyse ConsulterResultatsAnalyse(int id_analyse);
-	void ServiceClient::EffectuerAnalyse(string retSocket, string pathToGenome, int idPatient, int idMaladie, int idServeur);
+	void ServiceClient::EffectuerAnalyse(string retSocket, CString pathToGenome, int idPatient, int idMaladie);
 	vector<Serveur> ConsulterDictionnaires();
+
+	void ConsulterDictionnaires(Serveur s);
+
+	void recupererMots(ConnectedSocket & s, string maladie);
 	
 	
 	void ConnexionEntreprise(string id, ConnectedSocket & s);

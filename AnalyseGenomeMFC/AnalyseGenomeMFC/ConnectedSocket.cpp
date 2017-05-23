@@ -4,6 +4,7 @@
 
 #include "stdafx.h"
 #include "ConnectedSocket.h"
+#include "ServiceClient.h"
 
 using namespace std;
 
@@ -33,8 +34,20 @@ void ConnectedSocket::OnReceive(int nErrorCode)
 		return;
 
 	szBuff[nReceivedSize] = '\0';
-	CString data(szBuff);
-	owner->texteConsole.Insert(owner->texteConsole.GetLength(), data);
+	string data(szBuff);
+	if (data.substr(0, data.find(":")).compare("returnMots")==0)
+	{
+		ServiceClient m;
+		//m.EffectuerAnalyse(data.substr(data.find(":")+1), owner->pathToGenome, owner->idPatient, owner->idMaladie);
+		owner->texteConsole.Insert(owner->texteConsole.GetLength(), (CString)data.c_str());
+		owner->UpdateData(false);
+	}
+	else
+	{
+		owner->texteConsole.Insert(owner->texteConsole.GetLength(), (CString)data.c_str());
+		//owner->texteConsole.Insert(owner->texteConsole.GetLength(), (CString)"\r\n");
+		owner->UpdateData(false);
+	}
 
 	CAsyncSocket::OnReceive(nErrorCode);
 }

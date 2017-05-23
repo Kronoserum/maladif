@@ -399,6 +399,21 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 	}
 	else if (nomCommande.compare("effectuerAnalyse") == 0) {
 		//A voir s'il faut découper la réalisation (cf exigences fonctionnelles)
+		string args = requete.substr(requete.find(":") + 1);
+
+		vector<string> infos;
+		stringstream ss(args); // Turn the string into a stream.
+		string elem;
+
+		while (getline(ss, elem, ',')) {
+			infos.push_back(elem);
+		}
+		string maladie = infos[0];
+		int idPatient = stoi(infos[2]);
+		int idMaladie = stoi(infos[3]);
+		string pathToGenome = infos[1];
+		AfxMessageBox((CString)pathToGenome.c_str());
+		servicesM.recupererMots(*socket, maladie);
 	}
 	else if (nomCommande.compare("connexionEntreprise") == 0)
 	{
