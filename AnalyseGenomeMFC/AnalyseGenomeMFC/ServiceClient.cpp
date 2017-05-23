@@ -26,13 +26,13 @@ int ServiceClient::ConnexionMedecin(int id) {
 	MedecinDADatabase mda;
 	Medecin medecin;
 	int code = mda.read_medecin(medecin, id);
-	medecinCo = &medecin;
+	idMedco = medecin.get_id();
 
 	return code;
 }
 
 bool ServiceClient::DeconnexionMedecin() {
-	medecinCo = NULL;
+	idMedco = NULL;
 	return true;
 }
 
@@ -94,12 +94,12 @@ void ServiceClient::EffectuerAnalyse(string &retSocket,CString pathToGenome, int
 
 	string date = "23/05";
 	
-	//int idMed = medecinCo->get_id();
+	int idMed = idMedco;
 
 	duration = (clock() - start) / (double) CLOCKS_PER_SEC;
 
 
-	Analyse ana((int) resultat, date, 1, idPatient, idMaladie, 1);
+	Analyse ana((int) resultat, date, idMed, idPatient, idMaladie, 1);
 	AnalyseDADatabase ada;
 	ada.write_analyse(ana);
 

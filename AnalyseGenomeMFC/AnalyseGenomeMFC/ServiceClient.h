@@ -13,7 +13,7 @@
 class ServiceClient
 {
 public:
-
+	static int idMedco;
 	int ConnexionMedecin(int id);
 	bool DeconnexionMedecin();
 
@@ -42,7 +42,6 @@ public:
 	~ServiceClient();
 
 private: 
-	Medecin * medecinCo;
-	Entreprise * entrCo;
+	
 };
 
