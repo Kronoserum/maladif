@@ -431,7 +431,7 @@ void CAnalyseGenomeMFCDlg::OnBnClickedButton1()
 			duration = (clock() - start) / (double)CLOCKS_PER_SEC;
 			CString sNum;
 			sNum.Format(_T("%f"), duration);
-			AfxMessageBox((CString)("Temps de calcul + communication :") + sNum);
+			AfxMessageBox((CString)("Temps de calcul + communication : ") + sNum);
 
 			/*ifstream dico("dicoMalade.txt");
 			string retSock;

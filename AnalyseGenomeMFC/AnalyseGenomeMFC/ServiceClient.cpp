@@ -102,11 +102,11 @@ void ServiceClient::EffectuerAnalyse(string &retSocket,CString pathToGenome, int
 	duration = (clock() - start) / (double) CLOCKS_PER_SEC;
 	CString sNum;
 	sNum.Format(_T("%f"), duration);
-	AfxMessageBox((CString) ("Temps de calcul :") + sNum);
+	AfxMessageBox((CString) ("Temps de calcul : ") + sNum);
 
 	CString sInt;
 	sNum.Format(_T("%d"), capacity);
-	AfxMessageBox((CString)("Taille de données :") + sInt);
+	AfxMessageBox((CString)("Taille de données : ") + sInt);
 
 	Analyse ana((int) resultat, date, idMedco, idPatient, idMaladie, 1);
 	AnalyseDADatabase ada;
