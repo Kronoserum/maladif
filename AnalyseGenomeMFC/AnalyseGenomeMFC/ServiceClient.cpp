@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "stdafx.h"
 #include "ServiceClient.h"
@@ -20,7 +20,7 @@
 #include "fstream"
 #include "iostream"
 
-/*  ---------- Services M�decin ---------- */ 
+/*  ---------- Services M馘ecin ---------- */ 
 
 static int idMedco = -1;
 
@@ -77,13 +77,15 @@ void ServiceClient::EffectuerAnalyse(string &retSocket,CString pathToGenome, int
 	double duration;
 	unsigned int capacity;
 
-	//capacity = (int) retSocket.capacity();
-	start = clock();
+	capacity = (int) retSocket.capacity();
+	
 
 	WuManber wu;
 
 	vector<string> pattern = wu.Convert(retSocket);
 	wu.Init(pattern);
+
+	start = clock();
 
 	bool resultat = false;
 	string s;
@@ -98,7 +100,13 @@ void ServiceClient::EffectuerAnalyse(string &retSocket,CString pathToGenome, int
 	
 
 	duration = (clock() - start) / (double) CLOCKS_PER_SEC;
+	CString sNum;
+	sNum.Format(_T("%f"), duration);
+	AfxMessageBox((CString) ("Temps de calcul :") + sNum);
 
+	CString sInt;
+	sNum.Format(_T("%d"), capacity);
+	AfxMessageBox((CString)("Taille de données :") + sInt);
 
 	Analyse ana((int) resultat, date, idMedco, idPatient, idMaladie, 1);
 	AnalyseDADatabase ada;
